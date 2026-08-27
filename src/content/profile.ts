@@ -32,6 +32,9 @@ export type Profile = {
   stack: StackGroup[];
   experience: Experience[];
   education: Localized<string[]>;
+  /** Explains anything a reader may spot in the dates. Without this the bot can
+   *  count the months and has no answer for why. */
+  timelineNotes: Localized<string[]>;
   /** Gaps and caveats stated honestly — partial experience counts. The bot cites
    *  these instead of making something up. */
   gaps: Localized<string[]>;
@@ -92,6 +95,7 @@ export const profile: Profile = {
         "Express",
         "Nest.js",
         "PostgreSQL",
+        "TimescaleDB",
         "MySQL",
         "Prisma",
         "WebSockets",
@@ -215,28 +219,28 @@ export const profile: Profile = {
       period: { ru: "08.2018 — 03.2021", en: "08.2018 — 03.2021", pl: "08.2018 — 03.2021" },
       highlights: {
         ru: [
-          "Спроектировал дашборд мониторинга судов в реальном времени (Node.js, Express, PostgreSQL, WebSockets): живая телеметрия по 50+ судам, ежедневный инструмент операционных команд.",
+          "Спроектировал дашборд мониторинга судов в реальном времени (Node.js, Express, TimescaleDB, WebSockets): телеметрия шла с судна по UDP, живые данные по 50+ судам, ежедневный инструмент операционных команд.",
           "Сделал к нему React-фронтенд с live-стримом: данные в реальном времени на 3D-модели судна, переключение по палубам, несколько ракурсов камеры и дашборды. Выкатывали через фича-флаги, с мониторингом, логированием и отработанным откатом.",
           "Построил и кастомизировал WYSIWYG-редактор (React, Laravel) для статей и уроков онлайн-школы.",
           "Реализовал триальные аккаунты — конверсия выросла на 2% в первый же квартал после запуска.",
           "Работал в кодовых базах React, Vue и Laravel в стартапе, выпуская фичи короткими релизными циклами вместе с продуктом и дизайном.",
         ],
         en: [
-          "Architected a real-time ship monitoring dashboard (Node.js, Express, PostgreSQL, WebSockets) showing live telemetry for 50+ vessels, used daily by operations teams.",
+          "Architected a real-time ship monitoring dashboard (Node.js, Express, TimescaleDB, WebSockets) fed by UDP telemetry straight from the vessel, live across 50+ ships and used daily by operations teams.",
           "Built its live-stream React front-end: real-time data on a 3D ship model with deck switching, multiple camera views and dashboards. Rolled out behind feature flags with monitoring, logging and a rehearsed rollback path.",
           "Built and customised a WYSIWYG editor (React, Laravel) for authoring articles and online school lessons.",
           "Shipped trial-account functionality that lifted conversion by 2% in the first quarter after launch.",
           "Worked across React, Vue and Laravel codebases in a startup, shipping on tight release cycles alongside product and design.",
         ],
         pl: [
-          "Zaprojektował dashboard monitoringu statków w czasie rzeczywistym (Node.js, Express, PostgreSQL, WebSockets): telemetria na żywo z 50+ jednostek, codzienne narzędzie zespołów operacyjnych.",
+          "Zaprojektował dashboard monitoringu statków w czasie rzeczywistym (Node.js, Express, TimescaleDB, WebSockets): telemetria szła ze statku po UDP, dane na żywo z 50+ jednostek, codzienne narzędzie zespołów operacyjnych.",
           "Zbudował do niego frontend React z live streamem: dane w czasie rzeczywistym na modelu 3D statku, przełączanie pokładów, kilka ujęć kamery i dashboardy. Wdrożenie szło przez feature flagi, z monitoringiem, logowaniem i przećwiczonym rollbackiem.",
           "Zbudował i dostosował edytor WYSIWYG (React, Laravel) do tworzenia artykułów i lekcji szkoły online.",
           "Wdrożył konta próbne — konwersja wzrosła o 2% w pierwszym kwartale po starcie.",
           "Pracował w bazach kodu React, Vue i Laravel w startupie, dowożąc funkcje w krótkich cyklach wydawniczych razem z produktem i designem.",
         ],
       },
-      stack: ["React", "Vue", "Node.js", "Express", "PostgreSQL", "WebSockets", "Laravel"],
+      stack: ["React", "Vue", "Node.js", "Express", "TimescaleDB", "WebSockets", "UDP", "Laravel"],
     },
   ],
 
@@ -249,6 +253,18 @@ export const profile: Profile = {
     ],
     pl: [
       "Białoruski Uniwersytet Państwowy, Mińsk — licencjat z matematyki i cybernetyki matematycznej, 2016–2020. Przedmioty: projektowanie algorytmów, modelowanie danych, analiza statystyczna, systemy obliczeniowe.",
+    ],
+  },
+
+  timelineNotes: {
+    ru: [
+      "03.2021 — 09.2021: полгода срочной службы в армии. Этим объясняется перерыв между AKDev Group и Godel Technologies.",
+    ],
+    en: [
+      "03.2021 — 09.2021: six months of mandatory military service. That accounts for the break between AKDev Group and Godel Technologies.",
+    ],
+    pl: [
+      "03.2021 — 09.2021: pół roku obowiązkowej służby wojskowej. To wyjaśnia przerwę między AKDev Group a Godel Technologies.",
     ],
   },
 

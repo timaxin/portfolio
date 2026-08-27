@@ -65,6 +65,11 @@ function buildKnowledgeBase(locale: Locale): string {
       .map((e) => `- ${e}`)
       .join("\n"),
     "",
+    "## Timeline notes (use these to explain gaps between dates)",
+    t(profile.timelineNotes, locale)
+      .map((n) => `- ${n}`)
+      .join("\n"),
+    "",
     "## Gaps and caveats (state these honestly)",
     t(profile.gaps, locale)
       .map((g) => `- ${g}`)
