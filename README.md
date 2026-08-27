@@ -3,7 +3,7 @@
 A personal site where the CV is a chat: someone asks, Claude answers strictly from my
 profile. Plus project pages the bot also knows about. Three languages: ru / en / pl.
 
-https://github.com/timaxin/portfolio
+https://www.timcv.pl · https://github.com/timaxin/portfolio
 
 ## Run it
 

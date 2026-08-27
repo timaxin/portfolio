@@ -11,7 +11,7 @@ const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin", "cyr
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 /** Canonical origin. Vercel preview deployments still answer on their own URLs. */
-const SITE_URL = "https://timcv.pl";
+const SITE_URL = "https://www.timcv.pl";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
