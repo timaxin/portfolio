@@ -1,4 +1,4 @@
-import { createAnswerStream } from "@/lib/chat";
+import { createAnswerStream, resolveTarget } from "@/lib/chat";
 import { CHAT_CONTENT_TYPE, chatRequestSchema } from "@/lib/chat-config";
 import { checkRateLimit, clientKey } from "@/lib/rate-limit";
 import { defaultLocale, isLocale } from "@/i18n/config";
@@ -19,7 +19,8 @@ export async function POST(request: Request) {
     typeof body === "object" && body !== null && "locale" in body ? String(body.locale) : "";
   const errors = dictionaries[isLocale(hinted) ? hinted : defaultLocale].errors;
 
-  if (!process.env.ANTHROPIC_API_KEY) {
+  const { apiKey } = resolveTarget();
+  if (!apiKey) {
     return Response.json({ error: errors.noApiKey }, { status: 500 });
   }
 
@@ -37,7 +38,7 @@ export async function POST(request: Request) {
   }
 
   const stream = createAnswerStream({
-    apiKey: process.env.ANTHROPIC_API_KEY,
+    apiKey,
     locale: parsed.data.locale,
     messages: parsed.data.messages,
   });

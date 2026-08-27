@@ -4,25 +4,41 @@ import { dictionaries } from "@/i18n/dictionaries";
 import type { Locale } from "@/i18n/config";
 import { LIMITS, type ChatEvent, type ChatTurn } from "./chat-config";
 
-/**
- * Q&A over a fixed context is a simple task and the endpoint is public,
- * so the default is the cheapest model on either route.
- *
- * The two routes spell the same model differently: the Anthropic API uses dashes,
- * AI Gateway prefixes the provider and keeps the dot. Deriving the id from the base
- * URL means switching routes is one env var, not two that must agree.
- */
+/** Q&A over a fixed context is simple and the endpoint is public, so both defaults are the cheapest model. */
 const GATEWAY_HOST = "ai-gateway.vercel.sh";
 const DIRECT_MODEL = "claude-haiku-4-5";
 const GATEWAY_MODEL = "anthropic/claude-haiku-4.5";
 
-function resolveTarget(): { baseURL: string | undefined; model: string } {
-  const baseURL = process.env.ANTHROPIC_BASE_URL?.trim() || undefined;
+export type Target = {
+  apiKey: string | undefined;
+  baseURL: string | undefined;
+  model: string;
+};
+
+/**
+ * Reads the three LLM_* env vars and fills in whatever they leave out.
+ *
+ * LLM_BASE_URL unset  → Anthropic directly, model claude-haiku-4-5
+ * LLM_BASE_URL set to the gateway → model anthropic/claude-haiku-4.5
+ *
+ * The id is derived rather than configured because the two routes spell the same
+ * model differently, and two env vars that must agree is a trap. LLM_MODEL overrides.
+ */
+export function resolveTarget(): Target {
+  const baseURL = process.env.LLM_BASE_URL?.trim() || undefined;
   const viaGateway = baseURL?.includes(GATEWAY_HOST) ?? false;
 
+  // On a Vercel deployment the gateway also accepts the auto-injected OIDC token,
+  // so a key is optional there. Anthropic direct would reject it — hence the guard.
+  const apiKey =
+    process.env.LLM_API_KEY?.trim() ||
+    (viaGateway ? process.env.VERCEL_OIDC_TOKEN?.trim() : undefined) ||
+    undefined;
+
   return {
+    apiKey,
     baseURL,
-    model: process.env.ANTHROPIC_MODEL?.trim() || (viaGateway ? GATEWAY_MODEL : DIRECT_MODEL),
+    model: process.env.LLM_MODEL?.trim() || (viaGateway ? GATEWAY_MODEL : DIRECT_MODEL),
   };
 }
 

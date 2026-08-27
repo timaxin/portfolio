@@ -8,7 +8,7 @@ https://github.com/timaxin/portfolio
 ## Run it
 
 ```bash
-cp .env.example .env.local   # fill in ANTHROPIC_API_KEY
+cp .env.example .env.local   # fill in LLM_API_KEY
 npm run dev
 ```
 
@@ -30,7 +30,7 @@ Add a project to `projects.ts` and the bot knows about it immediately — nothin
 
 1. vercel.com/new → import this repo. Next.js is detected automatically; leave build and
    output settings alone.
-2. Settings → Environment Variables → `ANTHROPIC_API_KEY`.
+2. Settings → Environment Variables → `LLM_API_KEY`.
    **Tick all three environments** (Production, Preview, Development), otherwise the chat
    dies silently on preview deployments.
 3. Deploy.
@@ -44,7 +44,7 @@ Custom domain: Settings → Domains.
 
 The endpoint is public and every question costs money.
 
-- Model is `claude-haiku-4-5`, the cheapest one. Override with `ANTHROPIC_MODEL`.
+- Model is `claude-haiku-4-5`, the cheapest one. Override with `LLM_MODEL`.
   (Don't set `output_config.effort` — Haiku 4.5 rejects it.)
 - The system prompt carries `cache_control`, so repeat questions read it from cache.
 - Caps: 600 chars per question, 12 messages of history, 1024 tokens per answer.
@@ -55,9 +55,14 @@ The endpoint is public and every question costs money.
 
 ## Routing through Vercel AI Gateway
 
-Optional. Set `ANTHROPIC_BASE_URL=https://ai-gateway.vercel.sh` and put an AI Gateway key
-in `ANTHROPIC_API_KEY`; the model id switches to `anthropic/claude-haiku-4.5` on its own.
-Unset the base URL to go back to calling Anthropic directly.
+Optional. Set `LLM_BASE_URL=https://ai-gateway.vercel.sh` and put an AI Gateway key in
+`LLM_API_KEY`; the model id switches to `anthropic/claude-haiku-4.5` on its own. Unset the
+base URL to go back to calling Anthropic directly.
+
+On a Vercel deployment `LLM_API_KEY` is optional for this route: Vercel injects
+`VERCEL_OIDC_TOKEN` into every deployment and the gateway accepts it, so the code falls
+back to it when no key is set. Locally the token comes from `vercel env pull` and lasts
+12 hours, so a key is usually less friction there.
 
 What it buys: one key across providers, spend and latency in the Vercel dashboard, and
 automatic failover to another provider. Tokens are the same price as direct — no markup —
@@ -68,5 +73,5 @@ the catalogue (`fish-audio`, `minimax`, `poolside`) and no Anthropic model, so C
 always runs on purchased credits. Check the balance with:
 
 ```bash
-curl -s https://ai-gateway.vercel.sh/v1/credits -H "Authorization: Bearer $AI_GATEWAY_API_KEY"
+curl -s https://ai-gateway.vercel.sh/v1/credits -H "Authorization: Bearer $LLM_API_KEY"
 ```
