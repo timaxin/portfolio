@@ -9,9 +9,8 @@ function encodeEvent(event: ChatEvent): Uint8Array {
 }
 
 /**
- * История приходит от клиента, поэтому доверять ей нельзя: обрезаем хвост,
- * выравниваем роли (API требует, чтобы первым шло сообщение пользователя)
- * и подрезаем длину каждой реплики.
+ * History comes from the client, so it cannot be trusted: trim to the tail, align roles
+ * (the API requires a user message first) and cap the length of every turn.
  */
 function normalizeMessages(messages: ChatTurn[]): Anthropic.MessageParam[] {
   const tail = messages.slice(-LIMITS.maxMessages);
@@ -40,8 +39,8 @@ export type AnswerStreamOptions = {
 };
 
 /**
- * Отдаёт поток NDJSON-событий. Стриминг здесь не косметика: он снимает риск
- * упереться в таймаут запроса и позволяет показать первые слова сразу.
+ * Returns a stream of NDJSON events. Streaming is not cosmetic here: it removes the risk
+ * of hitting a request timeout and puts the first words on screen right away.
  */
 export function createAnswerStream({
   apiKey,
@@ -58,8 +57,8 @@ export function createAnswerStream({
         const stream = client.messages.stream({
           model,
           max_tokens: LIMITS.maxTokens,
-          // Системный промпт стабилен от запроса к запросу — кешируем его целиком.
-          // На каждый язык свой префикс, то есть своя запись в кеше.
+          // The system prompt is stable across requests, so cache the whole thing.
+          // Each language is its own prefix and therefore its own cache entry.
           system: [
             { type: "text", text: systemPrompt(locale), cache_control: { type: "ephemeral" } },
           ],

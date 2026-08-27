@@ -1,22 +1,22 @@
 /**
- * Общие для клиента и сервера типы и лимиты.
- * Отдельный модуль без Anthropic SDK — иначе он утянулся бы в клиентский бандл.
+ * Types and limits shared by the client and the server.
+ * Kept free of the Anthropic SDK — importing it here would drag it into the client bundle.
  */
 import { z } from "zod";
 import { locales } from "@/i18n/config";
 
 /**
- * Q&A по фиксированному контексту — задача простая, а эндпоинт публичный,
- * поэтому по умолчанию самая дешёвая модель.
+ * Q&A over a fixed context is a simple task and the endpoint is public,
+ * so the default is the cheapest model.
  */
 export const DEFAULT_MODEL = "claude-haiku-4-5";
 
-/** Публичный эндпоинт платный, поэтому режем вход на входе. */
+/** The public endpoint costs money per call, so input is capped up front. */
 export const LIMITS = {
   maxQuestionChars: 600,
-  /** Сколько последних сообщений истории уходит в API (включая текущий вопрос). */
+  /** How many trailing history messages reach the API (the current question included). */
   maxMessages: 12,
-  /** Ответы короткие по инструкции, thinking у Haiku 4.5 выключен — потолка хватает. */
+  /** Answers are short by instruction and Haiku 4.5 does no thinking — this ceiling is plenty. */
   maxTokens: 1024,
 } as const;
 
@@ -36,7 +36,7 @@ export const chatRequestSchema = z.object({
 export type ChatRequest = z.infer<typeof chatRequestSchema>;
 export type ChatTurn = ChatRequest["messages"][number];
 
-/** Построчный NDJSON-протокол: одна строка — одно событие. */
+/** Line-delimited NDJSON protocol: one line, one event. */
 export type ChatEvent =
   | { type: "delta"; text: string }
   | { type: "done" }

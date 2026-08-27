@@ -4,17 +4,17 @@ import { checkRateLimit, clientKey } from "@/lib/rate-limit";
 import { defaultLocale, isLocale } from "@/i18n/config";
 import { dictionaries } from "@/i18n/dictionaries";
 
-/** Стриминг длиной в целый ответ модели — дефолтных 10 секунд Vercel не хватит. */
+/** Streaming runs for as long as the model answers — Vercel's default 10s is not enough. */
 export const maxDuration = 30;
 
 /**
- * Прокси к Anthropic API. Существует ради одного: ключ живёт на сервере,
- * а браузер видит только вопрос и поток ответа.
+ * Proxy to the Anthropic API. It exists for one reason: the key stays on the server
+ * and the browser only ever sees the question and the streamed answer.
  */
 export async function POST(request: Request) {
   const body: unknown = await request.json().catch(() => null);
 
-  // Язык нужен для текста ошибки ещё до валидации всего запроса.
+  // The locale is needed for error copy before the request as a whole is validated.
   const hinted =
     typeof body === "object" && body !== null && "locale" in body ? String(body.locale) : "";
   const errors = dictionaries[isLocale(hinted) ? hinted : defaultLocale].errors;
@@ -47,7 +47,7 @@ export async function POST(request: Request) {
     headers: {
       "content-type": CHAT_CONTENT_TYPE,
       "cache-control": "no-store",
-      // Отключает буферизацию у прокси вроде nginx — иначе стриминга не видно.
+      // Disables buffering in proxies like nginx — otherwise the stream is invisible.
       "x-accel-buffering": "no",
     },
   });

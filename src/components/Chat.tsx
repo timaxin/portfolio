@@ -24,7 +24,7 @@ export function Chat({ locale }: { locale: Locale }) {
     bottomRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
   }, [turns, pending]);
 
-  // Оборванный запрос продолжал бы жечь токены — гасим его при уходе со страницы.
+  // An abandoned request would keep burning tokens — kill it when leaving the page.
   useEffect(() => () => abortRef.current?.abort(), []);
 
   const ask = useCallback(

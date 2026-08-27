@@ -2,8 +2,8 @@ import { NextResponse, type NextRequest } from "next/server";
 import { defaultLocale, isLocale, locales } from "@/i18n/config";
 
 /**
- * Все страницы живут под /:locale. Запрос без префикса перекидываем на язык
- * из Accept-Language, а если он не подошёл — на язык по умолчанию.
+ * Every page lives under /:locale. A request without a prefix is redirected to the
+ * language from Accept-Language, falling back to the default when none matches.
  */
 function detectLocale(header: string | null) {
   if (!header) return defaultLocale;
@@ -34,6 +34,6 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  // Пропускаем API, служебные пути Next и всё, что похоже на файл.
+  // Skip the API, Next internals and anything that looks like a file.
   matcher: ["/((?!api|_next|.*\\..*).*)"],
 };

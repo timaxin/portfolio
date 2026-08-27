@@ -4,7 +4,7 @@ import remarkGfm from "remark-gfm";
 type Props = {
   role: "user" | "assistant";
   content: string;
-  /** Показываем курсор, пока текст ещё дописывается. */
+  /** Show a caret while the text is still being written. */
   pending?: boolean;
 };
 

@@ -4,8 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 /**
- * Активной считается ссылка на текущий раздел. Для корня языка сравниваем строго,
- * иначе «Чат» подсвечивался бы и на страницах проектов.
+ * A link counts as active when it points at the current section. The language root is
+ * matched exactly, otherwise "Chat" would stay highlighted on the project pages too.
  */
 export function NavLink({ href, exact = false, children }: {
   href: string;

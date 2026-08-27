@@ -14,7 +14,7 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-/** Всё, кроме трёх известных языков, отдаёт 404 вместо рендера на лету. */
+/** Anything outside the three known languages 404s instead of rendering on demand. */
 export const dynamicParams = false;
 
 export async function generateMetadata({

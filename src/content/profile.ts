@@ -1,18 +1,18 @@
 import type { Localized } from "@/i18n/config";
 
 /**
- * Единственный источник правды о владельце портфолио.
- * Всё, что здесь написано, попадает в системный промпт чат-бота, —
- * модели запрещено выходить за пределы этих фактов.
+ * The single source of truth about the portfolio owner.
+ * Everything here goes into the chatbot's system prompt, and the model is not
+ * allowed to step outside these facts.
  *
- * TODO: заменить заглушки на реальные данные перед публикацией.
+ * TODO: replace the placeholders with real data before publishing.
  */
 
 export type Experience = {
   company: string;
   role: Localized;
   period: Localized;
-  /** Чем занимался и что осталось после тебя — конкретика, а не обязанности. */
+  /** What you did and what outlived you — specifics, not a list of duties. */
   highlights: Localized<string[]>;
   stack: string[];
 };
@@ -30,7 +30,7 @@ export type Profile = {
   stack: StackGroup[];
   experience: Experience[];
   education: Localized<string[]>;
-  /** Честно перечисленные пробелы: бот сошлётся на них вместо того, чтобы выдумывать. */
+  /** Gaps stated honestly: the bot cites these instead of making something up. */
   gaps: Localized<string[]>;
   availability: Localized;
   contacts: { label: string; value: string; href: string }[];
@@ -97,7 +97,7 @@ export const profile: Profile = {
 
   experience: [
     {
-      company: "TODO: компания",
+      company: "TODO: company",
       role: {
         ru: "Senior Software Engineer",
         en: "Senior Software Engineer",
@@ -106,22 +106,22 @@ export const profile: Profile = {
       period: { ru: "2022 — н. в.", en: "2022 — present", pl: "2022 — obecnie" },
       highlights: {
         ru: [
-          "TODO: конкретный результат с цифрой (ускорил, сократил, вывел в прод).",
-          "TODO: зона ответственности — что было на тебе целиком.",
+          "TODO: a concrete result with a number (sped up, cut down, shipped).",
+          "TODO: scope of ownership — what was entirely yours.",
         ],
         en: [
           "TODO: a concrete result with a number (sped up, cut down, shipped).",
           "TODO: scope of ownership — what was entirely yours.",
         ],
         pl: [
-          "TODO: konkretny wynik z liczbą (przyspieszyłem, zmniejszyłem, wdrożyłem).",
-          "TODO: zakres odpowiedzialności — co było w całości na tobie.",
+          "TODO: a concrete result with a number (sped up, cut down, shipped).",
+          "TODO: scope of ownership — what was entirely yours.",
         ],
       },
       stack: ["Next.js", "Nest.js", "PostgreSQL", "AWS"],
     },
     {
-      company: "TODO: предыдущая компания",
+      company: "TODO: previous company",
       role: {
         ru: "Software Engineer",
         en: "Software Engineer",
@@ -129,24 +129,24 @@ export const profile: Profile = {
       },
       period: { ru: "2019 — 2022", en: "2019 — 2022", pl: "2019 — 2022" },
       highlights: {
-        ru: ["TODO: что сделал и почему это было важно бизнесу."],
+        ru: ["TODO: what you built and why it mattered to the business."],
         en: ["TODO: what you built and why it mattered to the business."],
-        pl: ["TODO: co zrobiłeś i dlaczego było to ważne dla biznesu."],
+        pl: ["TODO: what you built and why it mattered to the business."],
       },
       stack: ["React", "Node.js", "Docker"],
     },
   ],
 
   education: {
-    ru: ["TODO: вуз, специальность, год выпуска"],
+    ru: ["TODO: university, major, graduation year"],
     en: ["TODO: university, major, graduation year"],
-    pl: ["TODO: uczelnia, kierunek, rok ukończenia"],
+    pl: ["TODO: university, major, graduation year"],
   },
 
   gaps: {
     ru: [
       "Нет коммерческого опыта в геймдеве и с движками вроде Phaser/Unity.",
-      "TODO: другие честные пробелы — их лучше назвать самому, чем оставить боту домысливать.",
+      "TODO: other honest gaps — better to name them yourself than let the bot guess.",
     ],
     en: [
       "No commercial experience in game development or with engines like Phaser/Unity.",
@@ -154,7 +154,7 @@ export const profile: Profile = {
     ],
     pl: [
       "Brak komercyjnego doświadczenia w gamedevie i z silnikami typu Phaser/Unity.",
-      "TODO: inne szczere luki — lepiej nazwać je samemu, niż zostawić botowi do domyślenia.",
+      "TODO: other honest gaps — better to name them yourself than let the bot guess.",
     ],
   },
 

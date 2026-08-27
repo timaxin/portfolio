@@ -1,6 +1,6 @@
 import type { Locale } from "./config";
 
-/** Строки интерфейса. Тексты о кандидате живут в src/content, здесь только обвязка. */
+/** UI strings. Copy about the candidate lives in src/content; this is just the shell. */
 export type Dictionary = {
   nav: { chat: string; projects: string };
   chat: {
@@ -10,7 +10,7 @@ export type Dictionary = {
     stop: string;
     disclaimer: string;
   };
-  /** Ошибки: часть возвращает сервер, часть возникает в браузере. */
+  /** Errors: some come back from the server, some are raised in the browser. */
   errors: {
     noApiKey: string;
     rateLimited: string;

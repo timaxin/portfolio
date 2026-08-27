@@ -1,55 +1,56 @@
-# Портфолио
+# Portfolio
 
-Сайт-визитка, где вместо резюме — чат: HR спрашивает, Claude отвечает строго по моему
-профилю. Плюс страницы проектов, которые бот тоже знает. Три языка: ru / en / pl.
+A personal site where the CV is a chat: someone asks, Claude answers strictly from my
+profile. Plus project pages the bot also knows about. Three languages: ru / en / pl.
 
 https://github.com/timaxin/portfolio
 
-## Запуск
+## Run it
 
 ```bash
-cp .env.example .env.local   # вписать ANTHROPIC_API_KEY
+cp .env.example .env.local   # fill in ANTHROPIC_API_KEY
 npm run dev
 ```
 
-## Где что лежит
+## Where things live
 
-| Файл | Зачем |
+| File | What for |
 |---|---|
-| `src/content/profile.ts` | опыт, стек, образование, пробелы, контакты |
-| `src/content/projects.ts` | проекты — питают и `/projects`, и промпт бота |
-| `src/content/system-prompt.ts` | правила бота: не выдумывать, отвечать на языке вопроса |
-| `src/i18n/dictionaries.ts` | строки интерфейса и тексты ошибок |
-| `src/app/api/chat/route.ts` | прокси к Anthropic, здесь живёт ключ |
-| `src/proxy.ts` | `/` → `/ru`\|`/en`\|`/pl` по Accept-Language |
+| `src/content/profile.ts` | experience, stack, education, gaps, contacts |
+| `src/content/projects.ts` | projects — feed both `/projects` and the bot's prompt |
+| `src/content/system-prompt.ts` | the bot's rules: no invention, answer in the question's language |
+| `src/i18n/dictionaries.ts` | UI strings and error copy |
+| `src/app/api/chat/route.ts` | proxy to Anthropic — the key lives here |
+| `src/proxy.ts` | `/` → `/ru`\|`/en`\|`/pl` from Accept-Language |
 
-Любой текст, который читает человек, обёрнут в `Localized<...>` — TS не даст забыть перевод.
-Добавил проект в `projects.ts` — бот сразу о нём знает, ничего больше делать не надо.
+Anything a human reads is wrapped in `Localized<...>`, so TS won't let a translation slip.
+Add a project to `projects.ts` and the bot knows about it immediately — nothing else to do.
 
-**Не забыть:** в `profile.ts` ещё висят `TODO:` — компании, достижения, образование.
+**Still open:** `profile.ts` has `TODO:` markers left — companies, achievements, education.
 
 ## Vercel
 
-1. vercel.com/new → импортировать этот репозиторий. Next.js определяется сам,
-   build/output не трогать.
+1. vercel.com/new → import this repo. Next.js is detected automatically; leave build and
+   output settings alone.
 2. Settings → Environment Variables → `ANTHROPIC_API_KEY`.
-   **Поставить галки на все три окружения** (Production, Preview, Development),
-   иначе чат на preview-деплоях молча отвалится.
+   **Tick all three environments** (Production, Preview, Development), otherwise the chat
+   dies silently on preview deployments.
 3. Deploy.
 
-`vercel.json` прибивает регион к `fra1` (Франкфурт) — ближе к Варшаве, меньше задержка
-до первого слова. В роуте стоит `maxDuration = 30`: дефолтных 10 секунд стримингу мало.
+`vercel.json` pins the region to `fra1` (Frankfurt) — closest to Warsaw, less latency before
+the first token. The route sets `maxDuration = 30`; the default 10s is too short for streaming.
 
-Свой домен — Settings → Domains.
+Custom domain: Settings → Domains.
 
-## Деньги
+## Cost
 
-Эндпоинт публичный, каждый вопрос стоит денег.
+The endpoint is public and every question costs money.
 
-- Модель — `claude-haiku-4-5`, самая дешёвая. Переопределяется через `ANTHROPIC_MODEL`.
-  (Не ставить `output_config.effort` — Haiku 4.5 его не принимает.)
-- Системный промпт помечен `cache_control` — повторные вопросы читают его из кеша.
-- Лимиты: 600 символов на вопрос, 12 сообщений истории, 1024 токена на ответ.
-- Rate limit 12 вопросов в час с IP (`src/lib/rate-limit.ts`). Счётчик в памяти инстанса,
-  а на Vercel инстансов несколько — гарантии нет, только защита от случайного залипания.
-  Если начнут долбить всерьёз: Vercel KV или Turnstile перед первым запросом.
+- Model is `claude-haiku-4-5`, the cheapest one. Override with `ANTHROPIC_MODEL`.
+  (Don't set `output_config.effort` — Haiku 4.5 rejects it.)
+- The system prompt carries `cache_control`, so repeat questions read it from cache.
+- Caps: 600 chars per question, 12 messages of history, 1024 tokens per answer.
+- Rate limit of 12 questions per hour per IP (`src/lib/rate-limit.ts`). The counter lives in
+  instance memory and Vercel runs several instances, so it's not a guarantee — just a guard
+  against accidental hammering. If someone goes at it seriously: Vercel KV, or Turnstile in
+  front of the first request.

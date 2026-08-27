@@ -1,13 +1,13 @@
 /**
- * Лимитер в памяти процесса. Этого достаточно, чтобы одиночный бот не сжёг бюджет,
- * но при нескольких инстансах (serverless, несколько воркеров) каждый считает свой счёт.
- * Нужна жёсткая гарантия — вынесите счётчики в Cloudflare KV / Durable Object / Redis.
+ * In-process limiter. Enough to stop a single bot from burning the budget, but with
+ * several instances (serverless, multiple workers) each keeps its own count.
+ * For a hard guarantee move the counters to Vercel KV, a Durable Object or Redis.
  */
 
 export type RateLimitConfig = {
-  /** Сколько запросов разрешено в окне. */
+  /** Requests allowed per window. */
   limit: number;
-  /** Длина окна в миллисекундах. */
+  /** Window length in milliseconds. */
   windowMs: number;
 };
 
@@ -38,7 +38,7 @@ export function checkRateLimit(
   recent.push(now);
   hits.set(key, recent);
 
-  // Разовая уборка, чтобы Map не рос бесконечно на долгоживущем инстансе.
+  // One-off sweep so the Map cannot grow without bound on a long-lived instance.
   if (hits.size > 5_000) {
     for (const [k, timestamps] of hits) {
       if (timestamps.every((ts) => ts <= windowStart)) hits.delete(k);
@@ -48,7 +48,7 @@ export function checkRateLimit(
   return { allowed: true, remaining: limit - recent.length, retryAfterSec: 0 };
 }
 
-/** Достаём IP из заголовков прокси; в дев-режиме их нет — падаем в общий бакет. */
+/** Pull the IP out of proxy headers; there are none in dev, so everything shares one bucket. */
 export function clientKey(headers: Headers): string {
   const forwarded = headers.get("x-forwarded-for")?.split(",")[0]?.trim();
   return forwarded || headers.get("cf-connecting-ip") || headers.get("x-real-ip") || "local";

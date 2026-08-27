@@ -1,6 +1,6 @@
 import type { Localized } from "@/i18n/config";
 
-/** Стартовые подсказки: задают тон и показывают, что у бота вообще можно спросить. */
+/** Starter prompts: they set the tone and show what the bot can actually be asked. */
 export const suggestedQuestions: Localized<string[]> = {
   ru: [
     "Какой у него основной стек?",

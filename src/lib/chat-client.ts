@@ -3,7 +3,7 @@ import type { ChatEvent, ChatTurn } from "./chat-config";
 
 const CHAT_ENDPOINT = "/api/chat";
 
-/** Читает NDJSON-поток построчно: последняя строка чанка может быть неполной. */
+/** Reads the NDJSON stream line by line: the last line of a chunk may be incomplete. */
 export async function* streamChat(
   locale: Locale,
   messages: ChatTurn[],
@@ -38,7 +38,7 @@ export async function* streamChat(
       try {
         yield JSON.parse(line) as ChatEvent;
       } catch {
-        // Битую строку молча пропускаем — поток важнее одного события.
+        // Drop a malformed line silently — keeping the stream alive matters more.
       }
     }
   }

@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Синий и фиолетовый на почти-чёрном и почти-белом. */
+/* Blue and violet on near-black and near-white. */
 :root {
   --background: #ffffff;
   --surface: #f5f6fc;
@@ -49,7 +49,7 @@ body {
   color: var(--foreground);
 }
 
-/* Разметка ответов модели: react-markdown отдаёт голые теги, стилизуем их точечно. */
+/* Model answers: react-markdown emits bare tags, so style them one by one. */
 .answer > * + * {
   margin-top: 0.65rem;
 }

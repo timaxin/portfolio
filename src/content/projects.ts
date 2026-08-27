@@ -1,15 +1,15 @@
 import type { Localized } from "@/i18n/config";
 
 /**
- * Проекты портфолио. Один массив питает и страницы /projects, и системный промпт,
- * поэтому добавление проекта автоматически расширяет знания чат-бота.
+ * Portfolio projects. One array feeds both the /projects pages and the system prompt,
+ * so adding a project automatically widens what the chatbot knows.
  */
 
 export type Project = {
   slug: string;
   title: Localized;
   tagline: Localized;
-  /** Развёрнутое описание — уходит в промпт, на странице показывается целиком. */
+  /** The long description — goes into the prompt and is shown in full on the page. */
   description: Localized;
   role: Localized;
   period: string;
