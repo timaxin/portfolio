@@ -38,7 +38,6 @@ export async function POST(request: Request) {
 
   const stream = createAnswerStream({
     apiKey: process.env.ANTHROPIC_API_KEY,
-    model: process.env.ANTHROPIC_MODEL,
     locale: parsed.data.locale,
     messages: parsed.data.messages,
   });

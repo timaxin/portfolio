@@ -5,12 +5,6 @@
 import { z } from "zod";
 import { locales } from "@/i18n/config";
 
-/**
- * Q&A over a fixed context is a simple task and the endpoint is public,
- * so the default is the cheapest model.
- */
-export const DEFAULT_MODEL = "claude-haiku-4-5";
-
 /** The public endpoint costs money per call, so input is capped up front. */
 export const LIMITS = {
   maxQuestionChars: 600,

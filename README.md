@@ -52,3 +52,21 @@ The endpoint is public and every question costs money.
   instance memory and Vercel runs several instances, so it's not a guarantee — just a guard
   against accidental hammering. If someone goes at it seriously: Vercel KV, or Turnstile in
   front of the first request.
+
+## Routing through Vercel AI Gateway
+
+Optional. Set `ANTHROPIC_BASE_URL=https://ai-gateway.vercel.sh` and put an AI Gateway key
+in `ANTHROPIC_API_KEY`; the model id switches to `anthropic/claude-haiku-4.5` on its own.
+Unset the base URL to go back to calling Anthropic directly.
+
+What it buys: one key across providers, spend and latency in the Vercel dashboard, and
+automatic failover to another provider. Tokens are the same price as direct — no markup —
+so the trade is an extra network hop for the observability.
+
+What it does not buy: the $5/month free credits. The gateway free tier covers a subset of
+the catalogue (`fish-audio`, `minimax`, `poolside`) and no Anthropic model, so Claude
+always runs on purchased credits. Check the balance with:
+
+```bash
+curl -s https://ai-gateway.vercel.sh/v1/credits -H "Authorization: Bearer $AI_GATEWAY_API_KEY"
+```

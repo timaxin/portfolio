@@ -2,7 +2,29 @@ import Anthropic from "@anthropic-ai/sdk";
 import { systemPrompt } from "@/content/system-prompt";
 import { dictionaries } from "@/i18n/dictionaries";
 import type { Locale } from "@/i18n/config";
-import { DEFAULT_MODEL, LIMITS, type ChatEvent, type ChatTurn } from "./chat-config";
+import { LIMITS, type ChatEvent, type ChatTurn } from "./chat-config";
+
+/**
+ * Q&A over a fixed context is a simple task and the endpoint is public,
+ * so the default is the cheapest model on either route.
+ *
+ * The two routes spell the same model differently: the Anthropic API uses dashes,
+ * AI Gateway prefixes the provider and keeps the dot. Deriving the id from the base
+ * URL means switching routes is one env var, not two that must agree.
+ */
+const GATEWAY_HOST = "ai-gateway.vercel.sh";
+const DIRECT_MODEL = "claude-haiku-4-5";
+const GATEWAY_MODEL = "anthropic/claude-haiku-4.5";
+
+function resolveTarget(): { baseURL: string | undefined; model: string } {
+  const baseURL = process.env.ANTHROPIC_BASE_URL?.trim() || undefined;
+  const viaGateway = baseURL?.includes(GATEWAY_HOST) ?? false;
+
+  return {
+    baseURL,
+    model: process.env.ANTHROPIC_MODEL?.trim() || (viaGateway ? GATEWAY_MODEL : DIRECT_MODEL),
+  };
+}
 
 function encodeEvent(event: ChatEvent): Uint8Array {
   return new TextEncoder().encode(`${JSON.stringify(event)}\n`);
@@ -33,7 +55,6 @@ function describeError(error: unknown, locale: Locale): string {
 
 export type AnswerStreamOptions = {
   apiKey: string;
-  model?: string;
   locale: Locale;
   messages: ChatTurn[];
 };
@@ -44,11 +65,12 @@ export type AnswerStreamOptions = {
  */
 export function createAnswerStream({
   apiKey,
-  model = DEFAULT_MODEL,
   locale,
   messages,
 }: AnswerStreamOptions): ReadableStream<Uint8Array> {
-  const client = new Anthropic({ apiKey });
+  const { baseURL, model } = resolveTarget();
+  // baseURL undefined leaves the SDK on api.anthropic.com.
+  const client = new Anthropic({ apiKey, baseURL });
   const normalized = normalizeMessages(messages);
 
   return new ReadableStream<Uint8Array>({
