@@ -100,7 +100,7 @@ export const projects: Project[] = [
       pl: "Full-stack: odbiór i zapis strumienia na backendzie, interfejs czasu rzeczywistego na froncie",
     },
 
-    period: "2018 — 2021, AKDev Group",
+    period: "2024 — present, Godel Technologies Europe",
 
     stack: ["React", "Node.js", "Express", "TimescaleDB", "WebSockets", "UDP"],
 
@@ -122,6 +122,126 @@ export const projects: Project[] = [
         "Model 3D statku jako główny interfejs: przełączanie pokładów, kamery na pokładach, które je mają, odczyty ze wszystkich dostępnych węzłów.",
         "Powiadomienia SMS przy wejściu jednostki w strefy zaznaczone na mapie.",
         "Wdrożenie przez feature flagi, z monitoringiem, logowaniem i przećwiczonym rollbackiem.",
+      ],
+    },
+
+    links: [],
+  },
+  {
+    slug: "price-comparison-platform",
+
+    title: {
+      ru: "Платформа сравнения цен",
+      en: "Price comparison platform",
+      pl: "Platforma porównywania cen",
+    },
+
+    tagline: {
+      ru: "Один из крупнейших британских сервисов сравнения финансовых продуктов",
+      en: "One of the UK's largest comparison services for financial products",
+      pl: "Jeden z największych brytyjskich serwisów porównujących produkty finansowe",
+    },
+
+    description: {
+      ru: "Британский сервис независимого сравнения финансовых продуктов и услуг. Фронтенд на React и Redux в монорепозитории, серверный рендеринг на Express. За два года: редизайн интерфейса сразу в нескольких продуктах, переход на новый фреймворк, покрытие тестами с нуля до 100% и переезд всех сервисов на GitLab вместе с DevOps.",
+      en: "A British service for impartial comparison of financial products and services. React and Redux front end in a monorepo, server-side rendering on Express. Over two years: a UI redesign across several products, a move to a new framework, test coverage taken to 100%, and a migration of every service to GitLab alongside DevOps.",
+      pl: "Brytyjski serwis bezstronnego porównywania produktów i usług finansowych. Frontend w React i Redux w monorepo, renderowanie po stronie serwera na Express. Przez dwa lata: redesign interfejsu w kilku produktach, przejście na nowy framework, pokrycie testami do 100% i migracja wszystkich serwisów na GitLab razem z DevOps.",
+    },
+
+    role: {
+      ru: "Разработка фронтенда и SSR-слоя в продуктовой команде",
+      en: "Front-end and SSR work inside the product team",
+      pl: "Frontend i warstwa SSR w zespole produktowym",
+    },
+
+    period: "2022 — 2024, Godel Technologies Europe",
+
+    stack: [
+      "React",
+      "Redux",
+      "TypeScript",
+      "Express",
+      "SSR",
+      "Monorepo",
+      "Docker",
+      "SASS",
+      "Jest",
+      "Playwright",
+      "GitLab CI",
+    ],
+
+    highlights: {
+      ru: [
+        "Довёл покрытие юнит- и интеграционными тестами до 100%.",
+        "Крупный рефакторинг с переходом на новый фреймворк: +25% к производительности страниц без потери функциональности.",
+        "Редизайн интерфейса, выкаченный сразу в нескольких продуктах.",
+        "Вместе с DevOps перевёл все сервисы на GitLab.",
+      ],
+      en: [
+        "Took unit and integration test coverage to 100%.",
+        "A major refactor onto a new framework: 25% better page performance with no loss of functionality.",
+        "A UI redesign rolled out across several products at once.",
+        "Migrated every service to GitLab together with DevOps.",
+      ],
+      pl: [
+        "Podniósł pokrycie testami jednostkowymi i integracyjnymi do 100%.",
+        "Duży refaktor z przejściem na nowy framework: +25% wydajności stron bez utraty funkcjonalności.",
+        "Redesign interfejsu wdrożony w kilku produktach naraz.",
+        "Razem z DevOps przeniósł wszystkie serwisy na GitLab.",
+      ],
+    },
+
+    links: [],
+  },
+  {
+    slug: "radio-dj-console",
+
+    title: {
+      ru: "DJ-консоль для онлайн-радио",
+      en: "DJ console for online radio",
+      pl: "Konsola DJ dla radia online",
+    },
+
+    tagline: {
+      ru: "Живое сведение эфира прямо в браузере: треки, реклама и голос ведущего",
+      en: "Live broadcast mixing in the browser: tracks, ads and the host's voice",
+      pl: "Miksowanie audycji na żywo w przeglądarce: utwory, reklamy i głos prowadzącego",
+    },
+
+    description: {
+      ru: "Платформа с аптаймом 24/7, на которой клиенты заводят собственное онлайн- или офлайн-радио. Моя часть — DJ-консоль: ведущий сводит эфир прямо в браузере, управляя треками, рекламными вставками и собственным микрофоном в реальном времени. Всё микширование на Web Audio API: раздельная громкость по каналам и мониторинг в наушниках отдельно от того, что уходит в эфир.",
+      en: "A platform with 24/7 uptime where customers run their own online or offline radio. My part was the DJ console: the host mixes the broadcast straight in the browser, driving tracks, ad inserts and their own microphone in real time. All mixing runs on the Web Audio API — per-channel volume and headphone monitoring separate from what goes out on air.",
+      pl: "Platforma z uptime 24/7, na której klienci prowadzą własne radio online lub offline. Moja część to konsola DJ: prowadzący miksuje audycję prosto w przeglądarce, sterując utworami, wstawkami reklamowymi i własnym mikrofonem w czasie rzeczywistym. Całe miksowanie na Web Audio API — osobna głośność kanałów i odsłuch w słuchawkach niezależny od tego, co idzie na antenę.",
+    },
+
+    role: {
+      ru: "Фулстек: консоль на Vue и бэкенд на Laravel",
+      en: "Full-stack: the console on Vue, the backend on Laravel",
+      pl: "Full-stack: konsola na Vue, backend na Laravel",
+    },
+
+    period: "2018 — 2020, AKDev Group",
+
+    stack: ["Vue", "Vuex", "Laravel", "Web Audio API", "MySQL", "Docker", "SASS"],
+
+    highlights: {
+      ru: [
+        "Сведение в реальном времени: треки, реклама и микрофон ведущего с раздельной регулировкой громкости.",
+        "Мониторинг в наушниках отдельно от эфирного микса.",
+        "Тёмная тема консоли.",
+        "Платформа держала аптайм 24/7.",
+      ],
+      en: [
+        "Real-time mixing: tracks, ads and the host's microphone, each with its own volume control.",
+        "Headphone monitoring kept separate from the on-air mix.",
+        "A dark theme for the console.",
+        "The platform held 24/7 uptime.",
+      ],
+      pl: [
+        "Miksowanie w czasie rzeczywistym: utwory, reklamy i mikrofon prowadzącego, każde z własną regulacją głośności.",
+        "Odsłuch w słuchawkach oddzielony od miksu antenowego.",
+        "Ciemny motyw konsoli.",
+        "Platforma utrzymywała uptime 24/7.",
       ],
     },
 
