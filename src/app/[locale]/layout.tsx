@@ -10,6 +10,9 @@ import "../globals.css";
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin", "cyrillic"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
+/** Canonical origin. Vercel preview deployments still answer on their own URLs. */
+const SITE_URL = "https://timcv.pl";
+
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
@@ -24,14 +27,18 @@ export async function generateMetadata({
   if (!isLocale(locale)) return {};
 
   return {
+    // Absolute base for canonical and hreflang links; without it Next resolves the
+    // relative alternates below against localhost.
+    metadataBase: new URL(SITE_URL),
+    alternates: {
+      canonical: `/${locale}`,
+      languages: Object.fromEntries(locales.map((l) => [l, `/${l}`])),
+    },
     title: {
       default: `${profile.name} — ${t(profile.headline, locale)}`,
       template: `%s — ${profile.name}`,
     },
     description: t(profile.summary, locale),
-    alternates: {
-      languages: Object.fromEntries(locales.map((l) => [l, `/${l}`])),
-    },
   };
 }
 
