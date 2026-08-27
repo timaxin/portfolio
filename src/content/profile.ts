@@ -32,7 +32,8 @@ export type Profile = {
   stack: StackGroup[];
   experience: Experience[];
   education: Localized<string[]>;
-  /** Gaps stated honestly: the bot cites these instead of making something up. */
+  /** Gaps and caveats stated honestly — partial experience counts. The bot cites
+   *  these instead of making something up. */
   gaps: Localized<string[]>;
   availability: Localized;
   contacts: { label: string; value: string; href: string }[];
@@ -89,6 +90,7 @@ export const profile: Profile = {
       items: [
         "Node.js",
         "Express",
+        "Nest.js",
         "PostgreSQL",
         "MySQL",
         "Prisma",
@@ -254,21 +256,24 @@ export const profile: Profile = {
     ru: [
       "Нет прямого практического опыта с edge-рантаймами (Vercel Edge Functions, Cloudflare Workers).",
       "AWS знает частично: руками работал с Lambda и S3, с RDS и EC2 опыт ограниченный.",
+      "Nest.js: руками работал, но в основном на некоммерческих проектах — Nest.js-сервис в продакшене не вёл.",
     ],
     en: [
       "No direct hands-on experience with edge runtimes (Vercel Edge Functions, Cloudflare Workers).",
       "AWS is partial: hands-on with Lambda and S3, limited exposure to RDS and EC2.",
+      "Nest.js: hands-on, but mostly on non-commercial projects — he has not owned a Nest.js service in production.",
     ],
     pl: [
       "Brak bezpośredniego doświadczenia z runtime'ami edge (Vercel Edge Functions, Cloudflare Workers).",
       "AWS zna częściowo: praktyka z Lambda i S3, ograniczone doświadczenie z RDS i EC2.",
+      "Nest.js: pracował praktycznie, ale głównie na projektach niekomercyjnych — nie prowadził serwisu Nest.js na produkcji.",
     ],
   },
 
   availability: {
-    ru: "Открыт к senior-ролям: удалённо по Польше или гибрид в Лодзи и Варшаве. Работает по B2B через собственное JDG или по umowa o pracę. Срок выхода — две недели. Может подстроить часы под US Eastern, с плотным пересечением в первые месяцы онбординга. Предпочитает устоявшиеся компании со здоровой инженерной культурой.",
-    en: "Open to senior roles: remote within Poland or hybrid in Łódź and Warsaw. Works on B2B through his own sole proprietorship or on a permanent contract (umowa o pracę). Notice period is two weeks. Can align hours with US Eastern time, with heavy overlap during the first months of onboarding. Prefers established companies with a healthy engineering culture.",
-    pl: "Otwarty na role senior: zdalnie w Polsce lub hybrydowo w Łodzi i Warszawie. Pracuje na B2B przez własną JDG albo na umowę o pracę. Okres wypowiedzenia: dwa tygodnie. Może dopasować godziny do US Eastern, z dużym pokryciem w pierwszych miesiącach onboardingu. Preferuje ustabilizowane firmy ze zdrową kulturą inżynierską.",
+    ru: "Открыт к senior-ролям: удалённо по Польше или гибрид в Лодзи либо Варшаве, переезд в Варшаву рассматривает. Работает по B2B через собственное JDG или по umowa o pracę. Срок выхода — две недели. Может подстроить часы под US Eastern, с плотным пересечением в первые месяцы онбординга. Предпочитает устоявшиеся компании со здоровой инженерной культурой.",
+    en: "Open to senior roles: remote within Poland, or hybrid in Łódź or Warsaw — he is considering a move to Warsaw. Works on B2B through his own sole proprietorship or on a permanent contract (umowa o pracę). Notice period is two weeks. Can align hours with US Eastern time, with heavy overlap during the first months of onboarding. Prefers established companies with a healthy engineering culture.",
+    pl: "Otwarty na role senior: zdalnie w Polsce albo hybrydowo w Łodzi lub Warszawie — rozważa przeprowadzkę do Warszawy. Pracuje na B2B przez własną JDG albo na umowę o pracę. Okres wypowiedzenia: dwa tygodnie. Może dopasować godziny do US Eastern, z dużym pokryciem w pierwszych miesiącach onboardingu. Preferuje ustabilizowane firmy ze zdrową kulturą inżynierską.",
   },
 
   contacts: [

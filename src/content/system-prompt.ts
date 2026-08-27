@@ -65,7 +65,7 @@ function buildKnowledgeBase(locale: Locale): string {
       .map((e) => `- ${e}`)
       .join("\n"),
     "",
-    "## Not in the experience (say so honestly)",
+    "## Gaps and caveats (state these honestly)",
     t(profile.gaps, locale)
       .map((g) => `- ${g}`)
       .join("\n"),
