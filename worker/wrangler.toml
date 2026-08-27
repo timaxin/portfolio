@@ -1,0 +1,14 @@
+name = "portfolio-chat"
+main = "src/index.ts"
+compatibility_date = "2026-08-01"
+# Anthropic SDK опирается на несколько node-совместимых модулей.
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+# Домены фронтенда через запятую — всё остальное воркер отклоняет.
+ALLOWED_ORIGINS = "https://TODO.github.io"
+# Раскомментируйте, чтобы отвечать дешёвой моделью:
+# ANTHROPIC_MODEL = "claude-haiku-4-5"
+
+# Ключ кладётся секретом, а не сюда:
+#   npx wrangler secret put ANTHROPIC_API_KEY
