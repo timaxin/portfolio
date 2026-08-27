@@ -4,23 +4,23 @@ import type { Localized } from "@/i18n/config";
 export const suggestedQuestions: Localized<string[]> = {
   ru: [
     "Какой у него основной стек?",
-    "Расскажи про самый сложный проект",
-    "Есть ли опыт с Nest.js и на каких задачах?",
+    "Что он сделал в Godel Technologies?",
+    "Есть ли бэкенд-опыт или он только фронтендер?",
     "Чего в его опыте нет?",
-    "Готов ли он к релокации и как с ним связаться?",
+    "Какой формат работы и контракт он рассматривает?",
   ],
   en: [
     "What's his main stack?",
-    "Tell me about his hardest project",
-    "Does he have Nest.js experience, and on what kind of work?",
+    "What did he ship at Godel Technologies?",
+    "Does he have backend experience, or is he frontend-only?",
     "What's missing from his experience?",
-    "Is he open to relocation, and how do I reach him?",
+    "What work format and contract is he after?",
   ],
   pl: [
     "Jaki jest jego główny stack?",
-    "Opowiedz o najtrudniejszym projekcie",
-    "Czy ma doświadczenie z Nest.js i przy jakich zadaniach?",
+    "Co dowiózł w Godel Technologies?",
+    "Czy ma doświadczenie backendowe, czy tylko frontend?",
     "Czego brakuje w jego doświadczeniu?",
-    "Czy jest otwarty na relokację i jak się z nim skontaktować?",
+    "Jaki format pracy i kontrakt rozważa?",
   ],
 };

@@ -20,7 +20,7 @@ function buildKnowledgeBase(locale: Locale): string {
   const experience = profile.experience
     .map((job) =>
       [
-        `### ${t(job.role, locale)} — ${job.company} (${t(job.period, locale)})`,
+        `### ${t(job.role, locale)} — ${job.company}, ${job.location} (${t(job.period, locale)})`,
         `Stack: ${job.stack.join(", ")}`,
         ...t(job.highlights, locale).map((h) => `- ${h}`),
       ].join("\n"),

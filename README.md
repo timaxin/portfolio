@@ -26,8 +26,6 @@ npm run dev
 Anything a human reads is wrapped in `Localized<...>`, so TS won't let a translation slip.
 Add a project to `projects.ts` and the bot knows about it immediately — nothing else to do.
 
-**Still open:** `profile.ts` has `TODO:` markers left — companies, achievements, education.
-
 ## Vercel
 
 1. vercel.com/new → import this repo. Next.js is detected automatically; leave build and
