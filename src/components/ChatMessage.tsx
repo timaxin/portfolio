@@ -24,7 +24,7 @@ export function ChatMessage({ role, content, pending = false }: Props) {
       <div className="answer max-w-[92%] rounded-2xl rounded-bl-md border border-border bg-surface px-4 py-3 text-sm leading-relaxed">
         <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
         {pending && (
-          <span className="ml-0.5 inline-block h-4 w-1.5 translate-y-0.5 animate-pulse bg-muted align-middle" />
+          <span className="ml-0.5 inline-block h-4 w-1.5 translate-y-0.5 animate-pulse bg-accent align-middle" />
         )}
       </div>
     </div>

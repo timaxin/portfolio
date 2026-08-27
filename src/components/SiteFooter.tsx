@@ -8,7 +8,7 @@ export function SiteFooter() {
           <a
             key={contact.label}
             href={contact.href}
-            className="transition-colors hover:text-foreground"
+            className="transition-colors hover:text-accent"
             target={contact.href.startsWith("http") ? "_blank" : undefined}
             rel="noreferrer"
           >

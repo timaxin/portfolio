@@ -3,19 +3,25 @@
  * Отдельный модуль без Anthropic SDK — иначе он утянулся бы в клиентский бандл.
  */
 import { z } from "zod";
+import { locales } from "@/i18n/config";
 
-/** Модель по умолчанию. Дешёвая альтернатива для публичного эндпоинта — claude-haiku-4-5. */
-export const DEFAULT_MODEL = "claude-opus-5";
+/**
+ * Q&A по фиксированному контексту — задача простая, а эндпоинт публичный,
+ * поэтому по умолчанию самая дешёвая модель.
+ */
+export const DEFAULT_MODEL = "claude-haiku-4-5";
 
 /** Публичный эндпоинт платный, поэтому режем вход на входе. */
 export const LIMITS = {
   maxQuestionChars: 600,
   /** Сколько последних сообщений истории уходит в API (включая текущий вопрос). */
   maxMessages: 12,
-  maxTokens: 4096,
+  /** Ответы короткие по инструкции, thinking у Haiku 4.5 выключен — потолка хватает. */
+  maxTokens: 1024,
 } as const;
 
 export const chatRequestSchema = z.object({
+  locale: z.enum(locales),
   messages: z
     .array(
       z.object({

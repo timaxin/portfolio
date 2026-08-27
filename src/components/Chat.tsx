@@ -3,10 +3,14 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ChatMessage } from "@/components/ChatMessage";
 import { suggestedQuestions } from "@/content/suggested-questions";
+import { t, type Locale } from "@/i18n/config";
+import { dictionaries } from "@/i18n/dictionaries";
 import { LIMITS, type ChatTurn } from "@/lib/chat-config";
 import { streamChat } from "@/lib/chat-client";
 
-export function Chat() {
+export function Chat({ locale }: { locale: Locale }) {
+  const dict = dictionaries[locale];
+
   const [turns, setTurns] = useState<ChatTurn[]>([]);
   const [draft, setDraft] = useState("");
   const [pending, setPending] = useState<string | null>(null);
@@ -39,7 +43,7 @@ export function Chat() {
 
       let answer = "";
       try {
-        for await (const event of streamChat(history, controller.signal)) {
+        for await (const event of streamChat(locale, history, controller.signal)) {
           if (event.type === "delta") {
             answer += event.text;
             setPending(answer);
@@ -49,7 +53,7 @@ export function Chat() {
         }
       } catch (cause) {
         if (!controller.signal.aborted) {
-          setError("Соединение прервалось. Попробуйте ещё раз.");
+          setError(dict.errors.connection);
           console.error(cause);
         }
       } finally {
@@ -58,27 +62,22 @@ export function Chat() {
         if (answer) setTurns([...history, { role: "assistant", content: answer }]);
       }
     },
-    [isStreaming, turns],
+    [dict.errors.connection, isStreaming, locale, turns],
   );
-
-  const stop = () => abortRef.current?.abort();
 
   return (
     <section className="flex flex-1 flex-col">
       <div className="flex-1 space-y-4">
         {turns.length === 0 && !isStreaming && (
-          <div className="rounded-2xl border border-dashed border-border bg-surface-muted/50 px-5 py-6">
-            <p className="text-sm text-muted">
-              Спросите что угодно об опыте, стеке и проектах. Ответы собирает модель строго
-              по данным профиля — если чего-то нет, она так и скажет.
-            </p>
+          <div className="rounded-2xl border border-dashed border-border bg-surface px-5 py-6">
+            <p className="text-sm text-muted">{dict.chat.intro}</p>
             <div className="mt-4 flex flex-wrap gap-2">
-              {suggestedQuestions.map((question) => (
+              {t(suggestedQuestions, locale).map((question) => (
                 <button
                   key={question}
                   type="button"
                   onClick={() => void ask(question)}
-                  className="rounded-full border border-border bg-surface px-3 py-1.5 text-xs text-muted transition-colors hover:border-accent hover:text-foreground"
+                  className="cursor-pointer rounded-full border border-border bg-background px-3 py-1.5 text-xs text-muted transition-colors hover:border-accent hover:bg-accent-soft hover:text-accent"
                 >
                   {question}
                 </button>
@@ -91,12 +90,10 @@ export function Chat() {
           <ChatMessage key={index} role={turn.role} content={turn.content} />
         ))}
 
-        {isStreaming && (
-          <ChatMessage role="assistant" content={pending || "…"} pending />
-        )}
+        {isStreaming && <ChatMessage role="assistant" content={pending || "…"} pending />}
 
         {error && (
-          <p className="rounded-xl border border-border bg-surface-muted px-4 py-3 text-sm text-muted">
+          <p className="rounded-xl border border-border bg-surface-muted px-4 py-3 text-sm">
             {error}
           </p>
         )}
@@ -123,30 +120,28 @@ export function Chat() {
             }}
             rows={1}
             maxLength={LIMITS.maxQuestionChars}
-            placeholder="Спросите об опыте, стеке или проектах…"
+            placeholder={dict.chat.placeholder}
             className="max-h-32 flex-1 resize-none bg-transparent px-2 py-2 text-sm outline-none placeholder:text-muted"
           />
           {isStreaming ? (
             <button
               type="button"
-              onClick={stop}
-              className="rounded-xl border border-border px-3.5 py-2 text-sm text-muted transition-colors hover:text-foreground"
+              onClick={() => abortRef.current?.abort()}
+              className="cursor-pointer rounded-xl border border-border px-3.5 py-2 text-sm text-muted transition-colors hover:text-foreground"
             >
-              Стоп
+              {dict.chat.stop}
             </button>
           ) : (
             <button
               type="submit"
               disabled={!draft.trim()}
-              className="rounded-xl bg-accent px-3.5 py-2 text-sm text-accent-contrast transition-opacity disabled:opacity-40"
+              className="cursor-pointer rounded-xl bg-accent px-3.5 py-2 text-sm font-medium text-accent-contrast transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-40"
             >
-              Спросить
+              {dict.chat.send}
             </button>
           )}
         </div>
-        <p className="mt-2 px-1 text-xs text-muted">
-          Отвечает ИИ по фиксированному профилю — детали лучше уточнить напрямую.
-        </p>
+        <p className="mt-2 px-1 text-xs text-muted">{dict.chat.disclaimer}</p>
       </form>
     </section>
   );

@@ -1,11 +1,8 @@
 import Anthropic from "@anthropic-ai/sdk";
-import { SYSTEM_PROMPT } from "../content/system-prompt";
-import {
-  DEFAULT_MODEL,
-  LIMITS,
-  type ChatEvent,
-  type ChatTurn,
-} from "./chat-config";
+import { systemPrompt } from "@/content/system-prompt";
+import { dictionaries } from "@/i18n/dictionaries";
+import type { Locale } from "@/i18n/config";
+import { DEFAULT_MODEL, LIMITS, type ChatEvent, type ChatTurn } from "./chat-config";
 
 function encodeEvent(event: ChatEvent): Uint8Array {
   return new TextEncoder().encode(`${JSON.stringify(event)}\n`);
@@ -27,22 +24,18 @@ function normalizeMessages(messages: ChatTurn[]): Anthropic.MessageParam[] {
   }));
 }
 
-function describeError(error: unknown): string {
-  if (error instanceof Anthropic.AuthenticationError) {
-    return "Сервер не смог авторизоваться в Anthropic API. Проверьте ANTHROPIC_API_KEY.";
-  }
-  if (error instanceof Anthropic.RateLimitError) {
-    return "Слишком много запросов к модели. Попробуйте через минуту.";
-  }
-  if (error instanceof Anthropic.APIError) {
-    return `Ошибка Anthropic API (${error.status ?? "?"}).`;
-  }
-  return "Не удалось получить ответ. Попробуйте ещё раз.";
+function describeError(error: unknown, locale: Locale): string {
+  const errors = dictionaries[locale].errors;
+  if (error instanceof Anthropic.AuthenticationError) return errors.upstreamAuth;
+  if (error instanceof Anthropic.RateLimitError) return errors.upstreamRateLimit;
+  if (error instanceof Anthropic.APIError) return `${errors.upstreamApi} (${error.status ?? "?"})`;
+  return errors.generic;
 }
 
 export type AnswerStreamOptions = {
   apiKey: string;
   model?: string;
+  locale: Locale;
   messages: ChatTurn[];
 };
 
@@ -53,6 +46,7 @@ export type AnswerStreamOptions = {
 export function createAnswerStream({
   apiKey,
   model = DEFAULT_MODEL,
+  locale,
   messages,
 }: AnswerStreamOptions): ReadableStream<Uint8Array> {
   const client = new Anthropic({ apiKey });
@@ -65,11 +59,10 @@ export function createAnswerStream({
           model,
           max_tokens: LIMITS.maxTokens,
           // Системный промпт стабилен от запроса к запросу — кешируем его целиком.
+          // На каждый язык свой префикс, то есть своя запись в кеше.
           system: [
-            { type: "text", text: SYSTEM_PROMPT, cache_control: { type: "ephemeral" } },
+            { type: "text", text: systemPrompt(locale), cache_control: { type: "ephemeral" } },
           ],
-          // Вопросы простые, ответы короткие: низкий effort экономит и токены, и время до первого слова.
-          output_config: { effort: "low" },
           messages: normalized,
         });
 
@@ -82,14 +75,14 @@ export function createAnswerStream({
         const final = await stream.finalMessage();
         if (final.stop_reason === "refusal") {
           controller.enqueue(
-            encodeEvent({ type: "error", message: "Модель отказалась отвечать на этот запрос." }),
+            encodeEvent({ type: "error", message: dictionaries[locale].errors.refusal }),
           );
         }
 
         controller.enqueue(encodeEvent({ type: "done" }));
       } catch (error) {
         console.error("[chat] stream failed", error);
-        controller.enqueue(encodeEvent({ type: "error", message: describeError(error) }));
+        controller.enqueue(encodeEvent({ type: "error", message: describeError(error, locale) }));
       } finally {
         controller.close();
       }

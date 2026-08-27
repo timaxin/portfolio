@@ -1,26 +1,24 @@
+import type { Locale } from "@/i18n/config";
 import type { ChatEvent, ChatTurn } from "./chat-config";
 
-/**
- * По умолчанию бьём в собственный роут /api/chat (Vercel, Node-хостинг, next start).
- * Для статической сборки под GitHub Pages сюда подставляется URL Cloudflare Worker.
- */
-export const CHAT_ENDPOINT = process.env.NEXT_PUBLIC_CHAT_ENDPOINT || "/api/chat";
+const CHAT_ENDPOINT = "/api/chat";
 
 /** Читает NDJSON-поток построчно: последняя строка чанка может быть неполной. */
 export async function* streamChat(
+  locale: Locale,
   messages: ChatTurn[],
   signal?: AbortSignal,
 ): AsyncGenerator<ChatEvent> {
   const response = await fetch(CHAT_ENDPOINT, {
     method: "POST",
     headers: { "content-type": "application/json" },
-    body: JSON.stringify({ messages }),
+    body: JSON.stringify({ locale, messages }),
     signal,
   });
 
   if (!response.ok || !response.body) {
     const body = (await response.json().catch(() => null)) as { error?: string } | null;
-    yield { type: "error", message: body?.error ?? `Сервер ответил ${response.status}.` };
+    yield { type: "error", message: body?.error ?? `HTTP ${response.status}` };
     return;
   }
 
