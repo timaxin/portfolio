@@ -7,22 +7,40 @@ import { t, type Locale } from "@/i18n/config";
 import { dictionaries } from "@/i18n/dictionaries";
 import { LIMITS, type ChatTurn } from "@/lib/chat-config";
 import { streamChat } from "@/lib/chat-client";
+import { useTypewriter } from "@/lib/use-typewriter";
 
 export function Chat({ locale }: { locale: Locale }) {
   const dict = dictionaries[locale];
 
   const [turns, setTurns] = useState<ChatTurn[]>([]);
   const [draft, setDraft] = useState("");
+  /**
+   * The latest answer: everything received so far, which is ahead of what the
+   * typewriter has put on screen. It stays here after the stream ends instead of
+   * being moved into `turns` — re-rendering the same text as a committed turn
+   * would flash the full string past the caret.
+   */
   const [pending, setPending] = useState<string | null>(null);
+  /** The network is done; the typewriter may still be catching up. */
+  const [streamEnded, setStreamEnded] = useState(false);
+  const [skipTyping, setSkipTyping] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const abortRef = useRef<AbortController | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
-  const isStreaming = pending !== null;
 
+  const revealed = useTypewriter(pending ?? "", skipTyping);
+  /** Tokens still arriving, or arrived and not typed out yet. */
+  const isBusy = pending !== null && (!streamEnded || revealed.length < pending.length);
+
+  // The answer lands a character at a time; smooth scrolling per character would
+  // never settle, so follow it instantly while it types.
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
-  }, [turns, pending]);
+    bottomRef.current?.scrollIntoView({
+      behavior: isBusy ? "auto" : "smooth",
+      block: "end",
+    });
+  }, [turns, revealed, isBusy]);
 
   // An abandoned request would keep burning tokens — kill it when leaving the page.
   useEffect(() => () => abortRef.current?.abort(), []);
@@ -30,13 +48,20 @@ export function Chat({ locale }: { locale: Locale }) {
   const ask = useCallback(
     async (question: string) => {
       const trimmed = question.trim();
-      if (!trimmed || isStreaming) return;
+      if (!trimmed || isBusy) return;
 
-      const history = [...turns, { role: "user" as const, content: trimmed }];
+      // The previous answer has been sitting outside `turns`; it joins the
+      // transcript now that a new question pushes it into the past.
+      const transcript = pending
+        ? [...turns, { role: "assistant" as const, content: pending }]
+        : turns;
+      const history = [...transcript, { role: "user" as const, content: trimmed }];
       setTurns(history);
       setDraft("");
       setError(null);
       setPending("");
+      setStreamEnded(false);
+      setSkipTyping(false);
 
       const controller = new AbortController();
       abortRef.current = controller;
@@ -58,17 +83,16 @@ export function Chat({ locale }: { locale: Locale }) {
         }
       } finally {
         abortRef.current = null;
-        setPending(null);
-        if (answer) setTurns([...history, { role: "assistant", content: answer }]);
+        setStreamEnded(true);
       }
     },
-    [dict.errors.connection, isStreaming, locale, turns],
+    [dict.errors.connection, isBusy, locale, pending, turns],
   );
 
   return (
     <section className="flex flex-1 flex-col">
       <div className="flex-1 space-y-4">
-        {turns.length === 0 && !isStreaming && (
+        {turns.length === 0 && pending === null && (
           <div className="rounded-2xl border border-dashed border-border bg-surface px-5 py-6">
             <p className="text-sm text-muted">{dict.chat.intro}</p>
             <div className="mt-4 flex flex-wrap gap-2">
@@ -90,7 +114,9 @@ export function Chat({ locale }: { locale: Locale }) {
           <ChatMessage key={index} role={turn.role} content={turn.content} />
         ))}
 
-        {isStreaming && <ChatMessage role="assistant" content={pending || "…"} pending />}
+        {pending !== null && (isBusy || pending) && (
+          <ChatMessage role="assistant" content={revealed} pending={isBusy} />
+        )}
 
         {error && (
           <p className="rounded-xl border border-border bg-surface-muted px-4 py-3 text-sm">
@@ -123,10 +149,13 @@ export function Chat({ locale }: { locale: Locale }) {
             placeholder={dict.chat.placeholder}
             className="max-h-32 flex-1 resize-none bg-transparent px-2 py-2 text-sm outline-none placeholder:text-muted"
           />
-          {isStreaming ? (
+          {isBusy ? (
             <button
               type="button"
-              onClick={() => abortRef.current?.abort()}
+              onClick={() => {
+                abortRef.current?.abort();
+                setSkipTyping(true);
+              }}
               className="cursor-pointer rounded-xl border border-border px-3.5 py-2 text-sm text-muted transition-colors hover:text-foreground"
             >
               {dict.chat.stop}

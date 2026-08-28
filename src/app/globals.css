@@ -82,3 +82,35 @@ body {
 .answer strong {
   font-weight: 600;
 }
+
+/* Typing caret. Attached to the end of the last block so it trails the final
+   character; a real span would be pushed onto its own line by the block. */
+.answer.is-typing > :last-child:not(ul):not(ol)::after,
+.answer.is-typing > :is(ul, ol):last-child > li:last-child::after {
+  content: "";
+  display: inline-block;
+  width: 0.4rem;
+  height: 1.05em;
+  margin-left: 0.15rem;
+  translate: 0 0.18em;
+  background: var(--accent);
+  animation: caret-blink 1.05s steps(1, end) infinite;
+}
+
+@keyframes caret-blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  50.01%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .answer.is-typing > :last-child:not(ul):not(ol)::after,
+  .answer.is-typing > :is(ul, ol):last-child > li:last-child::after {
+    animation: none;
+  }
+}
