@@ -163,3 +163,20 @@ body {
     border-color: var(--brand-dark, var(--accent));
   }
 }
+
+/* Portrait. Two layers: a tight contact shadow so it sits on the page, and a
+   wide soft one for depth. On dark the second layer becomes a faint accent glow,
+   because a black shadow is invisible against a near-black background. */
+.portrait {
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 0.1),
+    0 14px 34px -14px rgb(0 0 0 / 0.25);
+}
+
+@media (prefers-color-scheme: dark) {
+  .portrait {
+    box-shadow:
+      0 1px 2px rgb(0 0 0 / 0.5),
+      0 14px 38px -16px var(--accent);
+  }
+}

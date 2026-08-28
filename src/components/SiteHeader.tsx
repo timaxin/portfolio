@@ -1,7 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { NavLink } from "@/components/NavLink";
 import { profile } from "@/content/profile";
+import photo from "@/images/profile-photo.jpg";
 import { t, type Locale } from "@/i18n/config";
 import { dictionaries } from "@/i18n/dictionaries";
 
@@ -13,12 +15,21 @@ export function SiteHeader({ locale }: { locale: Locale }) {
       {/* One row from sm up; on a phone the brand keeps its own line, because
           three nav items and the language switcher crush it to "Tsi…". */}
       <div className="mx-auto flex max-w-3xl flex-col gap-2 px-5 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:py-4">
-        <Link href={`/${locale}`} className="flex min-w-0 flex-col leading-tight">
-          <span className="truncate text-sm font-semibold">{profile.name}</span>
+        <Link href={`/${locale}`} className="flex min-w-0 items-center gap-2.5">
+          <Image
+            src={photo}
+            alt=""
+            aria-hidden
+            sizes="32px"
+            className="size-8 shrink-0 rounded-full object-cover ring-1 ring-border transition-[box-shadow,--tw-ring-color] hover:ring-accent"
+          />
+          <span className="flex min-w-0 flex-col leading-tight">
+            <span className="truncate text-sm font-semibold">{profile.name}</span>
           {/* Three nav items plus the language switcher leave no room for the
               headline on a phone, and a six-line header is worse than no headline. */}
-          <span className="hidden truncate text-xs text-muted sm:block">
-            {t(profile.headline, locale)}
+            <span className="hidden truncate text-xs text-muted sm:block">
+              {t(profile.headline, locale)}
+            </span>
           </span>
         </Link>
 
