@@ -148,3 +148,18 @@ body {
     opacity: 0;
   }
 }
+
+/* Stack grid. The mark is monochrome until hovered, when it takes the brand
+   colour the tile carries; each theme gets its own variant because the site
+   follows the OS rather than a toggle. */
+.tech-tile:hover .tech-mark {
+  color: var(--brand, var(--accent));
+  border-color: var(--brand, var(--accent));
+}
+
+@media (prefers-color-scheme: dark) {
+  .tech-tile:hover .tech-mark {
+    color: var(--brand-dark, var(--accent));
+    border-color: var(--brand-dark, var(--accent));
+  }
+}

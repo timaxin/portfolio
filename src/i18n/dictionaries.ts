@@ -2,7 +2,7 @@ import type { Locale } from "./config";
 
 /** UI strings. Copy about the candidate lives in src/content; this is just the shell. */
 export type Dictionary = {
-  nav: { chat: string; projects: string };
+  nav: { chat: string; projects: string; stack: string };
   chat: {
     intro: string;
     placeholder: string;
@@ -30,12 +30,13 @@ export type Dictionary = {
     period: string;
     stack: string;
   };
+  stack: { title: string; subtitle: string };
   languageSwitcher: string;
 };
 
 export const dictionaries: Record<Locale, Dictionary> = {
   ru: {
-    nav: { chat: "Чат", projects: "Проекты" },
+    nav: { chat: "Чат", projects: "Проекты", stack: "Стек" },
     chat: {
       intro:
         "Спросите что угодно об опыте, стеке и проектах. Ответы собирает модель строго по данным профиля — если чего-то нет, она так и скажет.",
@@ -63,10 +64,15 @@ export const dictionaries: Record<Locale, Dictionary> = {
       period: "Период",
       stack: "Стек",
     },
+    stack: {
+      title: "Стек",
+      subtitle:
+        "Инструменты, с которыми я действительно работал. Ниже — домены и то, как я работаю в команде.",
+    },
     languageSwitcher: "Язык",
   },
   en: {
-    nav: { chat: "Chat", projects: "Projects" },
+    nav: { chat: "Chat", projects: "Projects", stack: "Stack" },
     chat: {
       intro:
         "Ask anything about experience, stack and projects. Answers come from a fixed profile — if something isn't there, the bot will say so.",
@@ -94,10 +100,15 @@ export const dictionaries: Record<Locale, Dictionary> = {
       period: "Period",
       stack: "Stack",
     },
+    stack: {
+      title: "Stack",
+      subtitle:
+        "The tools I have actually worked with. Domains and ways of working are below the grid.",
+    },
     languageSwitcher: "Language",
   },
   pl: {
-    nav: { chat: "Czat", projects: "Projekty" },
+    nav: { chat: "Czat", projects: "Projekty", stack: "Stack" },
     chat: {
       intro:
         "Zapytaj o doświadczenie, stack i projekty. Odpowiedzi powstają wyłącznie na podstawie profilu — czego tam nie ma, bot tak powie.",
@@ -124,6 +135,11 @@ export const dictionaries: Record<Locale, Dictionary> = {
       role: "Rola",
       period: "Okres",
       stack: "Stack",
+    },
+    stack: {
+      title: "Stack",
+      subtitle:
+        "Narzędzia, z którymi naprawdę pracowałem. Domeny i sposób pracy — pod siatką.",
     },
     languageSwitcher: "Język",
   },
