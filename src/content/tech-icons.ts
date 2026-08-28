@@ -152,7 +152,11 @@ function mixWith(hex: string, target: number, amount: number): string {
 export function brandColors(hex: string): { light: string; dark: string } {
   const level = luminance(hex);
   return {
-    light: level > 0.6 ? mixWith(hex, 0, 0.35) : `#${hex}`,
-    dark: level < 0.18 ? mixWith(hex, 255, 0.65) : `#${hex}`,
+    // Thresholds picked against the actual set: 0.5 catches React cyan and the
+    // JavaScript yellow on white, 0.1 catches the blacks, Prisma and
+    // Elasticsearch on near-black while leaving PostgreSQL, Redux and Jest the
+    // colours people recognise them by.
+    light: level > 0.5 ? mixWith(hex, 0, 0.35) : `#${hex}`,
+    dark: level < 0.1 ? mixWith(hex, 255, 0.65) : `#${hex}`,
   };
 }
