@@ -96,12 +96,14 @@ export function Chat({ locale }: { locale: Locale }) {
           <div className="rounded-2xl border border-dashed border-border bg-surface px-5 py-6">
             <p className="text-sm text-muted">{dict.chat.intro}</p>
             <div className="mt-4 flex flex-wrap gap-2">
-              {t(suggestedQuestions, locale).map((question) => (
+              {t(suggestedQuestions, locale).map((question, index) => (
                 <button
                   key={question}
                   type="button"
                   onClick={() => void ask(question)}
-                  className="cursor-pointer rounded-full border border-border bg-background px-3 py-1.5 text-xs text-muted transition-colors hover:border-accent hover:bg-accent-soft hover:text-accent"
+                  // Picks up where the page entrance left off, then one chip every 45ms.
+                  style={{ animationDelay: `${420 + index * 45}ms` }}
+                  className="animate-rise cursor-pointer rounded-full border border-border bg-background px-3 py-1.5 text-xs text-muted transition duration-150 hover:border-accent hover:bg-accent-soft hover:text-accent active:scale-[0.97]"
                 >
                   {question}
                 </button>

@@ -27,7 +27,7 @@ export default async function ProjectsPage({ params }: PageProps<"/[locale]/proj
           <li key={project.slug}>
             <Link
               href={`/${locale}/projects/${project.slug}`}
-              className="block rounded-2xl border border-border bg-surface p-5 transition-colors hover:border-accent"
+              className="block rounded-2xl border border-border bg-surface p-5 transition duration-200 hover:-translate-y-0.5 hover:border-accent hover:shadow-[0_10px_30px_-18px_var(--accent)]"
             >
               <h2 className="font-medium">{t(project.title, locale)}</h2>
               <p className="mt-1 text-sm text-muted">{t(project.tagline, locale)}</p>

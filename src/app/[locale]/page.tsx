@@ -10,13 +10,31 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
   return (
     <>
       <section className="mb-8">
-        <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">{profile.name}</h1>
-        <p className="mt-1 text-sm text-accent">{t(profile.headline, locale)}</p>
-        <p className="mt-4 max-w-2xl text-sm leading-relaxed">{t(profile.summary, locale)}</p>
-        <p className="mt-3 text-sm text-muted">{t(profile.availability, locale)}</p>
+        <h1
+          className="animate-rise text-2xl font-semibold tracking-tight sm:text-3xl"
+          style={{ animationDelay: "0ms" }}
+        >
+          {profile.name}
+        </h1>
+        <p className="animate-rise mt-1 text-sm text-accent" style={{ animationDelay: "60ms" }}>
+          {t(profile.headline, locale)}
+        </p>
+        <p
+          className="animate-rise mt-4 max-w-2xl text-sm leading-relaxed"
+          style={{ animationDelay: "120ms" }}
+        >
+          {t(profile.summary, locale)}
+        </p>
+        <p className="animate-rise mt-3 text-sm text-muted" style={{ animationDelay: "180ms" }}>
+          {t(profile.availability, locale)}
+        </p>
       </section>
 
-      <Chat locale={locale} />
+      {/* The wrapper keeps the chat's own flex sizing while carrying the last
+          step of the entrance — Chat itself is a client component. */}
+      <div className="animate-rise flex flex-1 flex-col" style={{ animationDelay: "240ms" }}>
+        <Chat locale={locale} />
+      </div>
     </>
   );
 }

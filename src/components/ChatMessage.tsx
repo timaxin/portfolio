@@ -34,8 +34,10 @@ export function ChatMessage({ role, content, pending = false }: Props) {
   return (
     <div className="flex justify-start">
       <div
+        // The entrance belongs to the answer being written; replaying it when the
+        // finished turn re-mounts into the transcript would rock the whole thread.
         className={`answer max-w-[92%] rounded-2xl rounded-bl-md border border-border bg-surface px-4 py-3 text-sm leading-relaxed${
-          pending ? " is-typing" : ""
+          pending ? " animate-rise-tight is-typing" : ""
         }`}
       >
         {/* The caret is drawn by CSS on the last block, so it sits right after
