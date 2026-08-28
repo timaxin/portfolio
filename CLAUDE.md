@@ -65,3 +65,6 @@ callback or a subscription instead.
 Run `npm run typecheck` and `npm run lint`. Verify UI changes against the dev server rather
 than by reading the diff — the `verify-chat-stream` skill covers exercising the chat
 without a model key.
+
+Then commit the work, without being asked and without pushing: every meaningful change gets
+its own commit, and pushing is Tsimafei's call. The `commit-work` skill has the rules.
