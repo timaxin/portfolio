@@ -1,5 +1,8 @@
 import { profile } from "@/content/profile";
 
+/** Baked at build time; a redeploy is what moves it, which is often enough. */
+const year = new Date().getFullYear();
+
 export function SiteFooter() {
   return (
     <footer className="border-t border-border">
@@ -15,6 +18,10 @@ export function SiteFooter() {
             {contact.label}: {contact.value}
           </a>
         ))}
+
+        <span className="ml-auto">
+          © {year} {profile.name}
+        </span>
       </div>
     </footer>
   );
