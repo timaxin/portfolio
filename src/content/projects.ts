@@ -5,8 +5,20 @@ import type { Localized } from "@/i18n/config";
  * so adding a project automatically widens what the chatbot knows.
  */
 
+/**
+ * Client work versus something built in-house or for myself. Recruiters read the
+ * two differently, and a portfolio that blurs them invites the question anyway.
+ */
+export type ProjectKind = "commercial" | "internal";
+
 export type Project = {
   slug: string;
+  kind: ProjectKind;
+  /**
+   * Who the work was for. Left out when the contract does not allow naming them —
+   * the page then says so rather than quietly showing nothing.
+   */
+  client?: Localized;
   title: Localized;
   tagline: Localized;
   /** The long description — goes into the prompt and is shown in full on the page. */
@@ -21,6 +33,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "ai-portfolio",
+    kind: "internal",
 
     title: {
       ru: "AI-портфолио",
@@ -75,6 +88,7 @@ export const projects: Project[] = [
   },
   {
     slug: "ship-telemetry-dashboard",
+    kind: "commercial",
 
     title: {
       ru: "Дашборд телеметрии судов",
@@ -129,6 +143,7 @@ export const projects: Project[] = [
   },
   {
     slug: "price-comparison-platform",
+    kind: "commercial",
 
     title: {
       ru: "Платформа сравнения цен",
@@ -195,6 +210,7 @@ export const projects: Project[] = [
   },
   {
     slug: "radio-dj-console",
+    kind: "commercial",
 
     title: {
       ru: "DJ-консоль для онлайн-радио",

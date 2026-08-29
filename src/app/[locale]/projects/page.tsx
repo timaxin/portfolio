@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ProjectBadge } from "@/components/ProjectBadge";
 import { projects } from "@/content/projects";
 import { isLocale, t } from "@/i18n/config";
 import { dictionaries } from "@/i18n/dictionaries";
@@ -29,7 +30,10 @@ export default async function ProjectsPage({ params }: PageProps<"/[locale]/proj
               href={`/${locale}/projects/${project.slug}`}
               className="block rounded-2xl border border-border bg-surface p-5 transition duration-200 hover:-translate-y-0.5 hover:border-accent hover:shadow-[0_10px_30px_-18px_var(--accent)]"
             >
-              <h2 className="font-medium">{t(project.title, locale)}</h2>
+              <div className="flex flex-wrap items-center gap-2">
+                <h2 className="font-medium">{t(project.title, locale)}</h2>
+                <ProjectBadge kind={project.kind} locale={locale} />
+              </div>
               <p className="mt-1 text-sm text-muted">{t(project.tagline, locale)}</p>
               <div className="mt-3 flex flex-wrap gap-1.5">
                 {project.stack.map((tech) => (

@@ -29,6 +29,12 @@ export type Dictionary = {
     role: string;
     period: string;
     stack: string;
+    /** Badge on a project: client work or something built in-house. */
+    commercial: string;
+    internal: string;
+    client: string;
+    /** Stands in for a client the contract does not allow naming. */
+    clientUndisclosed: string;
   };
   stack: { title: string; subtitle: string };
   /** Label on the link to the PDF in public/. */
@@ -65,6 +71,10 @@ export const dictionaries: Record<Locale, Dictionary> = {
       role: "Роль",
       period: "Период",
       stack: "Стек",
+      commercial: "Коммерческий",
+      internal: "Внутренний",
+      client: "Заказчик",
+      clientUndisclosed: "не разглашается",
     },
     stack: {
       title: "Стек",
@@ -102,6 +112,10 @@ export const dictionaries: Record<Locale, Dictionary> = {
       role: "Role",
       period: "Period",
       stack: "Stack",
+      commercial: "Client work",
+      internal: "In-house",
+      client: "Client",
+      clientUndisclosed: "under NDA",
     },
     stack: {
       title: "Stack",
@@ -139,6 +153,10 @@ export const dictionaries: Record<Locale, Dictionary> = {
       role: "Rola",
       period: "Okres",
       stack: "Stack",
+      commercial: "Komercyjny",
+      internal: "Wewnętrzny",
+      client: "Klient",
+      clientUndisclosed: "objęty NDA",
     },
     stack: {
       title: "Stack",

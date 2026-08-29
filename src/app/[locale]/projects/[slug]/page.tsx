@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ProjectBadge } from "@/components/ProjectBadge";
 import { projects } from "@/content/projects";
 import { isLocale, locales, t } from "@/i18n/config";
 import { dictionaries } from "@/i18n/dictionaries";
@@ -40,12 +41,25 @@ export default async function ProjectPage({ params }: PageProps<"/[locale]/proje
         ← {dict.back}
       </Link>
 
-      <h1 className="mt-6 text-2xl font-semibold tracking-tight">{t(project.title, locale)}</h1>
+      <div className="mt-6 flex flex-wrap items-center gap-3">
+        <h1 className="text-2xl font-semibold tracking-tight">{t(project.title, locale)}</h1>
+        <ProjectBadge kind={project.kind} locale={locale} />
+      </div>
       <p className="mt-1 text-sm text-accent">{t(project.tagline, locale)}</p>
 
       <dl className="mt-6 grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-sm">
         <dt className="text-muted">{dict.role}</dt>
         <dd>{t(project.role, locale)}</dd>
+        {project.kind === "commercial" && (
+          <>
+            <dt className="text-muted">{dict.client}</dt>
+            {/* An unnamed client is stated as unnamed: a blank row reads like an
+                oversight, and the NDA is not a secret in itself. */}
+            <dd className={project.client ? undefined : "text-muted italic"}>
+              {project.client ? t(project.client, locale) : dict.clientUndisclosed}
+            </dd>
+          </>
+        )}
         <dt className="text-muted">{dict.period}</dt>
         <dd>{project.period}</dd>
         <dt className="text-muted">{dict.stack}</dt>
