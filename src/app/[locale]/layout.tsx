@@ -94,7 +94,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[lo
         <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-5 py-8">
           {children}
         </main>
-        <SiteFooter />
+        <SiteFooter locale={locale} />
       </body>
     </html>
   );

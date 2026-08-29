@@ -31,6 +31,8 @@ export type Dictionary = {
     stack: string;
   };
   stack: { title: string; subtitle: string };
+  /** Label on the link to the PDF in public/. */
+  resume: string;
   languageSwitcher: string;
 };
 
@@ -69,6 +71,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       subtitle:
         "Инструменты, с которыми я действительно работал. Ниже — домены и то, как я работаю в команде.",
     },
+    resume: "Резюме PDF",
     languageSwitcher: "Язык",
   },
   en: {
@@ -105,6 +108,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       subtitle:
         "The tools I have actually worked with. Domains and ways of working are below the grid.",
     },
+    resume: "CV in PDF",
     languageSwitcher: "Language",
   },
   pl: {
@@ -141,6 +145,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       subtitle:
         "Narzędzia, z którymi naprawdę pracowałem. Domeny i sposób pracy — pod siatką.",
     },
+    resume: "CV w PDF",
     languageSwitcher: "Język",
   },
 };
