@@ -2,7 +2,7 @@ import type { Locale } from "./config";
 
 /** UI strings. Copy about the candidate lives in src/content; this is just the shell. */
 export type Dictionary = {
-  nav: { chat: string; projects: string; stack: string };
+  nav: { chat: string; projects: string; stack: string; experience: string };
   chat: {
     intro: string;
     placeholder: string;
@@ -41,6 +41,12 @@ export type Dictionary = {
     noMatches: string;
   };
   stack: { title: string; subtitle: string };
+  experience: {
+    title: string;
+    subtitle: string;
+    notes: string;
+    education: string;
+  };
   /** Label on the link to the PDF in public/. */
   resume: string;
   languageSwitcher: string;
@@ -48,7 +54,7 @@ export type Dictionary = {
 
 export const dictionaries: Record<Locale, Dictionary> = {
   ru: {
-    nav: { chat: "Чат", projects: "Проекты", stack: "Стек" },
+    nav: { chat: "Чат", projects: "Проекты", stack: "Стек", experience: "Опыт" },
     chat: {
       intro:
         "Спросите что угодно об опыте, стеке и проектах. Ответы собирает модель строго по данным профиля — если чего-то нет, она так и скажет.",
@@ -88,11 +94,17 @@ export const dictionaries: Record<Locale, Dictionary> = {
       subtitle:
         "Инструменты, с которыми я действительно работал. Ниже — домены и то, как я работаю в команде.",
     },
+    experience: {
+      title: "Опыт",
+      subtitle: "Места работы, роли и что после меня осталось. Об этом же можно спросить чат.",
+      notes: "О датах",
+      education: "Образование",
+    },
     resume: "Резюме PDF",
     languageSwitcher: "Язык",
   },
   en: {
-    nav: { chat: "Chat", projects: "Projects", stack: "Stack" },
+    nav: { chat: "Chat", projects: "Projects", stack: "Stack", experience: "Experience" },
     chat: {
       intro:
         "Ask anything about experience, stack and projects. Answers come from a fixed profile — if something isn't there, the bot will say so.",
@@ -132,11 +144,17 @@ export const dictionaries: Record<Locale, Dictionary> = {
       subtitle:
         "The tools I have actually worked with. Domains and ways of working are below the grid.",
     },
+    experience: {
+      title: "Experience",
+      subtitle: "Where I worked, in what role, and what outlived me. The chat knows all of it too.",
+      notes: "About the dates",
+      education: "Education",
+    },
     resume: "CV in PDF",
     languageSwitcher: "Language",
   },
   pl: {
-    nav: { chat: "Czat", projects: "Projekty", stack: "Stack" },
+    nav: { chat: "Czat", projects: "Projekty", stack: "Stack", experience: "Doświadczenie" },
     chat: {
       intro:
         "Zapytaj o doświadczenie, stack i projekty. Odpowiedzi powstają wyłącznie na podstawie profilu — czego tam nie ma, bot tak powie.",
@@ -175,6 +193,12 @@ export const dictionaries: Record<Locale, Dictionary> = {
       title: "Stack",
       subtitle:
         "Narzędzia, z którymi naprawdę pracowałem. Domeny i sposób pracy — pod siatką.",
+    },
+    experience: {
+      title: "Doświadczenie",
+      subtitle: "Gdzie pracowałem, w jakiej roli i co po mnie zostało. Czat też o tym wie.",
+      notes: "O datach",
+      education: "Wykształcenie",
     },
     resume: "CV w PDF",
     languageSwitcher: "Język",

@@ -27,6 +27,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
             <NavLink href={`/${locale}`} exact>
               {dict.nav.chat}
             </NavLink>
+            <NavLink href={`/${locale}/experience`}>{dict.nav.experience}</NavLink>
             <NavLink href={`/${locale}/projects`}>{dict.nav.projects}</NavLink>
             <NavLink href={`/${locale}/stack`}>{dict.nav.stack}</NavLink>
           </nav>
