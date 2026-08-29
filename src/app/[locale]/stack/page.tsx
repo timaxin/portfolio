@@ -37,7 +37,7 @@ export default async function StackPage({ params }: PageProps<"/[locale]/stack">
             </h2>
             <ul className="mt-3 grid grid-cols-[repeat(auto-fill,minmax(88px,1fr))] items-start gap-1">
               {group.items.map((item) => (
-                <TechTile key={item} name={item} />
+                <TechTile key={item} name={item} locale={locale} />
               ))}
             </ul>
           </div>

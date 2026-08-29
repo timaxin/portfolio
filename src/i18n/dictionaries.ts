@@ -35,6 +35,10 @@ export type Dictionary = {
     client: string;
     /** Stands in for a client the contract does not allow naming. */
     clientUndisclosed: string;
+    /** Banner shown when the list is narrowed to one technology. */
+    filteredBy: string;
+    clearFilter: string;
+    noMatches: string;
   };
   stack: { title: string; subtitle: string };
   /** Label on the link to the PDF in public/. */
@@ -75,6 +79,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
       internal: "Внутренний",
       client: "Заказчик",
       clientUndisclosed: "не разглашается",
+      filteredBy: "Проекты с технологией",
+      clearFilter: "Показать все",
+      noMatches: "Среди проектов такой технологии нет.",
     },
     stack: {
       title: "Стек",
@@ -116,6 +123,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
       internal: "In-house",
       client: "Client",
       clientUndisclosed: "under NDA",
+      filteredBy: "Projects using",
+      clearFilter: "Show all",
+      noMatches: "No project here uses that.",
     },
     stack: {
       title: "Stack",
@@ -157,6 +167,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
       internal: "Wewnętrzny",
       client: "Klient",
       clientUndisclosed: "objęty NDA",
+      filteredBy: "Projekty z technologią",
+      clearFilter: "Pokaż wszystkie",
+      noMatches: "Żaden projekt tego nie używa.",
     },
     stack: {
       title: "Stack",

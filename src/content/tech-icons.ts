@@ -30,6 +30,10 @@ import {
   siWindsurf,
   type SimpleIcon,
 } from "simple-icons";
+// Tile labels sit under an 88px cell, so the parenthetical in
+// "CI/CD (GitHub Actions, GitLab CI, GoCD)" would push the row several lines
+// deep. The full string stays as the tile's `title`.
+export { displayName } from "@/lib/tech-keys";
 
 /**
  * Presentation layer for `profile.stack`. It is keyed by the item strings in
@@ -115,15 +119,6 @@ export function monogram(name: string): string {
   if (words.length > 1) return words.slice(0, 2).map((word) => word[0].toUpperCase()).join("");
 
   return first.slice(0, 2).toUpperCase();
-}
-
-/**
- * Tile labels sit under an 88px cell, so the parenthetical in
- * "CI/CD (GitHub Actions, GitLab CI, GoCD)" would push the row several lines
- * deep. The full string stays as the tile's `title`.
- */
-export function displayName(name: string): string {
-  return name.replace(/\s*\(.*?\)/g, "").trim();
 }
 
 /** Perceived brightness of a `RRGGBB` string, 0 (black) to 1 (white). */
