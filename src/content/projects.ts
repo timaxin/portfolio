@@ -87,61 +87,6 @@ export const projects: Project[] = [
     links: [{ label: "GitHub", href: "https://github.com/timaxin/portfolio" }],
   },
   {
-    slug: "ship-telemetry-dashboard",
-    kind: "commercial",
-
-    title: {
-      ru: "Дашборд телеметрии судов",
-      en: "Ship telemetry dashboard",
-      pl: "Dashboard telemetrii statków",
-    },
-
-    tagline: {
-      ru: "Данные с судна в реальном времени поверх 3D-модели: палубы, камеры, узлы, геозоны",
-      en: "Live vessel data on a 3D model: decks, cameras, nodes and geofences",
-      pl: "Dane ze statku na żywo na modelu 3D: pokłady, kamery, węzły i geostrefy",
-    },
-
-    description: {
-      ru: "Система мониторинга судов в реальном времени. Телеметрия идёт с судна напрямую по UDP: бэкенд на Express парсит поток и складывает в TimescaleDB, а во фронт отдаёт по WebSocket — пакетами, по мере заполнения входящего буфера, а не на каждую датаграмму. React-интерфейс рисует данные поверх 3D-модели судна: переключение по палубам, камеры там, где они установлены, и показания по всем доступным узлам — угол руля, скорость, обороты лопастей и остальное. Ежедневный инструмент операционных команд, 50+ судов.",
-      en: "A real-time vessel monitoring system. Telemetry arrives straight from the ship over UDP: an Express backend parses the stream into TimescaleDB and pushes it to the front over WebSockets in batches, as the incoming buffer fills rather than per datagram. A React interface draws it on a 3D ship model — switch between decks, open cameras on the decks that have them, and watch every available node: rudder angle, speed, propeller RPM and the rest. Used daily by operations teams across 50+ vessels.",
-      pl: "System monitoringu statków w czasie rzeczywistym. Telemetria idzie prosto ze statku po UDP: backend na Express parsuje strumień do TimescaleDB i wypycha go na front po WebSocketach paczkami, w miarę zapełniania bufora wejściowego, a nie na każdy datagram. Interfejs w React rysuje dane na modelu 3D statku: przełączanie pokładów, kamery tam, gdzie są zainstalowane, i odczyty ze wszystkich dostępnych węzłów — kąt steru, prędkość, obroty śruby i reszta. Codzienne narzędzie zespołów operacyjnych, 50+ jednostek.",
-    },
-
-    role: {
-      ru: "Фулстек: приём и хранение потока на бэкенде, интерфейс реального времени на фронте",
-      en: "Full-stack: ingestion and storage on the back end, the real-time interface on the front",
-      pl: "Full-stack: odbiór i zapis strumienia na backendzie, interfejs czasu rzeczywistego na froncie",
-    },
-
-    period: "2024 — present, Godel Technologies Europe",
-
-    stack: ["React", "Node.js", "Express", "TimescaleDB", "WebSockets", "UDP"],
-
-    highlights: {
-      ru: [
-        "Приём телеметрии по UDP: бэкенд парсит поток и пишет в TimescaleDB, во фронт отдаёт по WebSocket пакетами — по заполнению входящего буфера, а не на каждую датаграмму.",
-        "3D-модель судна как основной интерфейс: переключение по палубам, камеры на тех палубах, где они есть, показания по всем доступным узлам.",
-        "SMS-уведомления при заходе судна в зоны, выделенные на карте.",
-        "Выкатывали через фича-флаги, с мониторингом, логированием и отработанным откатом.",
-      ],
-      en: [
-        "UDP telemetry ingestion: the backend parses the stream into TimescaleDB and pushes to the front over WebSockets in batches — as the incoming buffer fills, not per datagram.",
-        "The 3D ship model as the primary interface: deck switching, cameras on the decks that have them, readings from every available node.",
-        "SMS alerts when a vessel enters a zone marked out on the map.",
-        "Rolled out behind feature flags, with monitoring, logging and a rehearsed rollback path.",
-      ],
-      pl: [
-        "Odbiór telemetrii po UDP: backend parsuje strumień do TimescaleDB i wypycha na front po WebSocketach paczkami — w miarę zapełniania bufora, a nie na każdy datagram.",
-        "Model 3D statku jako główny interfejs: przełączanie pokładów, kamery na pokładach, które je mają, odczyty ze wszystkich dostępnych węzłów.",
-        "Powiadomienia SMS przy wejściu jednostki w strefy zaznaczone na mapie.",
-        "Wdrożenie przez feature flagi, z monitoringiem, logowaniem i przećwiczonym rollbackiem.",
-      ],
-    },
-
-    links: [],
-  },
-  {
     slug: "price-comparison-platform",
     kind: "commercial",
 
@@ -154,110 +99,345 @@ export const projects: Project[] = [
     tagline: {
       ru: "Один из крупнейших британских сервисов сравнения финансовых продуктов",
       en: "One of the UK's largest comparison services for financial products",
-      pl: "Jeden z największych brytyjskich serwisów porównujących produkty finansowe",
+      pl: "Jeden z największych brytyjskich serwisów porównywania produktów finansowych",
     },
 
     description: {
-      ru: "Британский сервис независимого сравнения финансовых продуктов и услуг. Фронтенд на React и Redux в монорепозитории, серверный рендеринг на Express. За два года: редизайн интерфейса сразу в нескольких продуктах, переход на новый фреймворк, покрытие тестами с нуля до 100% и переезд всех сервисов на GitLab вместе с DevOps.",
-      en: "A British service for impartial comparison of financial products and services. React and Redux front end in a monorepo, server-side rendering on Express. Over two years: a UI redesign across several products, a move to a new framework, test coverage taken to 100%, and a migration of every service to GitLab alongside DevOps.",
-      pl: "Brytyjski serwis bezstronnego porównywania produktów i usług finansowych. Frontend w React i Redux w monorepo, renderowanie po stronie serwera na Express. Przez dwa lata: redesign interfejsu w kilku produktach, przejście na nowy framework, pokrycie testami do 100% i migracja wszystkich serwisów na GitLab razem z DevOps.",
+      ru: "Независимое сравнение финансовых продуктов и услуг для британского рынка: несколько продуктовых сайтов в одном монорепозитории на React и Next.js, между фронтом и внутренними сервисами — слой на Node и Express. Работаю здесь с сентября 2022-го: сначала инженером, с апреля 2024-го — senior'ом. Доставка фич, производительность, тесты и код-ревью в команде.",
+      en: "Impartial comparison of financial products and services for the UK market: several product sites in one monorepo on React and Next.js, with a Node and Express layer between the front end and internal services. I have been on it since September 2022 — first as an engineer, since April 2024 as a senior. Feature delivery, performance, tests and code review across the team.",
+      pl: "Bezstronne porównanie produktów i usług finansowych dla rynku brytyjskiego: kilka serwisów produktowych w jednym monorepo na React i Next.js, między frontem a usługami wewnętrznymi warstwa na Node i Express. Pracuję tu od września 2022 — najpierw jako inżynier, od kwietnia 2024 jako senior. Dostarczanie funkcji, wydajność, testy i code review w zespole.",
     },
 
     role: {
-      ru: "Разработка фронтенда и SSR-слоя в продуктовой команде",
-      en: "Front-end and SSR work inside the product team",
-      pl: "Frontend i warstwa SSR w zespole produktowym",
+      ru: "Full-stack инженер, с 2024 — Senior",
+      en: "Full-stack engineer, senior since 2024",
+      pl: "Full-stack engineer, od 2024 senior",
     },
 
-    period: "2022 — 2024, Godel Technologies Europe",
+    period: "09.2022 — present, Godel Technologies Europe",
 
     stack: [
       "React",
       "Redux",
+      "Next.js",
       "TypeScript",
-      "Express",
-      "SSR",
       "Monorepo",
-      "Docker",
-      "SASS",
+      "Node.js",
+      "Express",
       "Jest",
       "Playwright",
+      "Docker",
       "GitLab CI",
+      "GoCD",
+      "Claude Code",
+      "Windsurf",
+      "Codex",
     ],
 
     highlights: {
       ru: [
+        "Возглавил миграцию ключевого клиентского модуля на React + TypeScript: бандл меньше на 30%, Lighthouse performance вырос с 62 до 91.",
         "Довёл покрытие юнит- и интеграционными тестами до 100%.",
-        "Крупный рефакторинг с переходом на новый фреймворк: +25% к производительности страниц без потери функциональности.",
-        "Редизайн интерфейса, выкаченный сразу в нескольких продуктах.",
-        "Вместе с DevOps перевёл все сервисы на GitLab.",
+        "Крупный рефакторинг с переходом на новый фреймворк: производительность страниц выросла на 25% без потери функциональности.",
+        "Сократил критические баги в проде на 40% через покрытие Jest/React Testing Library и более строгое код-ревью.",
+        "Вместе с DevOps перевёл все сервисы на GitLab, внедрял редизайн интерфейса сразу в нескольких продуктах.",
+        "Довёл до продакшена два BFF/бэкенд-приложения по spec-driven development, генерируя код из спецификаций через Claude Code, Windsurf и Codex — на 30–40% быстрее.",
       ],
       en: [
-        "Took unit and integration test coverage to 100%.",
-        "A major refactor onto a new framework: 25% better page performance with no loss of functionality.",
-        "A UI redesign rolled out across several products at once.",
-        "Migrated every service to GitLab together with DevOps.",
+        "Led the migration of a core client-facing module to React + TypeScript: 30% smaller bundle, Lighthouse performance up from 62 to 91.",
+        "Raised unit and integration test coverage to 100%.",
+        "Took part in a major refactoring onto a new framework: 25% better page performance with no loss of functionality.",
+        "Cut critical production bugs by 40% through Jest/React Testing Library coverage and stricter code review.",
+        "Migrated all services to GitLab with DevOps, and shipped a UI redesign across several products.",
+        "Delivered two BFF/backend applications with spec-driven development, scaffolding from specs with Claude Code, Windsurf and Codex — 30–40% faster.",
       ],
       pl: [
+        "Poprowadził migrację kluczowego modułu klienckiego na React + TypeScript: bundle mniejszy o 30%, Lighthouse performance z 62 do 91.",
         "Podniósł pokrycie testami jednostkowymi i integracyjnymi do 100%.",
-        "Duży refaktor z przejściem na nowy framework: +25% wydajności stron bez utraty funkcjonalności.",
-        "Redesign interfejsu wdrożony w kilku produktach naraz.",
-        "Razem z DevOps przeniósł wszystkie serwisy na GitLab.",
+        "Duży refaktor z przejściem na nowy framework: wydajność stron wzrosła o 25% bez utraty funkcjonalności.",
+        "Zmniejszył liczbę krytycznych błędów produkcyjnych o 40% dzięki pokryciu Jest/React Testing Library i ostrzejszemu code review.",
+        "Razem z DevOps przeniósł wszystkie serwisy na GitLab i wdrożył redesign interfejsu w kilku produktach.",
+        "Dostarczył dwie aplikacje BFF/backend w podejściu spec-driven development, generując kod ze specyfikacji przez Claude Code, Windsurf i Codex — o 30–40% szybciej.",
       ],
     },
 
     links: [],
   },
   {
-    slug: "radio-dj-console",
+    slug: "ship-tracking-platform",
     kind: "commercial",
 
     title: {
-      ru: "DJ-консоль для онлайн-радио",
-      en: "DJ console for online radio",
-      pl: "Konsola DJ dla radia online",
+      ru: "Платформа слежения за судами",
+      en: "Ship tracking platform",
+      pl: "Platforma śledzenia statków",
     },
 
     tagline: {
-      ru: "Живое сведение эфира прямо в браузере: треки, реклама и голос ведущего",
-      en: "Live broadcast mixing in the browser: tracks, ads and the host's voice",
-      pl: "Miksowanie audycji na żywo w przeglądarce: utwory, reklamy i głos prowadzącego",
+      ru: "Данные с судна в реальном времени поверх 3D-модели: палубы, камеры, узлы",
+      en: "Live vessel data on a 3D model: decks, cameras and nodes",
+      pl: "Dane ze statku w czasie rzeczywistym na modelu 3D: pokłady, kamery, węzły",
     },
 
     description: {
-      ru: "Платформа с аптаймом 24/7, на которой клиенты заводят собственное онлайн- или офлайн-радио. Моя часть — DJ-консоль: ведущий сводит эфир прямо в браузере, управляя треками, рекламными вставками и собственным микрофоном в реальном времени. Всё микширование на Web Audio API: раздельная громкость по каналам и мониторинг в наушниках отдельно от того, что уходит в эфир.",
-      en: "A platform with 24/7 uptime where customers run their own online or offline radio. My part was the DJ console: the host mixes the broadcast straight in the browser, driving tracks, ad inserts and their own microphone in real time. All mixing runs on the Web Audio API — per-channel volume and headphone monitoring separate from what goes out on air.",
-      pl: "Platforma z uptime 24/7, na której klienci prowadzą własne radio online lub offline. Moja część to konsola DJ: prowadzący miksuje audycję prosto w przeglądarce, sterując utworami, wstawkami reklamowymi i własnym mikrofonem w czasie rzeczywistym. Całe miksowanie na Web Audio API — osobna głośność kanałów i odsłuch w słuchawkach niezależny od tego, co idzie na antenę.",
+      ru: "Система мониторинга флота в реальном времени. Телеметрия идёт с судна по UDP: бэкенд на Node парсит поток и складывает в TimescaleDB, фронт забирает данные через GraphQL и Apollo Client. Интерфейс строится вокруг 3D-модели судна, собранной из моделей заказчика: переключение по палубам, камеры и узлы на своих местах, показания по всем доступным датчикам. Отдельно — карта со всеми судами и дашборд с состоянием каждого.",
+      en: "A real-time fleet monitoring system. Telemetry leaves the vessel over UDP: a Node backend parses the stream into TimescaleDB, and the front end reads it through GraphQL and Apollo Client. The interface is built around a 3D model of the ship assembled from the client's own models — switching between decks, cameras and nodes where they physically sit, readings from every available sensor. Alongside it, a map of the whole fleet and a dashboard for each vessel.",
+      pl: "System monitoringu floty w czasie rzeczywistym. Telemetria idzie ze statku przez UDP: backend na Node parsuje strumień do TimescaleDB, a front pobiera dane przez GraphQL i Apollo Client. Interfejs zbudowany wokół modelu 3D statku złożonego z modeli klienta: przełączanie po pokładach, kamery i węzły na swoich miejscach, odczyty ze wszystkich dostępnych czujników. Obok mapa całej floty i dashboard każdej jednostki.",
     },
 
     role: {
-      ru: "Фулстек: консоль на Vue и бэкенд на Laravel",
-      en: "Full-stack: the console on Vue, the backend on Laravel",
-      pl: "Full-stack: konsola na Vue, backend na Laravel",
+      ru: "Инженер: 3D-интерфейс, дашборд и приём телеметрии",
+      en: "Engineer: 3D interface, dashboard and telemetry intake",
+      pl: "Inżynier: interfejs 3D, dashboard i odbiór telemetrii",
     },
 
-    period: "2018 — 2020, AKDev Group",
+    period: "09.2021 — 09.2022, Godel Technologies Europe",
 
-    stack: ["Vue", "Vuex", "Laravel", "Web Audio API", "MySQL", "Docker", "SASS"],
+    stack: [
+      "React",
+      "Redux",
+      "TanStack Query",
+      "GraphQL",
+      "Apollo Client",
+      "TypeScript",
+      "Node.js",
+      "TimescaleDB",
+      "UDP",
+      "Docker",
+      "Jest",
+      "Playwright",
+      "GitHub Actions",
+    ],
 
     highlights: {
       ru: [
-        "Сведение в реальном времени: треки, реклама и микрофон ведущего с раздельной регулировкой громкости.",
-        "Мониторинг в наушниках отдельно от эфирного микса.",
-        "Тёмная тема консоли.",
-        "Платформа держала аптайм 24/7.",
+        "3D-модель судна как основной интерфейс: переключение по палубам, камеры на тех палубах, где они есть, показания по всем доступным узлам.",
+        "Приём телеметрии по UDP: бэкенд парсит поток и пишет в TimescaleDB, во фронт данные отдаются по GraphQL, а не по запросу на каждую датаграмму.",
+        "Непрерывный поток с 50+ судов одновременно, позиции всех судов на общей карте.",
+        "Просмотр видео с судовых камер прямо из модели и дашборд с состоянием конкретного судна.",
+        "Apollo Client с нормализованным кэшем: поверх постоянно идущих обновлений интерфейс не перерисовывался целиком.",
       ],
       en: [
-        "Real-time mixing: tracks, ads and the host's microphone, each with its own volume control.",
-        "Headphone monitoring kept separate from the on-air mix.",
-        "A dark theme for the console.",
-        "The platform held 24/7 uptime.",
+        "The 3D model of the ship as the primary interface: switching between decks, cameras on the decks that have them, readings from every available node.",
+        "Telemetry over UDP: the backend parses the stream into TimescaleDB and serves the front end over GraphQL, rather than a request per datagram.",
+        "A continuous feed from 50+ vessels at once, with every ship's position on a shared map.",
+        "Video from the onboard cameras viewed straight from the model, plus a dashboard for an individual vessel.",
+        "Apollo Client with a normalised cache, so a constant stream of updates did not repaint the whole interface.",
       ],
       pl: [
-        "Miksowanie w czasie rzeczywistym: utwory, reklamy i mikrofon prowadzącego, każde z własną regulacją głośności.",
-        "Odsłuch w słuchawkach oddzielony od miksu antenowego.",
-        "Ciemny motyw konsoli.",
-        "Platforma utrzymywała uptime 24/7.",
+        "Model 3D statku jako główny interfejs: przełączanie po pokładach, kamery tam, gdzie są zainstalowane, odczyty ze wszystkich dostępnych węzłów.",
+        "Telemetria po UDP: backend parsuje strumień do TimescaleDB i oddaje frontowi przez GraphQL, a nie zapytaniem na każdy datagram.",
+        "Ciągły strumień z 50+ statków naraz, pozycje wszystkich jednostek na wspólnej mapie.",
+        "Podgląd wideo z kamer pokładowych prosto z modelu i dashboard konkretnego statku.",
+        "Apollo Client ze znormalizowanym cache — przy stale napływających aktualizacjach interfejs nie przerysowywał się w całości.",
+      ],
+    },
+
+    links: [],
+  },
+  {
+    slug: "online-school",
+    kind: "commercial",
+
+    title: {
+      ru: "Онлайн-школа",
+      en: "Online school",
+      pl: "Szkoła online",
+    },
+
+    tagline: {
+      ru: "Платформа обучения с бесплатными и платными разделами, которые заказчик редактирует сам",
+      en: "A learning platform with free and paid sections the client edits itself",
+      pl: "Platforma edukacyjna z darmowymi i płatnymi sekcjami, które klient edytuje sam",
+    },
+
+    description: {
+      ru: "Обучающая платформа, где контент ведёт сам заказчик: бесплатные и платные разделы, видеоуроки с таймкодами, домашние задания и переписка учителя с учениками. Я спроектировал архитектуру школьного модуля и отвечал за него целиком — от плеера с таймкодами до админки для учителей. Отдельная часть работы — редактор контента: WYSIWYG с собственным UI, компонентами картинок и видео и встраиванием YouTube и Vimeo с навигацией по таймкодам исходных площадок.",
+      en: "A learning platform where the client owns the content: free and paid sections, video lessons with timecodes, homework, and teacher-to-student messaging. I designed the architecture of the school module and owned it end to end — from the player with timecodes to the teachers' admin panel. A separate strand was the content editor: a WYSIWYG with a custom UI, image and video components, and YouTube and Vimeo embedding that navigates by the timecodes of the original platforms.",
+      pl: "Platforma edukacyjna, na której treści prowadzi sam klient: sekcje darmowe i płatne, lekcje wideo z timecode'ami, prace domowe i korespondencja nauczyciela z uczniami. Zaprojektowałem architekturę modułu szkoły i odpowiadałem za niego w całości — od odtwarzacza z timecode'ami po panel administracyjny dla nauczycieli. Osobny wątek to edytor treści: WYSIWYG z własnym UI, komponentami obrazów i wideo oraz osadzaniem YouTube i Vimeo z nawigacją po timecode'ach oryginalnych platform.",
+    },
+
+    role: {
+      ru: "Full-stack инженер, владелец школьного модуля",
+      en: "Full-stack engineer, owner of the school module",
+      pl: "Full-stack engineer, właściciel modułu szkoły",
+    },
+
+    period: "08.2019 — 08.2021, AKDev Group",
+
+    stack: [
+      "TypeScript",
+      "Vue",
+      "Vuex",
+      "Laravel",
+      "PHP",
+      "MySQL",
+      "ElasticSearch",
+      "Grafana",
+      "SASS",
+      "Docker",
+      "Jest",
+      "GitHub Actions",
+    ],
+
+    highlights: {
+      ru: [
+        "Спроектировал и реализовал архитектуру модуля школы: видеоуроки с таймкодами, домашние задания, прогресс ученика.",
+        "Встроил WYSIWYG-редактор с собственным меню и компонентами картинок и видео, добавил встраивание YouTube и Vimeo с навигацией по таймкодам исходных площадок.",
+        "Отвечал за весь школьный модуль: админка для учителей и переписка с учениками.",
+        "Перевёл проект с Webpack 2 на Webpack 4.",
+        "Поиск по урокам и материалам на ElasticSearch, метрики модуля в Grafana.",
+      ],
+      en: [
+        "Designed and built the architecture of the school module: video lessons with timecodes, homework, student progress.",
+        "Integrated a WYSIWYG editor with a custom menu and image and video components, and added YouTube and Vimeo embedding that navigates by the timecodes of the original platforms.",
+        "Owned the whole school module: the teachers' admin panel and messaging with students.",
+        "Upgraded the project from Webpack 2 to Webpack 4.",
+        "Search across lessons and materials on ElasticSearch, module metrics in Grafana.",
+      ],
+      pl: [
+        "Zaprojektował i wdrożył architekturę modułu szkoły: lekcje wideo z timecode'ami, prace domowe, postępy ucznia.",
+        "Osadził edytor WYSIWYG z własnym menu i komponentami obrazów i wideo, dodał osadzanie YouTube i Vimeo z nawigacją po timecode'ach oryginalnych platform.",
+        "Odpowiadał za cały moduł szkoły: panel administracyjny dla nauczycieli i korespondencję z uczniami.",
+        "Przeniósł projekt z Webpacka 2 na Webpack 4.",
+        "Wyszukiwanie lekcji i materiałów na ElasticSearch, metryki modułu w Grafanie.",
+      ],
+    },
+
+    links: [],
+  },
+  {
+    slug: "cleverstart",
+    kind: "commercial",
+
+    client: { ru: "AKDev Group", en: "AKDev Group", pl: "AKDev Group" },
+
+    title: {
+      ru: "CleverStart",
+      en: "CleverStart",
+      pl: "CleverStart",
+    },
+
+    tagline: {
+      ru: "Платформа обучения детей ментальной арифметике",
+      en: "A platform for teaching children mental arithmetic",
+      pl: "Platforma do nauki arytmetyki mentalnej dla dzieci",
+    },
+
+    description: {
+      ru: "Обучение ментальной арифметике: виртуальные счёты-абакус, генератор заданий, домашние работы, соревнования и олимпиады между учениками. Я делал дополнительные модули для генератора задач к абакусу, переделал главную страницу под конверсию и помогал строить модуль олимпиад — регистрацию, проведение и результаты.",
+      en: "Teaching mental arithmetic: a virtual abacus, a task generator, homework, contests and olympiads between students. I built additional modules for the abacus task generator, rebuilt the landing page for conversion, and helped build the olympiad module — registration, running an event and results.",
+      pl: "Nauka arytmetyki mentalnej: wirtualne liczydło abakus, generator zadań, prace domowe, zawody i olimpiady między uczniami. Robiłem dodatkowe moduły do generatora zadań na abakus, przebudowałem stronę główną pod konwersję i pomagałem budować moduł olimpiad — rejestrację, przebieg i wyniki.",
+    },
+
+    role: {
+      ru: "Фронтенд-инженер",
+      en: "Frontend engineer",
+      pl: "Frontend engineer",
+    },
+
+    period: "03.2019 — 08.2019, AKDev Group",
+
+    stack: [
+      "TypeScript",
+      "React",
+      "Redux",
+      "Node.js",
+      "Express",
+      "PostgreSQL",
+      "SASS",
+      "Docker",
+      "Jest",
+    ],
+
+    highlights: {
+      ru: [
+        "Расширил генератор заданий для абакуса: новые типы упражнений и настройки сложности под возраст группы.",
+        "Переделал главную страницу под конверсию — регистраций на пробное занятие стало больше примерно на 20%.",
+        "Помогал строить модуль олимпиад: регистрация, проведение в реальном времени и таблица результатов.",
+        "Разбор заданий в интерфейсе абакуса без перезагрузки страницы.",
+      ],
+      en: [
+        "Extended the abacus task generator: new exercise types and difficulty settings tuned to the age group.",
+        "Rebuilt the landing page for conversion — sign-ups for a trial lesson went up by roughly 20%.",
+        "Helped build the olympiad module: registration, running an event live, and a results table.",
+        "Working through tasks inside the abacus interface without a page reload.",
+      ],
+      pl: [
+        "Rozbudował generator zadań na abakus: nowe typy ćwiczeń i ustawienia trudności pod wiek grupy.",
+        "Przebudował stronę główną pod konwersję — zapisów na lekcję próbną przybyło o około 20%.",
+        "Pomagał budować moduł olimpiad: rejestracja, przebieg na żywo i tabela wyników.",
+        "Rozwiązywanie zadań w interfejsie abakusa bez przeładowania strony.",
+      ],
+    },
+
+    links: [],
+  },
+  {
+    slug: "radioheart",
+    kind: "commercial",
+
+    client: { ru: "AKDev Group", en: "AKDev Group", pl: "AKDev Group" },
+
+    title: {
+      ru: "RadioHeart",
+      en: "RadioHeart",
+      pl: "RadioHeart",
+    },
+
+    tagline: {
+      ru: "Интернет-радио, которое играет по расписанию без ведущего",
+      en: "Internet radio that plays to a schedule with nobody at the desk",
+      pl: "Radio internetowe grające według harmonogramu bez prowadzącego",
+    },
+
+    description: {
+      ru: "Платформа интернет-радио: пользователь составляет вещание на дни или недели вперёд, и эфир идёт сам, без его участия. Моей частью была панель диджея — режим, в котором можно выйти в свой поток вживую. Всё сведение работает на Web Audio API: две деки с песнями и микшированием между ними, джинглы и реклама, микрофон ведущего и возврат эфира в наушники, чтобы услышать результат до того, как он уйдёт в лайв.",
+      en: "An internet radio platform: a user schedules broadcasting days or weeks ahead and the stream runs on its own. My part was the DJ console — the mode where you go live into your own stream. The mixing runs on the Web Audio API: two decks with crossfading between them, jingles and ads, the host's microphone, and the stream fed back into the headphones so the host hears the result before it goes out live.",
+      pl: "Platforma radia internetowego: użytkownik układa ramówkę na dni lub tygodnie do przodu, a eter idzie sam, bez jego udziału. Moją częścią była konsola DJ-ska — tryb, w którym można wejść na żywo do własnego strumienia. Miksowanie działa na Web Audio API: dwie decki z przechodzeniem między nimi, jingle i reklamy, mikrofon prowadzącego i powrót sygnału do słuchawek, żeby usłyszeć efekt zanim pójdzie na antenę.",
+    },
+
+    role: {
+      ru: "Фронтенд-инженер: панель диджея",
+      en: "Frontend engineer: the DJ console",
+      pl: "Frontend engineer: konsola DJ-ska",
+    },
+
+    period: "08.2018 — 02.2019, AKDev Group",
+
+    stack: [
+      "TypeScript",
+      "Vue",
+      "Vuex",
+      "Node.js",
+      "Express",
+      "PHP",
+      "Laravel",
+      "MySQL",
+      "Web Audio API",
+      "SASS",
+      "Docker",
+      "Jest",
+    ],
+
+    highlights: {
+      ru: [
+        "Панель диджея на Web Audio API: две деки с треками и микшированием между ними, джинглы и рекламные вставки поверх эфира.",
+        "Микрофон ведущего с раздельной громкостью по каналам и возвратом в наушники — эфир слышно до того, как он уйдёт в лайв.",
+        "Тёмная тема панели: за пультом сидят вечером и ночью.",
+        "Участвовал в биллинге и суточном пробном режиме до покупки подписки.",
+      ],
+      en: [
+        "The DJ console on the Web Audio API: two decks with tracks and crossfading between them, jingles and ad breaks over the live stream.",
+        "The host's microphone with per-channel volume and a headphone return — you hear the mix before it goes out live.",
+        "A dark theme for the console: people sit at that desk in the evening and at night.",
+        "Contributed to billing and the 24-hour trial before buying a subscription.",
+      ],
+      pl: [
+        "Konsola DJ-ska na Web Audio API: dwie decki z utworami i przejściami między nimi, jingle i bloki reklamowe na żywym sygnale.",
+        "Mikrofon prowadzącego z osobną głośnością kanałów i powrotem do słuchawek — miks słychać, zanim pójdzie na antenę.",
+        "Ciemny motyw konsoli: przy tym pulpicie siedzi się wieczorem i w nocy.",
+        "Brał udział w billingu i dobowym trybie próbnym przed wykupieniem subskrypcji.",
       ],
     },
 

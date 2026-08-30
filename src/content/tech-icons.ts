@@ -1,4 +1,5 @@
 import {
+  siApollographql,
   siClaude,
   siDocker,
   siElasticsearch,
@@ -13,7 +14,9 @@ import {
   siMysql,
   siNestjs,
   siNextdotjs,
+  siGraphql,
   siNodedotjs,
+  siPhp,
   siPostgresql,
   siPrisma,
   siReact,
@@ -52,6 +55,7 @@ const icons: Record<string, SimpleIcon> = {
   "styled-components": siStyledcomponents,
   SASS: siSass,
   "Vue / Vuex": siVuedotjs,
+  "Apollo Client": siApollographql,
   "HTML5 / CSS3": siHtml5,
 
   // Backend
@@ -62,6 +66,8 @@ const icons: Record<string, SimpleIcon> = {
   TimescaleDB: siTimescale,
   MySQL: siMysql,
   Prisma: siPrisma,
+  GraphQL: siGraphql,
+  PHP: siPhp,
   Laravel: siLaravel,
 
   // Testing
