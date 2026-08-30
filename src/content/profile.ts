@@ -157,6 +157,62 @@ export const profile: Profile = {
 
   experience: [
     {
+      company: "Alignerr, Outlier",
+      location: "Remote",
+      role: {
+        ru: "AI-тренер и prompt-инженер (фриланс)",
+        en: "Freelance AI Trainer & Prompt Engineer",
+        pl: "AI Trainer i Prompt Engineer (freelance)",
+      },
+      period: { ru: "05.2026 — н. в.", en: "05.2026 — present", pl: "05.2026 — obecnie" },
+      highlights: {
+        ru: [
+          "Обучение и разметка моделей на реальном коде: оценка и ранжирование ответов LLM на задачах генерации кода.",
+          "Валидация кода, написанного моделью: где он работает, где ломается и почему проверка глазами разработчика всё ещё нужна.",
+          "Выстроил процессы prompt engineering для технических задач оценки, подняв согласованность разметки в распределённой команде ревьюеров.",
+        ],
+        en: [
+          "Training and annotating models on real code: evaluating and ranking LLM output on code-generation tasks.",
+          "Validating model-written code — where it holds up, where it breaks, and why a developer's review is still the check that matters.",
+          "Designed prompt engineering workflows for technical evaluation tasks, improving annotation consistency across a distributed reviewer team.",
+        ],
+        pl: [
+          "Trenowanie i anotacja modeli na prawdziwym kodzie: ocena i ranking odpowiedzi LLM w zadaniach generowania kodu.",
+          "Walidacja kodu napisanego przez model — gdzie się broni, gdzie się sypie i dlaczego przegląd programisty wciąż jest potrzebny.",
+          "Zaprojektował procesy prompt engineeringu dla technicznych zadań oceny, podnosząc spójność adnotacji w rozproszonym zespole recenzentów.",
+        ],
+      },
+      stack: ["LLM evaluation", "Prompt engineering", "JavaScript", "TypeScript", "React"],
+    },
+    {
+      company: "Preply, freelance",
+      location: "Remote",
+      role: {
+        ru: "Преподаватель JavaScript и React, фриланс-разработка",
+        en: "JavaScript & React tutor, freelance development",
+        pl: "Nauczyciel JavaScriptu i Reacta, rozwój freelance",
+      },
+      period: { ru: "03.2025 — н. в.", en: "03.2025 — present", pl: "03.2025 — obecnie" },
+      highlights: {
+        ru: [
+          "350+ часов индивидуальных занятий по JavaScript и React — от основ до портфолио-проектов уровня найма.",
+          "Как минимум четверо студентов вышли на работу в IT — в Израиле, Польше, на Кипре и в Канаде.",
+          "Фриланс-проект об озеленении планеты: сведение данных о посадках деревьев из разных источников в открытую публикацию.",
+        ],
+        en: [
+          "350+ hours of one-on-one JavaScript and React tutoring, taking students from fundamentals to job-ready portfolio projects.",
+          "At least four students have since been hired in IT — in Israel, Poland, Cyprus and Canada.",
+          "A freelance project on global reforestation: pulling tree-planting data from several sources into one openly published picture.",
+        ],
+        pl: [
+          "350+ godzin indywidualnych zajęć z JavaScriptu i Reacta — od podstaw do projektów portfolio na poziomie zatrudnienia.",
+          "Co najmniej czworo studentów znalazło pracę w IT — w Izraelu, Polsce, na Cyprze i w Kanadzie.",
+          "Projekt freelance o zazielenianiu planety: zbieranie danych o nasadzeniach drzew z różnych źródeł w jedną otwartą publikację.",
+        ],
+      },
+      stack: ["JavaScript", "TypeScript", "React", "Node.js", "Mentoring"],
+    },
+    {
       company: "Godel Technologies Europe",
       location: "Łódź, Poland — hybrid",
       role: {
@@ -242,62 +298,6 @@ export const profile: Profile = {
         "Jest",
         "Playwright",
       ],
-    },
-    {
-      company: "Alignerr, Outlier",
-      location: "Remote",
-      role: {
-        ru: "AI-тренер и prompt-инженер (фриланс)",
-        en: "Freelance AI Trainer & Prompt Engineer",
-        pl: "AI Trainer i Prompt Engineer (freelance)",
-      },
-      period: { ru: "05.2026 — н. в.", en: "05.2026 — present", pl: "05.2026 — obecnie" },
-      highlights: {
-        ru: [
-          "Обучение и разметка моделей на реальном коде: оценка и ранжирование ответов LLM на задачах генерации кода.",
-          "Валидация кода, написанного моделью: где он работает, где ломается и почему проверка глазами разработчика всё ещё нужна.",
-          "Выстроил процессы prompt engineering для технических задач оценки, подняв согласованность разметки в распределённой команде ревьюеров.",
-        ],
-        en: [
-          "Training and annotating models on real code: evaluating and ranking LLM output on code-generation tasks.",
-          "Validating model-written code — where it holds up, where it breaks, and why a developer's review is still the check that matters.",
-          "Designed prompt engineering workflows for technical evaluation tasks, improving annotation consistency across a distributed reviewer team.",
-        ],
-        pl: [
-          "Trenowanie i anotacja modeli na prawdziwym kodzie: ocena i ranking odpowiedzi LLM w zadaniach generowania kodu.",
-          "Walidacja kodu napisanego przez model — gdzie się broni, gdzie się sypie i dlaczego przegląd programisty wciąż jest potrzebny.",
-          "Zaprojektował procesy prompt engineeringu dla technicznych zadań oceny, podnosząc spójność adnotacji w rozproszonym zespole recenzentów.",
-        ],
-      },
-      stack: ["LLM evaluation", "Prompt engineering", "JavaScript", "TypeScript", "React"],
-    },
-    {
-      company: "Preply, freelance",
-      location: "Remote",
-      role: {
-        ru: "Преподаватель JavaScript и React, фриланс-разработка",
-        en: "JavaScript & React tutor, freelance development",
-        pl: "Nauczyciel JavaScriptu i Reacta, rozwój freelance",
-      },
-      period: { ru: "03.2025 — н. в.", en: "03.2025 — present", pl: "03.2025 — obecnie" },
-      highlights: {
-        ru: [
-          "350+ часов индивидуальных занятий по JavaScript и React — от основ до портфолио-проектов уровня найма.",
-          "Как минимум четверо студентов вышли на работу в IT — в Израиле, Польше, на Кипре и в Канаде.",
-          "Фриланс-проект об озеленении планеты: сведение данных о посадках деревьев из разных источников в открытую публикацию.",
-        ],
-        en: [
-          "350+ hours of one-on-one JavaScript and React tutoring, taking students from fundamentals to job-ready portfolio projects.",
-          "At least four students have since been hired in IT — in Israel, Poland, Cyprus and Canada.",
-          "A freelance project on global reforestation: pulling tree-planting data from several sources into one openly published picture.",
-        ],
-        pl: [
-          "350+ godzin indywidualnych zajęć z JavaScriptu i Reacta — od podstaw do projektów portfolio na poziomie zatrudnienia.",
-          "Co najmniej czworo studentów znalazło pracę w IT — w Izraelu, Polsce, na Cyprze i w Kanadzie.",
-          "Projekt freelance o zazielenianiu planety: zbieranie danych o nasadzeniach drzew z różnych źródeł w jedną otwartą publikację.",
-        ],
-      },
-      stack: ["JavaScript", "TypeScript", "React", "Node.js", "Mentoring"],
     },
     {
       company: "AKDev Group",
