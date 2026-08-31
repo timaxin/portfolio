@@ -402,9 +402,9 @@ export const profile: Profile = {
   },
 
   availability: {
-    ru: "Открыт к senior-ролям: удалённо по Польше или гибрид в Лодзи либо Варшаве, переезд в Варшаву рассматривает. Работает по B2B через собственное JDG или по umowa o pracę. Срок выхода — две недели. Может подстроить часы под US Eastern, с плотным пересечением в первые месяцы онбординга. Предпочитает устоявшиеся компании со здоровой инженерной культурой.",
-    en: "Open to senior roles: remote within Poland, or hybrid in Łódź or Warsaw — he is considering a move to Warsaw. Works on B2B through his own sole proprietorship or on a permanent contract (umowa o pracę). Notice period is two weeks. Can align hours with US Eastern time, with heavy overlap during the first months of onboarding. Prefers established companies with a healthy engineering culture.",
-    pl: "Otwarty na role senior: zdalnie w Polsce albo hybrydowo w Łodzi lub Warszawie — rozważa przeprowadzkę do Warszawy. Pracuje na B2B przez własną JDG albo na umowę o pracę. Okres wypowiedzenia: dwa tygodnie. Może dopasować godziny do US Eastern, z dużym pokryciem w pierwszych miesiącach onboardingu. Preferuje ustabilizowane firmy ze zdrową kulturą inżynierską.",
+    ru: "Открыт к senior-ролям: удалённо по Польше или гибрид в Лодзи либо Варшаве, переезд в Варшаву рассматривает. Работает по B2B через собственное JDG или по umowa o pracę. Доступен немедленно. Может подстроить часы под US Eastern, с плотным пересечением в первые месяцы онбординга. Предпочитает устоявшиеся компании со здоровой инженерной культурой.",
+    en: "Open to senior roles: remote within Poland, or hybrid in Łódź or Warsaw — he is considering a move to Warsaw. Works on B2B through his own sole proprietorship or on a permanent contract (umowa o pracę). Available immediately. Can align hours with US Eastern time, with heavy overlap during the first months of onboarding. Prefers established companies with a healthy engineering culture.",
+    pl: "Otwarty na role senior: zdalnie w Polsce albo hybrydowo w Łodzi lub Warszawie — rozważa przeprowadzkę do Warszawy. Pracuje na B2B przez własną JDG albo na umowę o pracę. Dostępny od zaraz. Może dopasować godziny do US Eastern, z dużym pokryciem w pierwszych miesiącach onboardingu. Preferuje ustabilizowane firmy ze zdrową kulturą inżynierską.",
   },
 
   contacts: [
