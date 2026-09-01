@@ -149,6 +149,16 @@ body {
   }
 }
 
+/* The small uppercase heading that introduces a block. Its own class because it
+   appears on every page, and a scale is only a scale if it is one declaration. */
+.section-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
 /* Stack grid. Each icon carries its brand colour from the start — a monogram
    tile has no --brand and falls back to the neutral border/text pair; each
    theme gets its own variant because the site follows the OS rather than a

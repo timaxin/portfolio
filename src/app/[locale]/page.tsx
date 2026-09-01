@@ -70,7 +70,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
         </p>
 
         <div className="animate-rise mt-8" style={{ animationDelay: "300ms" }}>
-          <h2 className="text-xs font-medium tracking-wider text-muted uppercase">
+          <h2 className="section-label">
             {dict.availability}
           </h2>
           {/* Pairs rather than a paragraph: the contract type is the thing being

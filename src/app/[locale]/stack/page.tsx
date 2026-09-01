@@ -24,15 +24,18 @@ export default async function StackPage({ params }: PageProps<"/[locale]/stack">
 
   return (
     <section>
-      <h1 className="animate-rise text-2xl font-semibold tracking-tight">{dict.title}</h1>
-      <p className="animate-rise mt-1 text-sm text-muted" style={{ animationDelay: "60ms" }}>
+      <h1 className="animate-rise text-3xl font-semibold tracking-tight sm:text-4xl">{dict.title}</h1>
+      <p
+        className="animate-rise mt-2 max-w-2xl text-[0.9375rem] text-muted"
+        style={{ animationDelay: "60ms" }}
+      >
         {dict.subtitle}
       </p>
 
       <ProximityGrid className="animate-rise mt-8 space-y-8" >
         {tools.map((group) => (
           <div key={group.group.en}>
-            <h2 className="text-xs font-medium tracking-wider text-muted uppercase">
+            <h2 className="section-label">
               {t(group.group, locale)}
             </h2>
             <ul className="mt-3 grid grid-cols-[repeat(auto-fill,minmax(88px,1fr))] items-start gap-1">
@@ -48,7 +51,7 @@ export default async function StackPage({ params }: PageProps<"/[locale]/stack">
       <div className="animate-rise mt-12 space-y-6 border-t border-border pt-8">
         {rest.map((group) => (
           <div key={group.group.en}>
-            <h2 className="text-xs font-medium tracking-wider text-muted uppercase">
+            <h2 className="section-label">
               {t(group.group, locale)}
             </h2>
             <ul className="mt-3 flex flex-wrap gap-1.5">

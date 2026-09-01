@@ -42,7 +42,7 @@ export default async function ProjectPage({ params }: PageProps<"/[locale]/proje
       </Link>
 
       <div className="mt-6 flex flex-wrap items-center gap-3">
-        <h1 className="text-2xl font-semibold tracking-tight">{t(project.title, locale)}</h1>
+        <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">{t(project.title, locale)}</h1>
         <ProjectBadge kind={project.kind} locale={locale} />
       </div>
       <p className="mt-1 text-sm text-accent">{t(project.tagline, locale)}</p>
@@ -69,7 +69,7 @@ export default async function ProjectPage({ params }: PageProps<"/[locale]/proje
       {/* Problem, then product, then what was mine — a flat list of bullets buried
           the metrics among the descriptions. */}
       <section className="mt-8">
-        <h2 className="text-xs font-medium tracking-wider text-muted uppercase">
+        <h2 className="section-label">
           {dict.challenge}
         </h2>
         <p className="mt-2 max-w-2xl text-[0.9375rem] leading-relaxed">
@@ -78,7 +78,7 @@ export default async function ProjectPage({ params }: PageProps<"/[locale]/proje
       </section>
 
       <section className="mt-7">
-        <h2 className="text-xs font-medium tracking-wider text-muted uppercase">{dict.about}</h2>
+        <h2 className="section-label">{dict.about}</h2>
         <p className="mt-2 max-w-2xl text-[0.9375rem] leading-relaxed">
           {t(project.description, locale)}
         </p>
@@ -86,7 +86,7 @@ export default async function ProjectPage({ params }: PageProps<"/[locale]/proje
 
       {highlights.length > 0 && (
         <section className="mt-7">
-          <h2 className="text-xs font-medium tracking-wider text-muted uppercase">
+          <h2 className="section-label">
             {dict.contribution}
           </h2>
           <ul className="mt-3 space-y-2.5 text-[0.9375rem] leading-relaxed">

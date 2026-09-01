@@ -32,8 +32,8 @@ export default async function ProjectsPage({ params }: PageProps<"/[locale]/proj
 
   return (
     <section>
-      <h1 className="text-2xl font-semibold tracking-tight">{dict.title}</h1>
-      <p className="mt-1 text-sm text-muted">{dict.subtitle}</p>
+      <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">{dict.title}</h1>
+      <p className="mt-2 max-w-2xl text-[0.9375rem] text-muted">{dict.subtitle}</p>
 
       {/* The filter reads the query string, which is not known while prerendering. */}
       <Suspense fallback={<div className="mt-8 h-64" />}>

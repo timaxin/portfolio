@@ -20,8 +20,11 @@ export default async function ExperiencePage({ params }: PageProps<"/[locale]/ex
 
   return (
     <section>
-      <h1 className="animate-rise text-2xl font-semibold tracking-tight">{dict.title}</h1>
-      <p className="animate-rise mt-1 text-sm text-muted" style={{ animationDelay: "60ms" }}>
+      <h1 className="animate-rise text-3xl font-semibold tracking-tight sm:text-4xl">{dict.title}</h1>
+      <p
+        className="animate-rise mt-2 max-w-2xl text-[0.9375rem] text-muted"
+        style={{ animationDelay: "60ms" }}
+      >
         {dict.subtitle}
       </p>
 
@@ -44,11 +47,11 @@ export default async function ExperiencePage({ params }: PageProps<"/[locale]/ex
               />
 
               <p className="text-xs tracking-wider text-muted uppercase">{t(job.period, locale)}</p>
-              <h2 className="mt-1 font-medium">{t(job.role, locale)}</h2>
+              <h2 className="mt-1 text-lg font-medium">{t(job.role, locale)}</h2>
               <p className="text-sm text-accent">{job.company}</p>
               <p className="mt-0.5 text-xs text-muted">{job.location}</p>
 
-              <ul className="mt-3 space-y-2 text-sm">
+              <ul className="mt-3 space-y-2.5 text-[0.9375rem] leading-relaxed">
                 {t(job.highlights, locale).map((highlight) => (
                   <li key={highlight} className="flex gap-2">
                     <span className="text-accent">—</span>
@@ -75,7 +78,7 @@ export default async function ExperiencePage({ params }: PageProps<"/[locale]/ex
       {/* The dates have holes in them; the profile explains each one, so say it
           here rather than leaving the reader to count months. */}
       <div className="mt-12 border-t border-border pt-8">
-        <h2 className="text-xs font-medium tracking-wider text-muted uppercase">{dict.notes}</h2>
+        <h2 className="section-label">{dict.notes}</h2>
         <ul className="mt-3 space-y-2 text-sm text-muted">
           {t(profile.timelineNotes, locale).map((note) => (
             <li key={note} className="flex gap-2">
@@ -87,7 +90,7 @@ export default async function ExperiencePage({ params }: PageProps<"/[locale]/ex
       </div>
 
       <div className="mt-10 border-t border-border pt-8">
-        <h2 className="text-xs font-medium tracking-wider text-muted uppercase">
+        <h2 className="section-label">
           {dict.education}
         </h2>
         <ul className="mt-3 space-y-2 text-sm">

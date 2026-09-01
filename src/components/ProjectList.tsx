@@ -65,7 +65,7 @@ export function ProjectList({ projects, locale }: { projects: ProjectCard[]; loc
                   stays one click target while the stack pills below stay their
                   own — an anchor inside an anchor is not valid HTML. */}
               <div className="flex flex-wrap items-center gap-2">
-                <h2 className="font-medium">
+                <h2 className="text-lg font-medium">
                   <Link
                     href={`/${locale}/projects/${project.slug}`}
                     className="after:absolute after:inset-0 after:rounded-2xl"
