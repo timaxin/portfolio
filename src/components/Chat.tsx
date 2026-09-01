@@ -136,7 +136,10 @@ export function Chat({ locale }: { locale: Locale }) {
           void ask(draft);
         }}
       >
-        <div className="flex items-end gap-2 rounded-2xl border border-border bg-surface p-2 focus-within:border-accent">
+        {/* The one thing on the page to interact with, so it is allowed to sit
+            slightly above the surface: a two-layer shadow lifts it off the page
+            and focus turns the outline accent rather than merely tinting it. */}
+        <div className="flex items-end gap-2 rounded-2xl border border-border bg-surface p-2 shadow-[0_1px_2px_rgb(0_0_0/0.06),0_10px_28px_-16px_var(--accent)] transition-[border-color,box-shadow] duration-200 focus-within:border-accent focus-within:shadow-[0_1px_2px_rgb(0_0_0/0.06),0_12px_32px_-14px_var(--accent)]">
           <textarea
             value={draft}
             onChange={(event) => setDraft(event.target.value)}
