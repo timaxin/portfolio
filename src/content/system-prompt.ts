@@ -33,7 +33,7 @@ function buildKnowledgeBase(locale: Locale): string {
         `### ${t(project.title, locale)} (/${locale}/projects/${project.slug})`,
         t(project.tagline, locale),
         t(project.description, locale),
-        `Role: ${t(project.role, locale)}. Period: ${project.period}.`,
+        `Role: ${t(project.role, locale)}. Period: ${t(project.period, locale)}.`,
         project.kind === "commercial"
           ? `Client work. Client: ${project.client ? t(project.client, locale) : "cannot be named (NDA)"}.`
           : "Built in-house / personal project, not client work.",

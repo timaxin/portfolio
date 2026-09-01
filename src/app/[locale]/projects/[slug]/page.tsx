@@ -61,7 +61,7 @@ export default async function ProjectPage({ params }: PageProps<"/[locale]/proje
           </>
         )}
         <dt className="text-muted">{dict.period}</dt>
-        <dd>{project.period}</dd>
+        <dd>{t(project.period, locale)}</dd>
         <dt className="text-muted">{dict.stack}</dt>
         <dd>{project.stack.join(", ")}</dd>
       </dl>

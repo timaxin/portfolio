@@ -14,6 +14,8 @@ export type ProjectCard = {
   kind: ProjectKind;
   title: string;
   tagline: string;
+  /** "09.2022 — present, Godel Technologies Europe" — dates and employer in one. */
+  period: string;
   stack: string[];
   /** Which `?tech=` values this project answers to, lowercased. */
   keys: string[];
@@ -75,6 +77,9 @@ export function ProjectList({ projects, locale }: { projects: ProjectCard[]; loc
               </div>
 
               <p className="mt-1 text-sm text-muted">{project.tagline}</p>
+              {/* Six projects are scanned, not read: when each ran, and where,
+                  belongs on the card rather than one click away. */}
+              <p className="mt-2 text-xs text-muted">{project.period}</p>
 
               <div className="relative mt-3 flex flex-wrap gap-1.5">
                 {project.stack.map((item) => {

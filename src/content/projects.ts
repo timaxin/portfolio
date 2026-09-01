@@ -24,7 +24,7 @@ export type Project = {
   /** The long description — goes into the prompt and is shown in full on the page. */
   description: Localized;
   role: Localized;
-  period: string;
+  period: Localized;
   stack: string[];
   highlights: Localized<string[]>;
   links: { label: string; href: string }[];
@@ -59,7 +59,7 @@ export const projects: Project[] = [
       pl: "Autor, cały stack",
     },
 
-    period: "2026",
+    period: { ru: "2026", en: "2026", pl: "2026" },
 
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "Anthropic API", "Vercel"],
 
@@ -114,7 +114,11 @@ export const projects: Project[] = [
       pl: "Full-stack engineer, od 2024 senior",
     },
 
-    period: "09.2022 — present, Godel Technologies Europe",
+    period: {
+      ru: "09.2022 — н. в., Godel Technologies Europe",
+      en: "09.2022 — present, Godel Technologies Europe",
+      pl: "09.2022 — obecnie, Godel Technologies Europe",
+    },
 
     stack: [
       "React",
@@ -191,7 +195,11 @@ export const projects: Project[] = [
       pl: "Inżynier: interfejs 3D, dashboard i odbiór telemetrii",
     },
 
-    period: "09.2021 — 09.2022, Godel Technologies Europe",
+    period: {
+      ru: "09.2021 — 09.2022, Godel Technologies Europe",
+      en: "09.2021 — 09.2022, Godel Technologies Europe",
+      pl: "09.2021 — 09.2022, Godel Technologies Europe",
+    },
 
     stack: [
       "React",
@@ -263,7 +271,11 @@ export const projects: Project[] = [
       pl: "Full-stack engineer, właściciel modułu szkoły",
     },
 
-    period: "08.2019 — 08.2021, AKDev Group",
+    period: {
+      ru: "08.2019 — 08.2021, AKDev Group",
+      en: "08.2019 — 08.2021, AKDev Group",
+      pl: "08.2019 — 08.2021, AKDev Group",
+    },
 
     stack: [
       "TypeScript",
@@ -336,7 +348,11 @@ export const projects: Project[] = [
       pl: "Frontend engineer",
     },
 
-    period: "03.2019 — 08.2019, AKDev Group",
+    period: {
+      ru: "03.2019 — 08.2019, AKDev Group",
+      en: "03.2019 — 08.2019, AKDev Group",
+      pl: "03.2019 — 08.2019, AKDev Group",
+    },
 
     stack: [
       "TypeScript",
@@ -403,7 +419,11 @@ export const projects: Project[] = [
       pl: "Frontend engineer: konsola DJ-ska",
     },
 
-    period: "08.2018 — 02.2019, AKDev Group",
+    period: {
+      ru: "08.2018 — 02.2019, AKDev Group",
+      en: "08.2018 — 02.2019, AKDev Group",
+      pl: "08.2018 — 02.2019, AKDev Group",
+    },
 
     stack: [
       "TypeScript",

@@ -25,6 +25,7 @@ export default async function ProjectsPage({ params }: PageProps<"/[locale]/proj
     kind: project.kind,
     title: t(project.title, locale),
     tagline: t(project.tagline, locale),
+    period: t(project.period, locale),
     stack: project.stack,
     keys: project.stack.flatMap(techKeys),
   }));
