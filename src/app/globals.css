@@ -191,3 +191,68 @@ body {
       0 14px 38px -16px var(--accent);
   }
 }
+
+/* Print. Recruiters put pages through Ctrl+P into their applicant tracker, and a
+   dark theme with a chat box in it comes out as a wasted sheet of toner. */
+@media print {
+  :root {
+    --background: #ffffff;
+    --surface: #ffffff;
+    --surface-muted: #ffffff;
+    --border: #999999;
+    --foreground: #000000;
+    --muted: #333333;
+    --accent: #000000;
+    --accent-soft: #ffffff;
+    --accent-contrast: #ffffff;
+  }
+
+  /* Navigation, the chat and the language switcher have no meaning on paper. */
+  header,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff;
+    color: #000000;
+  }
+
+  main {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+
+  /* Entrance animations leave elements mid-flight when the print snapshot is
+     taken, and the timeline's reveal would print blank entries. */
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    translate: none !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  /* An entry split across a page break reads as two half-jobs. */
+  li,
+  section,
+  article {
+    break-inside: avoid;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  /* On paper a link is a dead end unless it says where it went. */
+  main a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.75em;
+    color: #333333;
+    word-break: break-all;
+  }
+}

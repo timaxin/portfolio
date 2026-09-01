@@ -90,7 +90,7 @@ export function Chat({ locale }: { locale: Locale }) {
   );
 
   return (
-    <section className="flex flex-1 flex-col">
+    <section className="no-print flex flex-1 flex-col">
       <div className="flex-1 space-y-4">
         {turns.length === 0 && pending === null && (
           <div className="rounded-2xl border border-dashed border-border bg-surface px-5 py-6">
