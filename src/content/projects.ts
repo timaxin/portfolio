@@ -42,9 +42,9 @@ export const projects: Project[] = [
     kind: "internal",
 
     challenge: {
-      ru: "Резюме читают по диагонали и всё равно задают одни и те же вопросы. Хотелось проверить, можно ли отдать эти вопросы модели — так, чтобы она отвечала строго по фактам и не сочиняла того, чего в профиле нет.",
-      en: "A CV gets skimmed and the same questions get asked anyway. The point was to find out whether those questions can be handed to a model — one that answers strictly from the facts and invents nothing the profile does not contain.",
-      pl: "CV czyta się po łebkach i tak czy inaczej padają te same pytania. Chodziło o sprawdzenie, czy można oddać je modelowi — tak, żeby odpowiadała ściśle z faktów i nie zmyślała tego, czego w profilu nie ma.",
+      ru: "Рекрутёры и так задают по резюме один и тот же набор вопросов. Я хотел проверить, получится ли отдать их модели с условием, что она отвечает только по фактам из профиля и ничего не додумывает.",
+      en: "Recruiters ask the same handful of questions about a CV anyway. I wanted to see whether a model could take them, on the condition that it answers only from the facts in the profile and fills in nothing.",
+      pl: "Rekruterzy i tak zadają do CV ten sam zestaw pytań. Chciałem sprawdzić, czy da się oddać je modelowi pod warunkiem, że odpowiada tylko z faktów w profilu i niczego nie dopowiada.",
     },
     title: {
       ru: "AI-портфолио",
@@ -102,9 +102,9 @@ export const projects: Project[] = [
     kind: "commercial",
 
     challenge: {
-      ru: "Несколько продуктовых сайтов в одном монорепозитории, общая кодовая база и британский регулятор за спиной: любая правка должна ехать быстро и не ломать соседние продукты. Отдельная задача — скорость страниц, от которой напрямую зависит выдача и конверсия.",
-      en: "Several product sites in one monorepo, a shared codebase and a UK regulator in the background: every change has to ship fast without breaking the neighbouring products. Page speed is its own problem — search ranking and conversion hang on it.",
-      pl: "Kilka serwisów produktowych w jednym monorepo, wspólna baza kodu i brytyjski regulator za plecami: każda zmiana musi jechać szybko i nie psuć sąsiednich produktów. Osobny problem to szybkość stron, od której zależą wyniki wyszukiwania i konwersja.",
+      ru: "Несколько продуктовых сайтов живут в одном монорепозитории и делят общий код. Правку в общем месте сразу видят все продукты, поэтому проверять её приходится шире, чем один сайт. Вторая постоянная тема — скорость страниц: от неё зависят позиции в поиске и конверсия.",
+      en: "Several product sites live in one monorepo and share the same code. A change in a shared place lands in all of them at once, so it has to be checked wider than a single site. The other constant is page speed: search ranking and conversion depend on it.",
+      pl: "Kilka serwisów produktowych żyje w jednym monorepo i dzieli wspólny kod. Zmiana we wspólnym miejscu trafia od razu do wszystkich, więc trzeba ją sprawdzać szerzej niż jeden serwis. Drugi stały temat to szybkość stron: od niej zależą pozycje w wyszukiwarce i konwersja.",
     },
     title: {
       ru: "Платформа сравнения цен",
@@ -188,9 +188,9 @@ export const projects: Project[] = [
     kind: "commercial",
 
     challenge: {
-      ru: "Судно шлёт телеметрию непрерывно и по UDP — без гарантии доставки и без запросов со стороны клиента. Эти данные нужно принять, сохранить и показать так, чтобы оператор понимал состояние конкретного узла на конкретной палубе, а не читал таблицу чисел.",
-      en: "A vessel sends telemetry continuously over UDP — no delivery guarantees, and nothing the client can request. That data has to be taken in, stored, and shown so that an operator understands the state of a particular node on a particular deck instead of reading a table of numbers.",
-      pl: "Statek wysyła telemetrię bez przerwy i przez UDP — bez gwarancji dostarczenia i bez zapytań ze strony klienta. Te dane trzeba przyjąć, zapisać i pokazać tak, żeby operator rozumiał stan konkretnego węzła na konkretnym pokładzie, a nie czytał tabelę liczb.",
+      ru: "Судно шлёт телеметрию непрерывно, по UDP, без подтверждений и без запросов с нашей стороны. Этот поток нужно принять, сохранить и показать оператору так, чтобы он видел состояние конкретного узла на конкретной палубе.",
+      en: "A vessel sends telemetry continuously over UDP, with no acknowledgements and nothing for the client to request. That stream has to be taken in, stored, and shown to an operator so they can see the state of a particular node on a particular deck.",
+      pl: "Statek wysyła telemetrię bez przerwy, przez UDP, bez potwierdzeń i bez zapytań z naszej strony. Ten strumień trzeba przyjąć, zapisać i pokazać operatorowi tak, żeby widział stan konkretnego węzła na konkretnym pokładzie.",
     },
     title: {
       ru: "Платформа слежения за судами",
@@ -211,9 +211,9 @@ export const projects: Project[] = [
     },
 
     role: {
-      ru: "Инженер: 3D-интерфейс, дашборд и приём телеметрии",
-      en: "Engineer: 3D interface, dashboard and telemetry intake",
-      pl: "Inżynier: interfejs 3D, dashboard i odbiór telemetrii",
+      ru: "Инженер: 3D-интерфейс, дашборд, GraphQL-слой и приём телеметрии",
+      en: "Engineer: 3D interface, dashboard, the GraphQL layer and telemetry intake",
+      pl: "Inżynier: interfejs 3D, dashboard, warstwa GraphQL i odbiór telemetrii",
     },
 
     period: {
@@ -269,9 +269,9 @@ export const projects: Project[] = [
     kind: "commercial",
 
     challenge: {
-      ru: "Контент ведёт заказчик, а не разработчики: значит, редактор должен позволять собирать урок с видео, картинками и таймкодами без единой строчки кода — и при этом не разваливать вёрстку платных разделов.",
-      en: "The client owns the content, not the developers: the editor has to let them assemble a lesson with video, images and timecodes without a line of code — and without breaking the layout of the paid sections while doing it.",
-      pl: "Treści prowadzi klient, nie programiści: edytor musi pozwalać złożyć lekcję z wideo, obrazami i timecode'ami bez jednej linijki kodu — i przy tym nie rozwalać layoutu płatnych sekcji.",
+      ru: "Контент на платформе ведёт заказчик, а не разработчики. Ему нужен редактор, в котором урок с видео, картинками и таймкодами собирается руками, и при этом результат остаётся в вёрстке платных разделов.",
+      en: "The client runs the content on the platform, not the developers. They needed an editor where a lesson with video, images and timecodes is put together by hand, and where the result still fits the layout of the paid sections.",
+      pl: "Treści na platformie prowadzi klient, nie programiści. Potrzebowali edytora, w którym lekcję z wideo, obrazami i timecode'ami składa się ręcznie, a wynik nadal mieści się w layoucie płatnych sekcji.",
     },
     title: {
       ru: "Онлайн-школа",
@@ -351,9 +351,9 @@ export const projects: Project[] = [
     client: { ru: "AKDev Group", en: "AKDev Group", pl: "AKDev Group" },
 
     challenge: {
-      ru: "Ментальная арифметика — это тренировка, а не чтение: ребёнок должен решать задачи подряд, без перезагрузок и ожиданий. Плюс отдельная коммерческая задача: главная страница приводила мало записей на пробное занятие.",
-      en: "Mental arithmetic is drilling, not reading: a child has to work through task after task with no reloads and no waiting. Plus a commercial problem of its own — the landing page was bringing in too few trial-lesson sign-ups.",
-      pl: "Arytmetyka mentalna to trening, nie czytanie: dziecko ma rozwiązywać zadania jedno po drugim, bez przeładowań i czekania. Do tego osobny problem biznesowy — strona główna przyprowadzała za mało zapisów na lekcję próbną.",
+      ru: "Дети занимаются сериями: одна задача за другой, без пауз на загрузку между ними. Отдельно стояла коммерческая задача — с главной страницы приходило мало записей на пробное занятие.",
+      en: "Children work in runs: one task after another, with no pause to load in between. Separately there was a commercial problem — the landing page brought in few trial-lesson sign-ups.",
+      pl: "Dzieci ćwiczą seriami: zadanie po zadaniu, bez przerw na ładowanie pomiędzy nimi. Osobno stał problem biznesowy — strona główna przynosiła mało zapisów na lekcję próbną.",
     },
     title: {
       ru: "CleverStart",
@@ -368,15 +368,15 @@ export const projects: Project[] = [
     },
 
     description: {
-      ru: "Обучение ментальной арифметике: виртуальные счёты-абакус, генератор заданий, домашние работы, соревнования и олимпиады между учениками. Я делал дополнительные модули для генератора задач к абакусу, переделал главную страницу под конверсию и помогал строить модуль олимпиад — регистрацию, проведение и результаты.",
-      en: "Teaching mental arithmetic: a virtual abacus, a task generator, homework, contests and olympiads between students. I built additional modules for the abacus task generator, rebuilt the landing page for conversion, and helped build the olympiad module — registration, running an event and results.",
-      pl: "Nauka arytmetyki mentalnej: wirtualne liczydło abakus, generator zadań, prace domowe, zawody i olimpiady między uczniami. Robiłem dodatkowe moduły do generatora zadań na abakus, przebudowałem stronę główną pod konwersję i pomagałem budować moduł olimpiad — rejestrację, przebieg i wyniki.",
+      ru: "Обучение ментальной арифметике: виртуальные счёты-абакус, генератор заданий, домашние работы, соревнования и олимпиады между учениками. Моя часть — интерфейс: настройки генератора заданий и то, как сами задачи показываются ученику на абакусе. Плюс переделанная под конверсию главная страница и помощь с модулем олимпиад.",
+      en: "Teaching mental arithmetic: a virtual abacus, a task generator, homework, contests and olympiads between students. My part was the UI: the settings of the task generator, and how the tasks themselves are presented to a student on the abacus. Plus the landing page rebuilt for conversion and help with the olympiad module.",
+      pl: "Nauka arytmetyki mentalnej: wirtualne liczydło abakus, generator zadań, prace domowe, zawody i olimpiady między uczniami. Moja część to interfejs: ustawienia generatora zadań i to, jak same zadania pokazują się uczniowi na abakusie. Do tego przebudowana pod konwersję strona główna i pomoc przy module olimpiad.",
     },
 
     role: {
-      ru: "Фронтенд-инженер",
-      en: "Frontend engineer",
-      pl: "Frontend engineer",
+      ru: "Фронтенд-инженер: интерфейс генератора заданий и самих задач",
+      en: "Frontend engineer: the UI of the task generator and of the tasks themselves",
+      pl: "Frontend engineer: interfejs generatora zadań i samych zadań",
     },
 
     period: {
@@ -399,22 +399,22 @@ export const projects: Project[] = [
 
     highlights: {
       ru: [
-        "Расширил генератор заданий для абакуса: новые типы упражнений и настройки сложности под возраст группы.",
+        "Интерфейс генератора заданий: выбор типа упражнения и настройки сложности под возраст группы.",
+        "Отображение самих задач на абакусе — ученик решает их подряд, без перезагрузки страницы между задачами.",
         "Переделал главную страницу под конверсию — регистраций на пробное занятие стало больше примерно на 20%.",
         "Помогал строить модуль олимпиад: регистрация, проведение в реальном времени и таблица результатов.",
-        "Разбор заданий в интерфейсе абакуса без перезагрузки страницы.",
       ],
       en: [
-        "Extended the abacus task generator: new exercise types and difficulty settings tuned to the age group.",
+        "The UI of the task generator: choosing an exercise type and tuning difficulty to the age group.",
+        "The presentation of the tasks themselves on the abacus — a student works through them in a run, with no page reload in between.",
         "Rebuilt the landing page for conversion — sign-ups for a trial lesson went up by roughly 20%.",
         "Helped build the olympiad module: registration, running an event live, and a results table.",
-        "Working through tasks inside the abacus interface without a page reload.",
       ],
       pl: [
-        "Rozbudował generator zadań na abakus: nowe typy ćwiczeń i ustawienia trudności pod wiek grupy.",
+        "Interfejs generatora zadań: wybór typu ćwiczenia i ustawienia trudności pod wiek grupy.",
+        "Prezentacja samych zadań na abakusie — uczeń rozwiązuje je seriami, bez przeładowania strony pomiędzy nimi.",
         "Przebudował stronę główną pod konwersję — zapisów na lekcję próbną przybyło o około 20%.",
         "Pomagał budować moduł olimpiad: rejestracja, przebieg na żywo i tabela wyników.",
-        "Rozwiązywanie zadań w interfejsie abakusa bez przeładowania strony.",
       ],
     },
 
@@ -427,9 +427,9 @@ export const projects: Project[] = [
     client: { ru: "AKDev Group", en: "AKDev Group", pl: "AKDev Group" },
 
     challenge: {
-      ru: "Радио играет по расписанию само, но иногда ведущий хочет выйти в эфир живьём — поверх уже идущего потока. Значит, нужен пульт прямо в браузере: свести треки, вставить рекламу, подключить микрофон и услышать результат раньше слушателя.",
-      en: "The radio runs itself on a schedule, but sometimes the host wants to go live — on top of the stream already playing. That calls for a mixing desk in the browser: crossfade the tracks, drop in the ads, open the microphone, and hear the result before the listener does.",
-      pl: "Radio gra samo według harmonogramu, ale czasem prowadzący chce wejść na żywo — na już lecący strumień. To znaczy pulpit w przeglądarce: zmiksować utwory, wstawić reklamę, podłączyć mikrofon i usłyszeć efekt wcześniej niż słuchacz.",
+      ru: "Радио играет по расписанию само, но ведущему иногда нужно выйти в эфир вживую, поверх идущего потока. Для этого нужен пульт в браузере: свести два трека, поставить рекламу, включить микрофон и услышать, что получилось, до того как это уйдёт слушателям.",
+      en: "The radio runs on a schedule by itself, but a host sometimes needs to go live on top of the stream already playing. That needs a mixing desk in the browser: crossfade two tracks, drop in an ad, open the microphone, and hear how it came out before it reaches the listeners.",
+      pl: "Radio gra według harmonogramu samo, ale prowadzący czasem musi wejść na żywo, na już lecący strumień. Do tego potrzebny jest pulpit w przeglądarce: zmiksować dwa utwory, wstawić reklamę, włączyć mikrofon i usłyszeć, co wyszło, zanim trafi do słuchaczy.",
     },
     title: {
       ru: "RadioHeart",
