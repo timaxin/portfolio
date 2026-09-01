@@ -22,8 +22,12 @@ export function SiteHeader({ locale }: { locale: Locale }) {
           </span>
         </Link>
 
+        {/* "Doświadczenie" next to three more items and a language switcher does
+            not fit 375px, and the row used to push the switcher off-screen. The
+            nav scrolls instead; the switcher stays put, since a reader who wants
+            another language should never have to find it. */}
         <div className="flex items-center justify-between gap-2 sm:shrink-0 sm:justify-end sm:gap-3">
-          <nav className="flex items-center gap-0.5 text-sm sm:gap-1">
+          <nav className="-mx-1 flex min-w-0 items-center gap-0.5 overflow-x-auto px-1 text-sm [scrollbar-width:none] sm:mx-0 sm:gap-1 sm:overflow-visible sm:px-0">
             <NavLink href={`/${locale}`} exact>
               {dict.nav.chat}
             </NavLink>
@@ -31,8 +35,10 @@ export function SiteHeader({ locale }: { locale: Locale }) {
             <NavLink href={`/${locale}/projects`}>{dict.nav.projects}</NavLink>
             <NavLink href={`/${locale}/stack`}>{dict.nav.stack}</NavLink>
           </nav>
-          <span className="h-4 w-px bg-border" />
-          <LanguageSwitcher current={locale} label={dict.languageSwitcher} />
+          <span className="h-4 w-px shrink-0 bg-border" />
+          <span className="shrink-0">
+            <LanguageSwitcher current={locale} label={dict.languageSwitcher} />
+          </span>
         </div>
       </div>
     </header>
