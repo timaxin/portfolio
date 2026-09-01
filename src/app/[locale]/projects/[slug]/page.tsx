@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ProjectBadge } from "@/components/ProjectBadge";
+import { ProjectDiagram } from "@/components/ProjectDiagram";
+import { diagrams } from "@/content/diagrams";
 import { projects } from "@/content/projects";
 import { isLocale, locales, t } from "@/i18n/config";
 import { dictionaries } from "@/i18n/dictionaries";
@@ -31,6 +33,8 @@ export default async function ProjectPage({ params }: PageProps<"/[locale]/proje
 
   const dict = dictionaries[locale].projects;
   const highlights = t(project.highlights, locale);
+  // Only the projects whose architecture is the interesting part carry one.
+  const diagram = diagrams[project.slug];
 
   return (
     <article>
@@ -83,6 +87,16 @@ export default async function ProjectPage({ params }: PageProps<"/[locale]/proje
           {t(project.description, locale)}
         </p>
       </section>
+
+      {diagram && (
+        <section className="mt-7">
+          <h2 className="section-label">{dict.howItWorks}</h2>
+          <div className="mt-3">
+            <ProjectDiagram diagram={diagram} locale={locale} />
+          </div>
+          <p className="mt-2 text-xs text-muted">{dict.diagramLegend}</p>
+        </section>
+      )}
 
       {highlights.length > 0 && (
         <section className="mt-7">

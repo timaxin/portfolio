@@ -37,6 +37,9 @@ export type Dictionary = {
     clientUndisclosed: string;
     /** Section headings on a project page. */
     challenge: string;
+    howItWorks: string;
+    /** Explains the accent outline in the diagram. */
+    diagramLegend: string;
     about: string;
     contribution: string;
     /** Banner shown when the list is narrowed to one technology. */
@@ -95,6 +98,8 @@ export const dictionaries: Record<Locale, Dictionary> = {
       client: "Заказчик",
       clientUndisclosed: "не разглашается",
       challenge: "Задача",
+      howItWorks: "Как устроено",
+      diagramLegend: "Обведённое — то, что делал я",
       about: "О проекте",
       contribution: "Что я сделал",
       filteredBy: "Проекты с технологией",
@@ -149,6 +154,8 @@ export const dictionaries: Record<Locale, Dictionary> = {
       client: "Client",
       clientUndisclosed: "under NDA",
       challenge: "The problem",
+      howItWorks: "How it works",
+      diagramLegend: "Outlined boxes are the parts I built",
       about: "About the project",
       contribution: "What I did",
       filteredBy: "Projects using",
@@ -203,6 +210,8 @@ export const dictionaries: Record<Locale, Dictionary> = {
       client: "Klient",
       clientUndisclosed: "objęty NDA",
       challenge: "Zadanie",
+      howItWorks: "Jak to działa",
+      diagramLegend: "Obramowane elementy to moja część",
       about: "O projekcie",
       contribution: "Co zrobiłem",
       filteredBy: "Projekty z technologią",

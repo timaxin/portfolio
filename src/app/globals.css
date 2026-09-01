@@ -256,3 +256,21 @@ body {
     word-break: break-all;
   }
 }
+
+/* A diagram wider than the column scrolls; without this the last box just ends
+   mid-air and reads as a layout bug rather than as more content. */
+.diagram-scroll {
+  scrollbar-width: thin;
+  mask-image: linear-gradient(to right, #000 calc(100% - 3rem), transparent 100%);
+}
+
+.diagram-scroll:hover,
+.diagram-scroll:focus-within {
+  mask-image: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .diagram-scroll {
+    mask-image: none;
+  }
+}
