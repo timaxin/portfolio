@@ -35,6 +35,10 @@ export type Dictionary = {
     client: string;
     /** Stands in for a client the contract does not allow naming. */
     clientUndisclosed: string;
+    /** Section headings on a project page. */
+    challenge: string;
+    about: string;
+    contribution: string;
     /** Banner shown when the list is narrowed to one technology. */
     filteredBy: string;
     clearFilter: string;
@@ -90,6 +94,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
       internal: "Внутренний",
       client: "Заказчик",
       clientUndisclosed: "не разглашается",
+      challenge: "Задача",
+      about: "О проекте",
+      contribution: "Что я сделал",
       filteredBy: "Проекты с технологией",
       clearFilter: "Показать все",
       noMatches: "Среди проектов такой технологии нет.",
@@ -141,6 +148,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
       internal: "In-house",
       client: "Client",
       clientUndisclosed: "under NDA",
+      challenge: "The problem",
+      about: "About the project",
+      contribution: "What I did",
       filteredBy: "Projects using",
       clearFilter: "Show all",
       noMatches: "No project here uses that.",
@@ -192,6 +202,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
       internal: "Wewnętrzny",
       client: "Klient",
       clientUndisclosed: "objęty NDA",
+      challenge: "Zadanie",
+      about: "O projekcie",
+      contribution: "Co zrobiłem",
       filteredBy: "Projekty z technologią",
       clearFilter: "Pokaż wszystkie",
       noMatches: "Żaden projekt tego nie używa.",

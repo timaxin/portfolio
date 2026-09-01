@@ -32,6 +32,7 @@ function buildKnowledgeBase(locale: Locale): string {
       [
         `### ${t(project.title, locale)} (/${locale}/projects/${project.slug})`,
         t(project.tagline, locale),
+        `Problem: ${t(project.challenge, locale)}`,
         t(project.description, locale),
         `Role: ${t(project.role, locale)}. Period: ${t(project.period, locale)}.`,
         project.kind === "commercial"

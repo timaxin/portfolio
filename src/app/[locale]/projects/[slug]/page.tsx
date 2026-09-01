@@ -66,17 +66,38 @@ export default async function ProjectPage({ params }: PageProps<"/[locale]/proje
         <dd>{project.stack.join(", ")}</dd>
       </dl>
 
-      <p className="mt-6 text-sm leading-relaxed">{t(project.description, locale)}</p>
+      {/* Problem, then product, then what was mine — a flat list of bullets buried
+          the metrics among the descriptions. */}
+      <section className="mt-8">
+        <h2 className="text-xs font-medium tracking-wider text-muted uppercase">
+          {dict.challenge}
+        </h2>
+        <p className="mt-2 max-w-2xl text-[0.9375rem] leading-relaxed">
+          {t(project.challenge, locale)}
+        </p>
+      </section>
+
+      <section className="mt-7">
+        <h2 className="text-xs font-medium tracking-wider text-muted uppercase">{dict.about}</h2>
+        <p className="mt-2 max-w-2xl text-[0.9375rem] leading-relaxed">
+          {t(project.description, locale)}
+        </p>
+      </section>
 
       {highlights.length > 0 && (
-        <ul className="mt-6 space-y-2 text-sm">
-          {highlights.map((highlight) => (
-            <li key={highlight} className="flex gap-2">
-              <span className="text-accent">—</span>
-              <span>{highlight}</span>
-            </li>
-          ))}
-        </ul>
+        <section className="mt-7">
+          <h2 className="text-xs font-medium tracking-wider text-muted uppercase">
+            {dict.contribution}
+          </h2>
+          <ul className="mt-3 space-y-2.5 text-[0.9375rem] leading-relaxed">
+            {highlights.map((highlight) => (
+              <li key={highlight} className="flex gap-2.5">
+                <span className="mt-px text-accent">—</span>
+                <span>{highlight}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
       )}
 
       {project.links.length > 0 && (

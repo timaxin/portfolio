@@ -21,6 +21,12 @@ export type Project = {
   client?: Localized;
   title: Localized;
   tagline: Localized;
+  /**
+   * What the project had to solve, in a sentence or two. Separating it from the
+   * description turns a wall of bullets into a story a reader can follow:
+   * problem, then product, then what was mine.
+   */
+  challenge: Localized;
   /** The long description — goes into the prompt and is shown in full on the page. */
   description: Localized;
   role: Localized;
@@ -35,6 +41,11 @@ export const projects: Project[] = [
     slug: "ai-portfolio",
     kind: "internal",
 
+    challenge: {
+      ru: "Резюме читают по диагонали и всё равно задают одни и те же вопросы. Хотелось проверить, можно ли отдать эти вопросы модели — так, чтобы она отвечала строго по фактам и не сочиняла того, чего в профиле нет.",
+      en: "A CV gets skimmed and the same questions get asked anyway. The point was to find out whether those questions can be handed to a model — one that answers strictly from the facts and invents nothing the profile does not contain.",
+      pl: "CV czyta się po łebkach i tak czy inaczej padają te same pytania. Chodziło o sprawdzenie, czy można oddać je modelowi — tak, żeby odpowiadała ściśle z faktów i nie zmyślała tego, czego w profilu nie ma.",
+    },
     title: {
       ru: "AI-портфолио",
       en: "AI portfolio",
@@ -90,6 +101,11 @@ export const projects: Project[] = [
     slug: "price-comparison-platform",
     kind: "commercial",
 
+    challenge: {
+      ru: "Несколько продуктовых сайтов в одном монорепозитории, общая кодовая база и британский регулятор за спиной: любая правка должна ехать быстро и не ломать соседние продукты. Отдельная задача — скорость страниц, от которой напрямую зависит выдача и конверсия.",
+      en: "Several product sites in one monorepo, a shared codebase and a UK regulator in the background: every change has to ship fast without breaking the neighbouring products. Page speed is its own problem — search ranking and conversion hang on it.",
+      pl: "Kilka serwisów produktowych w jednym monorepo, wspólna baza kodu i brytyjski regulator za plecami: każda zmiana musi jechać szybko i nie psuć sąsiednich produktów. Osobny problem to szybkość stron, od której zależą wyniki wyszukiwania i konwersja.",
+    },
     title: {
       ru: "Платформа сравнения цен",
       en: "Price comparison platform",
@@ -171,6 +187,11 @@ export const projects: Project[] = [
     slug: "ship-tracking-platform",
     kind: "commercial",
 
+    challenge: {
+      ru: "Судно шлёт телеметрию непрерывно и по UDP — без гарантии доставки и без запросов со стороны клиента. Эти данные нужно принять, сохранить и показать так, чтобы оператор понимал состояние конкретного узла на конкретной палубе, а не читал таблицу чисел.",
+      en: "A vessel sends telemetry continuously over UDP — no delivery guarantees, and nothing the client can request. That data has to be taken in, stored, and shown so that an operator understands the state of a particular node on a particular deck instead of reading a table of numbers.",
+      pl: "Statek wysyła telemetrię bez przerwy i przez UDP — bez gwarancji dostarczenia i bez zapytań ze strony klienta. Te dane trzeba przyjąć, zapisać i pokazać tak, żeby operator rozumiał stan konkretnego węzła na konkretnym pokładzie, a nie czytał tabelę liczb.",
+    },
     title: {
       ru: "Платформа слежения за судами",
       en: "Ship tracking platform",
@@ -247,6 +268,11 @@ export const projects: Project[] = [
     slug: "online-school",
     kind: "commercial",
 
+    challenge: {
+      ru: "Контент ведёт заказчик, а не разработчики: значит, редактор должен позволять собирать урок с видео, картинками и таймкодами без единой строчки кода — и при этом не разваливать вёрстку платных разделов.",
+      en: "The client owns the content, not the developers: the editor has to let them assemble a lesson with video, images and timecodes without a line of code — and without breaking the layout of the paid sections while doing it.",
+      pl: "Treści prowadzi klient, nie programiści: edytor musi pozwalać złożyć lekcję z wideo, obrazami i timecode'ami bez jednej linijki kodu — i przy tym nie rozwalać layoutu płatnych sekcji.",
+    },
     title: {
       ru: "Онлайн-школа",
       en: "Online school",
@@ -324,6 +350,11 @@ export const projects: Project[] = [
 
     client: { ru: "AKDev Group", en: "AKDev Group", pl: "AKDev Group" },
 
+    challenge: {
+      ru: "Ментальная арифметика — это тренировка, а не чтение: ребёнок должен решать задачи подряд, без перезагрузок и ожиданий. Плюс отдельная коммерческая задача: главная страница приводила мало записей на пробное занятие.",
+      en: "Mental arithmetic is drilling, not reading: a child has to work through task after task with no reloads and no waiting. Plus a commercial problem of its own — the landing page was bringing in too few trial-lesson sign-ups.",
+      pl: "Arytmetyka mentalna to trening, nie czytanie: dziecko ma rozwiązywać zadania jedno po drugim, bez przeładowań i czekania. Do tego osobny problem biznesowy — strona główna przyprowadzała za mało zapisów na lekcję próbną.",
+    },
     title: {
       ru: "CleverStart",
       en: "CleverStart",
@@ -395,6 +426,11 @@ export const projects: Project[] = [
 
     client: { ru: "AKDev Group", en: "AKDev Group", pl: "AKDev Group" },
 
+    challenge: {
+      ru: "Радио играет по расписанию само, но иногда ведущий хочет выйти в эфир живьём — поверх уже идущего потока. Значит, нужен пульт прямо в браузере: свести треки, вставить рекламу, подключить микрофон и услышать результат раньше слушателя.",
+      en: "The radio runs itself on a schedule, but sometimes the host wants to go live — on top of the stream already playing. That calls for a mixing desk in the browser: crossfade the tracks, drop in the ads, open the microphone, and hear the result before the listener does.",
+      pl: "Radio gra samo według harmonogramu, ale czasem prowadzący chce wejść na żywo — na już lecący strumień. To znaczy pulpit w przeglądarce: zmiksować utwory, wstawić reklamę, podłączyć mikrofon i usłyszeć efekt wcześniej niż słuchacz.",
+    },
     title: {
       ru: "RadioHeart",
       en: "RadioHeart",
