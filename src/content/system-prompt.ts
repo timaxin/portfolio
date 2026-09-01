@@ -79,7 +79,12 @@ function buildKnowledgeBase(locale: Locale): string {
       .join("\n"),
     "",
     "## Availability",
-    t(profile.availability, locale),
+    [
+      ...profile.availability.facts.map(
+        (fact) => `- ${t(fact.label, locale)}: ${t(fact.value, locale)}`,
+      ),
+      t(profile.availability.notes, locale),
+    ].join("\n"),
     "",
     "## Contacts",
     profile.contacts.map((c) => `- ${c.label}: ${c.value} (${c.href})`).join("\n"),

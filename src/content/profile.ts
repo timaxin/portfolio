@@ -21,6 +21,16 @@ export type Experience = {
 
 export type StackGroup = { group: Localized; items: string[] };
 
+/**
+ * What a recruiter checks first, as pairs rather than prose: a paragraph makes
+ * them read for the contract type, a table lets them find it.
+ */
+export type Availability = {
+  facts: { label: Localized; value: Localized }[];
+  /** Everything that does not fit a two-column table. */
+  notes: Localized;
+};
+
 export type Profile = {
   name: string;
   headline: Localized;
@@ -38,7 +48,7 @@ export type Profile = {
   /** Gaps and caveats stated honestly — partial experience counts. The bot cites
    *  these instead of making something up. */
   gaps: Localized<string[]>;
-  availability: Localized;
+  availability: Availability;
   contacts: { label: string; value: string; href: string }[];
 };
 
@@ -402,9 +412,46 @@ export const profile: Profile = {
   },
 
   availability: {
-    ru: "Открыт к senior-ролям: удалённо по Польше или гибрид в Лодзи либо Варшаве, переезд в Варшаву рассматривает. Работает по B2B через собственное JDG или по umowa o pracę. Доступен немедленно. Может подстроить часы под US Eastern, с плотным пересечением в первые месяцы онбординга. Предпочитает устоявшиеся компании со здоровой инженерной культурой.",
-    en: "Open to senior roles: remote within Poland, or hybrid in Łódź or Warsaw — he is considering a move to Warsaw. Works on B2B through his own sole proprietorship or on a permanent contract (umowa o pracę). Available immediately. Can align hours with US Eastern time, with heavy overlap during the first months of onboarding. Prefers established companies with a healthy engineering culture.",
-    pl: "Otwarty na role senior: zdalnie w Polsce albo hybrydowo w Łodzi lub Warszawie — rozważa przeprowadzkę do Warszawy. Pracuje na B2B przez własną JDG albo na umowę o pracę. Dostępny od zaraz. Może dopasować godziny do US Eastern, z dużym pokryciem w pierwszych miesiącach onboardingu. Preferuje ustabilizowane firmy ze zdrową kulturą inżynierską.",
+    facts: [
+      {
+        label: { ru: "Формат", en: "Work format", pl: "Format pracy" },
+        value: {
+          ru: "Удалённо по Польше или гибрид в Лодзи и Варшаве",
+          en: "Remote within Poland, or hybrid in Łódź and Warsaw",
+          pl: "Zdalnie w Polsce albo hybrydowo w Łodzi i Warszawie",
+        },
+      },
+      {
+        label: { ru: "Контракт", en: "Contract", pl: "Kontrakt" },
+        value: {
+          ru: "B2B через собственное JDG или umowa o pracę",
+          en: "B2B through his own sole proprietorship, or umowa o pracę",
+          pl: "B2B przez własną JDG albo umowa o pracę",
+        },
+      },
+      {
+        label: { ru: "Старт", en: "Start", pl: "Start" },
+        value: {
+          ru: "Доступен немедленно",
+          en: "Available immediately",
+          pl: "Dostępny od zaraz",
+        },
+      },
+      {
+        label: { ru: "Часы", en: "Hours", pl: "Godziny" },
+        value: {
+          ru: "Europe/Warsaw, может подстроиться под US Eastern",
+          en: "Europe/Warsaw, can align with US Eastern",
+          pl: "Europe/Warsaw, może dopasować się do US Eastern",
+        },
+      },
+    ],
+
+    notes: {
+      ru: "Открыт к senior-ролям, переезд в Варшаву рассматривает. В первые месяцы онбординга готов к плотному пересечению с американскими часами. Предпочитает устоявшиеся компании со здоровой инженерной культурой.",
+      en: "Open to senior roles and considering a move to Warsaw. Ready for heavy overlap with US hours during the first months of onboarding. Prefers established companies with a healthy engineering culture.",
+      pl: "Otwarty na role senior, rozważa przeprowadzkę do Warszawy. W pierwszych miesiącach onboardingu gotów na duże pokrycie z godzinami amerykańskimi. Preferuje ustabilizowane firmy ze zdrową kulturą inżynierską.",
+    },
   },
 
   contacts: [

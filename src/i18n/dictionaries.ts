@@ -49,6 +49,11 @@ export type Dictionary = {
   };
   /** Label on the link to the PDF in public/. */
   resume: string;
+  home: {
+    availability: string;
+    /** Follows the number from `profile.yearsOfExperience`, which stays the one source. */
+    yearsSuffix: string;
+  };
   languageSwitcher: string;
 };
 
@@ -100,6 +105,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       notes: "О датах",
       education: "Образование",
     },
+    home: { availability: "Что ищу", yearsSuffix: "лет опыта" },
     resume: "Резюме PDF",
     languageSwitcher: "Язык",
   },
@@ -150,6 +156,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       notes: "About the dates",
       education: "Education",
     },
+    home: { availability: "What I'm looking for", yearsSuffix: "years of experience" },
     resume: "CV in PDF",
     languageSwitcher: "Language",
   },
@@ -200,6 +207,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       notes: "O datach",
       education: "Wykształcenie",
     },
+    home: { availability: "Czego szukam", yearsSuffix: "lat doświadczenia" },
     resume: "CV w PDF",
     languageSwitcher: "Język",
   },
