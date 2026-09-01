@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
@@ -95,6 +96,8 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[lo
           {children}
         </main>
         <SiteFooter locale={locale} />
+        {/* Page views only, no cookies and no consent banner to owe anyone. */}
+        <Analytics />
       </body>
     </html>
   );
