@@ -62,7 +62,10 @@ callback or a subscription instead.
 
 ## Before finishing
 
-Run `npm run typecheck` and `npm run lint`. Verify UI changes against the dev server rather
+Run `npm run typecheck`, `npm run lint` and `npm test`. Vitest covers the pure functions —
+the follow-up marker protocol, locale detection, tech-name matching, the rate limiter — and a
+set of content invariants TypeScript cannot see, such as a translation present but empty or a
+diagram edge pointing at a renamed node. Verify UI changes against the dev server rather
 than by reading the diff — the `verify-chat-stream` skill covers exercising the chat
 without a model key.
 

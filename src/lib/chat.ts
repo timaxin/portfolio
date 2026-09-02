@@ -2,14 +2,9 @@ import Anthropic from "@anthropic-ai/sdk";
 import { systemPrompt } from "@/content/system-prompt";
 import { dictionaries } from "@/i18n/dictionaries";
 import type { Locale } from "@/i18n/config";
+import { markerHoldback, parseFollowUps } from "./followups";
 import { notifyTelegram, type Exchange } from "./notify";
-import {
-  FOLLOWUP_LIMITS,
-  FOLLOWUP_MARKER,
-  LIMITS,
-  type ChatEvent,
-  type ChatTurn,
-} from "./chat-config";
+import { FOLLOWUP_MARKER, LIMITS, type ChatEvent, type ChatTurn } from "./chat-config";
 
 /** Q&A over a fixed context is simple and the endpoint is public, so both defaults are the cheapest model. */
 const GATEWAY_HOST = "ai-gateway.vercel.sh";
@@ -74,34 +69,6 @@ function describeError(error: unknown, locale: Locale): string {
   if (error instanceof Anthropic.RateLimitError) return errors.upstreamRateLimit;
   if (error instanceof Anthropic.APIError) return `${errors.upstreamApi} (${error.status ?? "?"})`;
   return errors.generic;
-}
-
-/**
- * How many trailing characters have to be withheld because they could still turn
- * out to be the start of the marker. Precise rather than a constant holdback, so
- * an answer that never approaches the marker streams without any lag at all.
- */
-function markerHoldback(text: string): number {
-  const longest = Math.min(text.length, FOLLOWUP_MARKER.length - 1);
-  for (let length = longest; length > 0; length -= 1) {
-    if (text.endsWith(FOLLOWUP_MARKER.slice(0, length))) return length;
-  }
-  return 0;
-}
-
-/** The tail is model output: it is parsed defensively and dropped on any doubt. */
-function parseFollowUps(tail: string): string[] {
-  try {
-    const parsed: unknown = JSON.parse(tail.trim());
-    if (!Array.isArray(parsed)) return [];
-    return parsed
-      .filter((item): item is string => typeof item === "string")
-      .map((item) => item.trim())
-      .filter((item) => item.length > 0 && item.length <= FOLLOWUP_LIMITS.maxChars)
-      .slice(0, FOLLOWUP_LIMITS.maxItems);
-  } catch {
-    return [];
-  }
 }
 
 /**

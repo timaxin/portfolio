@@ -1,25 +1,9 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { defaultLocale, isLocale, locales } from "@/i18n/config";
+import { locales } from "@/i18n/config";
+import { detectLocale } from "@/i18n/detect-locale";
 import { LOCALE_HEADER } from "@/i18n/locale-header";
 
-/**
- * Every page lives under /:locale. A request without a prefix is redirected to the
- * language from Accept-Language, falling back to the default when none matches.
- */
-function detectLocale(header: string | null) {
-  if (!header) return defaultLocale;
-
-  const preferred = header
-    .split(",")
-    .map((part) => {
-      const [tag, q] = part.trim().split(";q=");
-      return { tag: tag.split("-")[0]?.toLowerCase() ?? "", weight: Number(q ?? 1) };
-    })
-    .sort((a, b) => b.weight - a.weight);
-
-  return preferred.find((entry) => isLocale(entry.tag))?.tag ?? defaultLocale;
-}
-
+/** Every page lives under /:locale; a request without a prefix is redirected. */
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
