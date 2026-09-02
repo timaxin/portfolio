@@ -1,8 +1,9 @@
-import { headers } from "next/headers";
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { defaultLocale, isLocale } from "@/i18n/config";
 import { dictionaries } from "@/i18n/dictionaries";
-import { LOCALE_HEADER } from "@/i18n/locale-header";
 
 /**
  * A 404 that still looks like the site, and points somewhere.
@@ -10,12 +11,18 @@ import { LOCALE_HEADER } from "@/i18n/locale-header";
  * Worth having beyond good manners: project slugs have been renamed here, so an
  * old link in a recruiter's inbox lands on this page rather than on a stack
  * trace from the framework.
+ *
+ * A Client Component, and so given no params — same as error.tsx, and for the
+ * same reason: not-found.tsx renders in place of a route that never matched,
+ * with nothing to read a locale from. Reading it via `headers()` on the server
+ * worked too, but a Request-time API anywhere in this segment's tree marks the
+ * *whole* segment dynamic — every page under [locale] lost its static build,
+ * not just this one. `usePathname()` costs nothing server-side.
  */
-export default async function NotFound() {
-  // Set by src/proxy.ts — this page renders in place of a route that never
-  // matched, so it is given no params to read the locale from.
-  const header = (await headers()).get(LOCALE_HEADER) ?? "";
-  const locale = isLocale(header) ? header : defaultLocale;
+export default function NotFound() {
+  const pathname = usePathname();
+  const segment = pathname.split("/")[1] ?? "";
+  const locale = isLocale(segment) ? segment : defaultLocale;
   const dict = dictionaries[locale];
 
   const sections = [
