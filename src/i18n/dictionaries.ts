@@ -63,6 +63,7 @@ export type Dictionary = {
   /** First thing in the tab order, visible only once focused. */
   skipToContent: string;
   notFound: { title: string; description: string; elsewhere: string };
+  errorPage: { title: string; description: string; retry: string; home: string };
   home: {
     availability: string;
     /** Follows the number from `profile.yearsOfExperience`, which stays the one source. */
@@ -132,6 +133,12 @@ export const dictionaries: Record<Locale, Dictionary> = {
       description: "Ссылка устарела или в адресе опечатка — часть адресов на сайте менялась.",
       elsewhere: "Что здесь есть",
     },
+    errorPage: {
+      title: "Что-то сломалось",
+      description: "Страница не смогла открыться. Попробуйте ещё раз — если не поможет, вернитесь на главную.",
+      retry: "Попробовать снова",
+      home: "На главную",
+    },
     home: { availability: "Что ищу", yearsSuffix: "лет опыта" },
     resume: "Резюме PDF",
     languageSwitcher: "Язык",
@@ -196,6 +203,12 @@ export const dictionaries: Record<Locale, Dictionary> = {
       description: "The link is out of date, or the address has a typo — some of these have changed.",
       elsewhere: "What is here",
     },
+    errorPage: {
+      title: "Something broke",
+      description: "The page failed to load. Try again — if that doesn't help, head back to the homepage.",
+      retry: "Try again",
+      home: "Go home",
+    },
     home: { availability: "What I'm looking for", yearsSuffix: "years of experience" },
     resume: "CV in PDF",
     languageSwitcher: "Language",
@@ -259,6 +272,12 @@ export const dictionaries: Record<Locale, Dictionary> = {
       title: "Nie ma takiej strony",
       description: "Link jest nieaktualny albo w adresie jest literówka — część adresów się zmieniała.",
       elsewhere: "Co tu jest",
+    },
+    errorPage: {
+      title: "Coś się zepsuło",
+      description: "Strona nie mogła się załadować. Spróbuj ponownie — jeśli to nie pomoże, wróć na stronę główną.",
+      retry: "Spróbuj ponownie",
+      home: "Strona główna",
     },
     home: { availability: "Czego szukam", yearsSuffix: "lat doświadczenia" },
     resume: "CV w PDF",
