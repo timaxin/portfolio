@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { locales } from "@/i18n/config";
+import { defaultLocale, locales } from "@/i18n/config";
 import { pageAlternates } from "./seo";
 
 describe("pageAlternates", () => {
@@ -16,8 +16,12 @@ describe("pageAlternates", () => {
 
   it("offers the same page in every language the site ships", () => {
     const { languages } = pageAlternates("en", "/stack");
-    expect(Object.keys(languages)).toEqual([...locales]);
-    expect(languages).toEqual({ ru: "/ru/stack", en: "/en/stack", pl: "/pl/stack" });
+    for (const l of locales) expect(languages[l]).toBe(`/${l}/stack`);
+  });
+
+  it("declares an x-default, since the site auto-redirects by Accept-Language", () => {
+    const { languages } = pageAlternates("en", "/projects/radioheart");
+    expect(languages["x-default"]).toBe(`/${defaultLocale}/projects/radioheart`);
   });
 
   it("names the current locale among its own alternates, as hreflang requires", () => {
