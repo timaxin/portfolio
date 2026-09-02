@@ -122,7 +122,7 @@ export const profile: Profile = {
     },
     {
       group: { ru: "Тестирование", en: "Testing", pl: "Testowanie" },
-      items: ["Jest", "React Testing Library", "Playwright"],
+      items: ["Jest", "React Testing Library", "Playwright", "Puppeteer"],
     },
     {
       group: { ru: "Инфраструктура", en: "Infrastructure", pl: "Infrastruktura" },
@@ -235,6 +235,7 @@ export const profile: Profile = {
         ru: [
           "Возглавил миграцию ключевого клиентского модуля на React + TypeScript: бандл меньше на 30%, Lighthouse performance вырос с 62 до 91.",
           "Сократил критические баги в проде на 40% через покрытие Jest/React Testing Library и более строгое код-ревью в команде из пяти человек.",
+          "Сквозные браузерные тесты на Playwright и Puppeteer, включая свою обвязку: когда тест падает в пайплайне, скриншоты снимаются прямо по ходу прогона, поэтому падение не нужно воспроизводить руками, чтобы увидеть, что сломалось.",
           "Наставлял двух мидл-инженеров — их онбординг стал короче на две недели.",
           "07.2023 — 12.2024, внутренний проект по зрелости разработки: комплексно разобрал около 30 проектов компании с командами и британскими заказчиками по собственному фреймворку оценки — где процесс проваливается и что чинить в первую очередь. Оценка удовлетворённости проектом выросла на 20%, около 70% рекомендаций команды закрывали в течение квартала.",
           "Довёл до продакшена два BFF/бэкенд-приложения по spec-driven development в команде из трёх человек, генерируя код из спецификаций через Claude Code, Windsurf и Codex — на 30–40% быстрее.",
@@ -242,6 +243,7 @@ export const profile: Profile = {
         en: [
           "Led the migration of a core client-facing module to React + TypeScript: 30% smaller bundle, Lighthouse performance up from 62 to 91.",
           "Cut critical production bugs by 40% through Jest/React Testing Library coverage and a stricter review process across a team of five.",
+          "End-to-end browser tests on Playwright and Puppeteer, including tooling of his own: when a test fails in the pipeline, screenshots are captured during the run itself, so a failure does not have to be reproduced by hand to see what broke.",
           "Mentored two mid-level engineers, shortening their onboarding by two weeks.",
           "07.2023 — 12.2024, an internal engineering-maturity programme: reviewed around 30 company projects end to end with their teams and UK clients against an in-house assessment framework — where the process breaks and what to fix first. Project satisfaction scores rose by 20%, and teams closed about 70% of the recommendations within a quarter.",
           "Delivered two BFF/backend applications end to end with spec-driven development in a team of three, scaffolding from specs with Claude Code, Windsurf and Codex — 30–40% faster delivery.",
@@ -249,12 +251,23 @@ export const profile: Profile = {
         pl: [
           "Poprowadził migrację kluczowego modułu klienckiego na React + TypeScript: bundle mniejszy o 30%, Lighthouse performance z 62 do 91.",
           "Zmniejszył liczbę krytycznych błędów produkcyjnych o 40% dzięki pokryciu Jest/React Testing Library i ostrzejszemu code review w pięcioosobowym zespole.",
+          "Testy end-to-end w przeglądarce na Playwright i Puppeteer, wraz z własnym oprzyrządowaniem: kiedy test pada w pipelinie, zrzuty ekranu powstają w trakcie samego przebiegu, więc nie trzeba ręcznie odtwarzać awarii, żeby zobaczyć, co się zepsuło.",
           "Mentorował dwóch inżynierów mid — ich onboarding skrócił się o dwa tygodnie.",
           "07.2023 — 12.2024, wewnętrzny program dojrzałości inżynierskiej: kompleksowo przejrzał około 30 projektów firmy z zespołami i brytyjskimi klientami według własnego frameworku oceny — gdzie proces się sypie i co naprawić najpierw. Ocena zadowolenia z projektu wzrosła o 20%, zespoły zamykały około 70% rekomendacji w ciągu kwartału.",
           "Dostarczył end-to-end dwie aplikacje BFF/backend w podejściu spec-driven development w trzyosobowym zespole, generując kod ze specyfikacji przez Claude Code, Windsurf i Codex — o 30–40% szybciej.",
         ],
       },
-      stack: ["React", "Next.js", "TypeScript", "Node.js", "Express", "Monorepo", "Jest", "Playwright"],
+      stack: [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Node.js",
+        "Express",
+        "Monorepo",
+        "Jest",
+        "Playwright",
+        "Puppeteer",
+      ],
     },
     {
       company: "Godel Technologies Europe",

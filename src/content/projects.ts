@@ -146,6 +146,7 @@ export const projects: Project[] = [
       "Express",
       "Jest",
       "Playwright",
+      "Puppeteer",
       "Docker",
       "GitLab CI",
       "GoCD",
@@ -158,6 +159,8 @@ export const projects: Project[] = [
       ru: [
         "Возглавил миграцию ключевого клиентского модуля на React + TypeScript: бандл меньше на 30%, Lighthouse performance вырос с 62 до 91.",
         "Довёл покрытие юнит- и интеграционными тестами до 100%.",
+        "Автоматизация браузера в проде: сквозные сценарии на Playwright и Puppeteer поверх нескольких продуктовых сайтов сразу.",
+        "Сделал пересъёмку скриншотов на падении: когда тест валится в пайплайне, снимки нужного состояния делаются прямо во время прогона, и разбирать падение можно по ним, а не воспроизводить его руками.",
         "Крупный рефакторинг с переходом на новый фреймворк: производительность страниц выросла на 25% без потери функциональности.",
         "Сократил критические баги в проде на 40% через покрытие Jest/React Testing Library и более строгое код-ревью.",
         "Вместе с DevOps перевёл все сервисы на GitLab, внедрял редизайн интерфейса сразу в нескольких продуктах.",
@@ -166,6 +169,8 @@ export const projects: Project[] = [
       en: [
         "Led the migration of a core client-facing module to React + TypeScript: 30% smaller bundle, Lighthouse performance up from 62 to 91.",
         "Raised unit and integration test coverage to 100%.",
+        "Browser automation in production: end-to-end scenarios on Playwright and Puppeteer running across several product sites at once.",
+        "Built screenshot capture on failure: when a test breaks in the pipeline, the shots of the state that mattered are taken during the run, so a failure is read from them instead of being reproduced by hand.",
         "Took part in a major refactoring onto a new framework: 25% better page performance with no loss of functionality.",
         "Cut critical production bugs by 40% through Jest/React Testing Library coverage and stricter code review.",
         "Migrated all services to GitLab with DevOps, and shipped a UI redesign across several products.",
@@ -174,6 +179,8 @@ export const projects: Project[] = [
       pl: [
         "Poprowadził migrację kluczowego modułu klienckiego na React + TypeScript: bundle mniejszy o 30%, Lighthouse performance z 62 do 91.",
         "Podniósł pokrycie testami jednostkowymi i integracyjnymi do 100%.",
+        "Automatyzacja przeglądarki na produkcji: scenariusze end-to-end na Playwright i Puppeteer działające naraz na kilku serwisach produktowych.",
+        "Zrobił automatyczne zrzuty ekranu przy awarii: kiedy test pada w pipelinie, zdjęcia istotnego stanu powstają w trakcie przebiegu, więc awarię czyta się z nich, zamiast odtwarzać ją ręcznie.",
         "Duży refaktor z przejściem na nowy framework: wydajność stron wzrosła o 25% bez utraty funkcjonalności.",
         "Zmniejszył liczbę krytycznych błędów produkcyjnych o 40% dzięki pokryciu Jest/React Testing Library i ostrzejszemu code review.",
         "Razem z DevOps przeniósł wszystkie serwisy na GitLab i wdrożył redesign interfejsu w kilku produktach.",
