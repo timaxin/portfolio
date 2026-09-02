@@ -9,6 +9,9 @@ import { LIMITS, type ChatTurn } from "@/lib/chat-config";
 import { streamChat } from "@/lib/chat-client";
 import { useTypewriter } from "@/lib/use-typewriter";
 
+/** One line of breathing room above the composer, so the caret is never flush to it. */
+const LINE_CLEARANCE = 28;
+
 export function Chat({ locale }: { locale: Locale }) {
   const dict = dictionaries[locale];
 
@@ -30,18 +33,46 @@ export function Chat({ locale }: { locale: Locale }) {
 
   const abortRef = useRef<AbortController | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  /** Cleared when the reader scrolls up mid-answer, restored on the next question. */
+  const followRef = useRef(true);
 
   const revealed = useTypewriter(pending ?? "", skipTyping);
   /** Tokens still arriving, or arrived and not typed out yet. */
   const isBusy = pending !== null && (!streamEnded || revealed.length < pending.length);
 
-  // The answer lands a character at a time; smooth scrolling per character would
-  // never settle, so follow it instantly while it types.
+  // A reader who scrolls up mid-answer wants to re-read something, and dragging
+  // them back down is the rudest thing this page could do. `wheel` and `touchmove`
+  // are the honest signals — a plain scroll listener also fires for the scrolling
+  // done just below. Touch has no direction to read without tracking the gesture,
+  // so any deliberate drag hands control over; the next question takes it back.
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({
-      behavior: isBusy ? "auto" : "smooth",
-      block: "end",
-    });
+    const onGesture = (event: WheelEvent | TouchEvent) => {
+      if (!("deltaY" in event) || event.deltaY < 0) followRef.current = false;
+    };
+    window.addEventListener("wheel", onGesture, { passive: true });
+    window.addEventListener("touchmove", onGesture, { passive: true });
+    return () => {
+      window.removeEventListener("wheel", onGesture);
+      window.removeEventListener("touchmove", onGesture);
+    };
+  }, []);
+
+  // The answer types out behind a composer stuck to the bottom of the viewport,
+  // so the space it covers has to come off the target — aligning the end of the
+  // thread with the end of the viewport hides the very line being written.
+  // Scrolling only when actually behind is what stops the page twitching once per
+  // character; the clearance keeps a new line from dipping under the composer in
+  // the frame between it being added and this running.
+  useEffect(() => {
+    const marker = bottomRef.current;
+    if (!marker || !followRef.current) return;
+
+    const room = window.innerHeight - (formRef.current?.offsetHeight ?? 0) - LINE_CLEARANCE;
+    const behind = marker.getBoundingClientRect().bottom - room;
+    if (behind <= 0) return;
+
+    window.scrollBy({ top: behind, behavior: isBusy ? "auto" : "smooth" });
   }, [turns, revealed, isBusy]);
 
   // An abandoned request would keep burning tokens — kill it when leaving the page.
@@ -65,6 +96,7 @@ export function Chat({ locale }: { locale: Locale }) {
       setStreamEnded(false);
       setSkipTyping(false);
       setFollowUps([]);
+      followRef.current = true;
 
       const controller = new AbortController();
       abortRef.current = controller;
@@ -153,6 +185,7 @@ export function Chat({ locale }: { locale: Locale }) {
       </div>
 
       <form
+        ref={formRef}
         className="sticky bottom-0 mt-6 bg-background pb-6 pt-3"
         onSubmit={(event) => {
           event.preventDefault();
