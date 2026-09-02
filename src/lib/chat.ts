@@ -2,7 +2,13 @@ import Anthropic from "@anthropic-ai/sdk";
 import { systemPrompt } from "@/content/system-prompt";
 import { dictionaries } from "@/i18n/dictionaries";
 import type { Locale } from "@/i18n/config";
-import { LIMITS, type ChatEvent, type ChatTurn } from "./chat-config";
+import {
+  FOLLOWUP_LIMITS,
+  FOLLOWUP_MARKER,
+  LIMITS,
+  type ChatEvent,
+  type ChatTurn,
+} from "./chat-config";
 
 /** Q&A over a fixed context is simple and the endpoint is public, so both defaults are the cheapest model. */
 const GATEWAY_HOST = "ai-gateway.vercel.sh";
@@ -69,6 +75,60 @@ function describeError(error: unknown, locale: Locale): string {
   return errors.generic;
 }
 
+/**
+ * How many trailing characters have to be withheld because they could still turn
+ * out to be the start of the marker. Precise rather than a constant holdback, so
+ * an answer that never approaches the marker streams without any lag at all.
+ */
+function markerHoldback(text: string): number {
+  const longest = Math.min(text.length, FOLLOWUP_MARKER.length - 1);
+  for (let length = longest; length > 0; length -= 1) {
+    if (text.endsWith(FOLLOWUP_MARKER.slice(0, length))) return length;
+  }
+  return 0;
+}
+
+/** The tail is model output: it is parsed defensively and dropped on any doubt. */
+function parseFollowUps(tail: string): string[] {
+  try {
+    const parsed: unknown = JSON.parse(tail.trim());
+    if (!Array.isArray(parsed)) return [];
+    return parsed
+      .filter((item): item is string => typeof item === "string")
+      .map((item) => item.trim())
+      .filter((item) => item.length > 0 && item.length <= FOLLOWUP_LIMITS.maxChars)
+      .slice(0, FOLLOWUP_LIMITS.maxItems);
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * One line per answered question, in the deployment's logs.
+ *
+ * What a recruiter actually asks is the only signal there is about which gaps in
+ * the knowledge base matter — this one was found from a screenshot someone
+ * happened to send.
+ */
+function logExchange(entry: {
+  locale: Locale;
+  question: string;
+  answer: string;
+  followUps: number;
+  ms: number;
+}) {
+  console.log(
+    JSON.stringify({
+      tag: "chat",
+      locale: entry.locale,
+      ms: entry.ms,
+      followUps: entry.followUps,
+      question: entry.question.slice(0, LIMITS.maxQuestionChars),
+      answer: entry.answer.slice(0, 2000),
+    }),
+  );
+}
+
 export type AnswerStreamOptions = {
   apiKey: string;
   locale: Locale;
@@ -91,6 +151,14 @@ export function createAnswerStream({
 
   return new ReadableStream<Uint8Array>({
     async start(controller) {
+      const startedAt = Date.now();
+      const question = messages.findLast((m) => m.role === "user");
+      // Everything the reader sees, and the tail after the marker, kept apart.
+      let shown = "";
+      let held = "";
+      let tail = "";
+      let inTail = false;
+
       try {
         const stream = client.messages.stream({
           model,
@@ -104,10 +172,55 @@ export function createAnswerStream({
         });
 
         for await (const event of stream) {
-          if (event.type === "content_block_delta" && event.delta.type === "text_delta") {
-            controller.enqueue(encodeEvent({ type: "delta", text: event.delta.text }));
+          if (event.type !== "content_block_delta" || event.delta.type !== "text_delta") continue;
+
+          if (inTail) {
+            tail += event.delta.text;
+            continue;
+          }
+
+          held += event.delta.text;
+          const marker = held.indexOf(FOLLOWUP_MARKER);
+
+          if (marker !== -1) {
+            const before = held.slice(0, marker);
+            if (before) {
+              shown += before;
+              controller.enqueue(encodeEvent({ type: "delta", text: before }));
+            }
+            tail = held.slice(marker + FOLLOWUP_MARKER.length);
+            inTail = true;
+            held = "";
+            continue;
+          }
+
+          const keep = markerHoldback(held);
+          const ready = held.slice(0, held.length - keep);
+          if (ready) {
+            shown += ready;
+            held = held.slice(ready.length);
+            controller.enqueue(encodeEvent({ type: "delta", text: ready }));
           }
         }
+
+        // Nothing was ever a marker after all — release what was held back.
+        if (!inTail && held) {
+          shown += held;
+          controller.enqueue(encodeEvent({ type: "delta", text: held }));
+        }
+
+        const followUps = inTail ? parseFollowUps(tail) : [];
+        if (followUps.length > 0) {
+          controller.enqueue(encodeEvent({ type: "suggestions", items: followUps }));
+        }
+
+        logExchange({
+          locale,
+          question: question?.content ?? "",
+          answer: shown,
+          followUps: followUps.length,
+          ms: Date.now() - startedAt,
+        });
 
         const final = await stream.finalMessage();
         if (final.stop_reason === "refusal") {

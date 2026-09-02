@@ -33,7 +33,18 @@ export type ChatTurn = ChatRequest["messages"][number];
 /** Line-delimited NDJSON protocol: one line, one event. */
 export type ChatEvent =
   | { type: "delta"; text: string }
+  | { type: "suggestions"; items: string[] }
   | { type: "done" }
   | { type: "error"; message: string };
+
+/**
+ * The model closes an answer with this marker followed by a JSON array of
+ * follow-up questions. It is stripped from the stream server-side and arrives as
+ * its own event, so the reader never sees the machinery.
+ */
+export const FOLLOWUP_MARKER = "<<FOLLOWUPS>>";
+
+/** A stray or malformed tail must never reach the page as a suggestion. */
+export const FOLLOWUP_LIMITS = { maxItems: 3, maxChars: 90 } as const;
 
 export const CHAT_CONTENT_TYPE = "application/x-ndjson; charset=utf-8";

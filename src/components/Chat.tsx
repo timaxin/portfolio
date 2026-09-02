@@ -24,6 +24,8 @@ export function Chat({ locale }: { locale: Locale }) {
   /** The network is done; the typewriter may still be catching up. */
   const [streamEnded, setStreamEnded] = useState(false);
   const [skipTyping, setSkipTyping] = useState(false);
+  /** Proposed by the model alongside the answer; replaced by every new question. */
+  const [followUps, setFollowUps] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   const abortRef = useRef<AbortController | null>(null);
@@ -62,6 +64,7 @@ export function Chat({ locale }: { locale: Locale }) {
       setPending("");
       setStreamEnded(false);
       setSkipTyping(false);
+      setFollowUps([]);
 
       const controller = new AbortController();
       abortRef.current = controller;
@@ -72,6 +75,8 @@ export function Chat({ locale }: { locale: Locale }) {
           if (event.type === "delta") {
             answer += event.text;
             setPending(answer);
+          } else if (event.type === "suggestions") {
+            setFollowUps(event.items);
           } else if (event.type === "error") {
             setError(event.message);
           }
@@ -118,6 +123,24 @@ export function Chat({ locale }: { locale: Locale }) {
 
         {pending !== null && (isBusy || pending) && (
           <ChatMessage role="assistant" content={revealed} pending={isBusy} />
+        )}
+
+        {/* Held back until the answer has finished typing out: buttons appearing
+            mid-sentence pull the eye away from the text still being written. */}
+        {!isBusy && followUps.length > 0 && (
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-xs text-muted">{dict.chat.followUps}</span>
+            {followUps.map((question) => (
+              <button
+                key={question}
+                type="button"
+                onClick={() => void ask(question)}
+                className="cursor-pointer rounded-full border border-border bg-background px-3 py-1.5 text-xs text-muted transition duration-150 hover:border-accent hover:bg-accent-soft hover:text-accent active:scale-[0.97]"
+              >
+                {question}
+              </button>
+            ))}
+          </div>
         )}
 
         {error && (

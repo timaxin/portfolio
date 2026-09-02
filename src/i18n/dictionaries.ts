@@ -9,6 +9,8 @@ export type Dictionary = {
     send: string;
     stop: string;
     disclaimer: string;
+    /** Sits above the follow-up questions the model proposes after an answer. */
+    followUps: string;
   };
   /** Errors: some come back from the server, some are raised in the browser. */
   errors: {
@@ -74,6 +76,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       send: "Спросить",
       stop: "Стоп",
       disclaimer: "Отвечает ИИ по фиксированному профилю — детали лучше уточнить напрямую.",
+      followUps: "Спросить дальше",
     },
     errors: {
       noApiKey: "LLM_API_KEY не задан на сервере.",
@@ -130,6 +133,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       send: "Ask",
       stop: "Stop",
       disclaimer: "Answered by AI from a fixed profile — worth double-checking details directly.",
+      followUps: "Ask next",
     },
     errors: {
       noApiKey: "LLM_API_KEY is not set on the server.",
@@ -186,6 +190,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       send: "Zapytaj",
       stop: "Stop",
       disclaimer: "Odpowiada AI na podstawie stałego profilu — szczegóły lepiej potwierdzić bezpośrednio.",
+      followUps: "Zapytaj dalej",
     },
     errors: {
       noApiKey: "LLM_API_KEY nie jest ustawiony na serwerze.",
