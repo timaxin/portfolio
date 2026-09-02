@@ -74,8 +74,11 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
             {dict.availability}
           </h2>
           {/* Pairs rather than a paragraph: the contract type is the thing being
-              looked for, and in prose it has to be read for. */}
-          <dl className="mt-3 grid gap-x-6 gap-y-2 text-sm sm:grid-cols-[auto_1fr]">
+              looked for, and in prose it has to be read for. Two columns from the
+              start, not just from sm: up — on a phone that was a label on its own
+              line above each value, which alone ran the block past 40% of the
+              viewport and buried the chat two screens down. */}
+          <dl className="mt-3 grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 text-sm sm:gap-x-6">
             {profile.availability.facts.map((fact) => (
               <div key={fact.label.en} className="contents">
                 <dt className="text-muted">{t(fact.label, locale)}</dt>
