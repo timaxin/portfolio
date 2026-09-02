@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { profile } from "@/content/profile";
 import { isLocale, locales, t, type Locale } from "@/i18n/config";
+import { dictionaries } from "@/i18n/dictionaries";
 import { pageAlternates, SITE_URL } from "@/lib/seo";
 import "../globals.css";
 
@@ -107,8 +108,19 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[lo
           // The value is built from local content, never from user input.
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema(locale)) }}
         />
+        {/* Invisible until tabbed to: without it the first thing a keyboard lands
+            on is the whole header, on every page. */}
+        <a
+          href="#content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-xl focus:border focus:border-accent focus:bg-background focus:px-4 focus:py-2 focus:text-sm"
+        >
+          {dictionaries[locale].skipToContent}
+        </a>
         <SiteHeader locale={locale} />
-        <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-5 py-8">
+        <main
+          id="content"
+          className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-5 py-8"
+        >
           {children}
         </main>
         <SiteFooter locale={locale} />

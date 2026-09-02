@@ -128,7 +128,16 @@ export function Chat({ locale }: { locale: Locale }) {
 
   return (
     <section className="no-print flex flex-1 flex-col">
-      <div className="flex-1 space-y-4">
+      {/* A screen reader is told when an answer lands, but not once per revealed
+          character: `aria-busy` covers the typing, and the bubble is hidden from
+          the tree until it settles, so the announcement is the finished answer. */}
+      <div
+        role="log"
+        aria-live="polite"
+        aria-busy={isBusy}
+        aria-label={dict.chat.transcript}
+        className="flex-1 space-y-4"
+      >
         {turns.length === 0 && pending === null && (
           <div className="rounded-2xl border border-dashed border-border bg-surface px-5 py-6">
             <p className="text-sm text-muted">{dict.chat.intro}</p>
@@ -154,7 +163,9 @@ export function Chat({ locale }: { locale: Locale }) {
         ))}
 
         {pending !== null && (isBusy || pending) && (
-          <ChatMessage role="assistant" content={revealed} pending={isBusy} />
+          <div aria-hidden={isBusy}>
+            <ChatMessage role="assistant" content={revealed} pending={isBusy} />
+          </div>
         )}
 
         {/* Held back until the answer has finished typing out: buttons appearing
@@ -176,7 +187,10 @@ export function Chat({ locale }: { locale: Locale }) {
         )}
 
         {error && (
-          <p className="rounded-xl border border-border bg-surface-muted px-4 py-3 text-sm">
+          <p
+            role="alert"
+            className="rounded-xl border border-border bg-surface-muted px-4 py-3 text-sm"
+          >
             {error}
           </p>
         )}

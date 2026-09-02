@@ -11,6 +11,8 @@ export type Dictionary = {
     disclaimer: string;
     /** Sits above the follow-up questions the model proposes after an answer. */
     followUps: string;
+    /** Names the transcript for a screen reader; never shown. */
+    transcript: string;
   };
   /** Errors: some come back from the server, some are raised in the browser. */
   errors: {
@@ -58,6 +60,8 @@ export type Dictionary = {
   };
   /** Label on the link to the PDF in public/. */
   resume: string;
+  /** First thing in the tab order, visible only once focused. */
+  skipToContent: string;
   notFound: { title: string; description: string; elsewhere: string };
   home: {
     availability: string;
@@ -78,6 +82,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       stop: "Стоп",
       disclaimer: "Отвечает ИИ по фиксированному профилю — детали лучше уточнить напрямую.",
       followUps: "Спросить дальше",
+      transcript: "Переписка с ботом",
     },
     errors: {
       noApiKey: "LLM_API_KEY не задан на сервере.",
@@ -121,6 +126,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       notes: "О датах",
       education: "Образование",
     },
+    skipToContent: "К содержимому",
     notFound: {
       title: "Страницы нет",
       description: "Ссылка устарела или в адресе опечатка — часть адресов на сайте менялась.",
@@ -140,6 +146,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       stop: "Stop",
       disclaimer: "Answered by AI from a fixed profile — worth double-checking details directly.",
       followUps: "Ask next",
+      transcript: "Conversation with the bot",
     },
     errors: {
       noApiKey: "LLM_API_KEY is not set on the server.",
@@ -183,6 +190,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       notes: "About the dates",
       education: "Education",
     },
+    skipToContent: "Skip to content",
     notFound: {
       title: "No such page",
       description: "The link is out of date, or the address has a typo — some of these have changed.",
@@ -202,6 +210,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       stop: "Stop",
       disclaimer: "Odpowiada AI na podstawie stałego profilu — szczegóły lepiej potwierdzić bezpośrednio.",
       followUps: "Zapytaj dalej",
+      transcript: "Rozmowa z botem",
     },
     errors: {
       noApiKey: "LLM_API_KEY nie jest ustawiony na serwerze.",
@@ -245,6 +254,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       notes: "O datach",
       education: "Wykształcenie",
     },
+    skipToContent: "Przejdź do treści",
     notFound: {
       title: "Nie ma takiej strony",
       description: "Link jest nieaktualny albo w adresie jest literówka — część adresów się zmieniała.",
