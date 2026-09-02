@@ -6,12 +6,20 @@ import { profile } from "@/content/profile";
 import { isGridGroup } from "@/content/tech-icons";
 import { isLocale, t } from "@/i18n/config";
 import { dictionaries } from "@/i18n/dictionaries";
+import { pageAlternates } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
 }: PageProps<"/[locale]/stack">): Promise<Metadata> {
   const { locale } = await params;
-  return isLocale(locale) ? { title: dictionaries[locale].stack.title } : {};
+  if (!isLocale(locale)) return {};
+
+  const dict = dictionaries[locale].stack;
+  return {
+    title: dict.title,
+    description: dict.subtitle,
+    alternates: pageAlternates(locale, "/stack"),
+  };
 }
 
 export default async function StackPage({ params }: PageProps<"/[locale]/stack">) {

@@ -6,13 +6,11 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { profile } from "@/content/profile";
 import { isLocale, locales, t, type Locale } from "@/i18n/config";
+import { pageAlternates, SITE_URL } from "@/lib/seo";
 import "../globals.css";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin", "cyrillic"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
-
-/** Canonical origin. Vercel preview deployments still answer on their own URLs. */
-const SITE_URL = "https://www.timcv.pl";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -31,10 +29,7 @@ export async function generateMetadata({
     // Absolute base for canonical and hreflang links; without it Next resolves the
     // relative alternates below against localhost.
     metadataBase: new URL(SITE_URL),
-    alternates: {
-      canonical: `/${locale}`,
-      languages: Object.fromEntries(locales.map((l) => [l, `/${l}`])),
-    },
+    alternates: pageAlternates(locale, ""),
     title: {
       default: `${profile.name} — ${t(profile.headline, locale)}`,
       template: `%s — ${profile.name}`,

@@ -4,12 +4,20 @@ import { Timeline } from "@/components/Timeline";
 import { profile } from "@/content/profile";
 import { isLocale, t } from "@/i18n/config";
 import { dictionaries } from "@/i18n/dictionaries";
+import { pageAlternates } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
 }: PageProps<"/[locale]/experience">): Promise<Metadata> {
   const { locale } = await params;
-  return isLocale(locale) ? { title: dictionaries[locale].experience.title } : {};
+  if (!isLocale(locale)) return {};
+
+  const dict = dictionaries[locale].experience;
+  return {
+    title: dict.title,
+    description: dict.subtitle,
+    alternates: pageAlternates(locale, "/experience"),
+  };
 }
 
 export default async function ExperiencePage({ params }: PageProps<"/[locale]/experience">) {

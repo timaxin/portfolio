@@ -5,13 +5,21 @@ import { ProjectList, type ProjectCard } from "@/components/ProjectList";
 import { projects } from "@/content/projects";
 import { isLocale, t } from "@/i18n/config";
 import { dictionaries } from "@/i18n/dictionaries";
+import { pageAlternates } from "@/lib/seo";
 import { techKeys } from "@/lib/tech-keys";
 
 export async function generateMetadata({
   params,
 }: PageProps<"/[locale]/projects">): Promise<Metadata> {
   const { locale } = await params;
-  return isLocale(locale) ? { title: dictionaries[locale].projects.title } : {};
+  if (!isLocale(locale)) return {};
+
+  const dict = dictionaries[locale].projects;
+  return {
+    title: dict.title,
+    description: dict.subtitle,
+    alternates: pageAlternates(locale, "/projects"),
+  };
 }
 
 export default async function ProjectsPage({ params }: PageProps<"/[locale]/projects">) {

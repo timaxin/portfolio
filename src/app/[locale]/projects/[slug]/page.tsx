@@ -7,6 +7,7 @@ import { diagrams } from "@/content/diagrams";
 import { projects } from "@/content/projects";
 import { isLocale, locales, t } from "@/i18n/config";
 import { dictionaries } from "@/i18n/dictionaries";
+import { pageAlternates } from "@/lib/seo";
 
 export function generateStaticParams() {
   return locales.flatMap((locale) =>
@@ -21,7 +22,11 @@ export async function generateMetadata({
   const project = projects.find((p) => p.slug === slug);
   if (!project || !isLocale(locale)) return {};
 
-  return { title: t(project.title, locale), description: t(project.tagline, locale) };
+  return {
+    title: t(project.title, locale),
+    description: t(project.tagline, locale),
+    alternates: pageAlternates(locale, `/projects/${slug}`),
+  };
 }
 
 export default async function ProjectPage({ params }: PageProps<"/[locale]/projects/[slug]">) {
