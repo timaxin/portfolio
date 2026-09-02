@@ -5,9 +5,10 @@ import { ProjectBadge } from "@/components/ProjectBadge";
 import { ProjectDiagram } from "@/components/ProjectDiagram";
 import { diagrams } from "@/content/diagrams";
 import { projects } from "@/content/projects";
-import { isLocale, locales, t } from "@/i18n/config";
+import { profile } from "@/content/profile";
+import { isLocale, locales, t, type Locale } from "@/i18n/config";
 import { dictionaries } from "@/i18n/dictionaries";
-import { pageAlternates } from "@/lib/seo";
+import { pageAlternates, SITE_URL } from "@/lib/seo";
 
 export function generateStaticParams() {
   return locales.flatMap((locale) =>
@@ -29,6 +30,30 @@ export async function generateMetadata({
   };
 }
 
+/**
+ * The trail from the site root to this project, for search engines. Google reads
+ * it to show "timcv.pl › Projects › AI portfolio" in place of a bare URL in the
+ * result; the same trail is already on screen as the back link above the title.
+ */
+function breadcrumbSchema(locale: Locale, projectTitle: string, slug: string) {
+  const crumbs = [
+    { name: profile.name, url: `${SITE_URL}/${locale}` },
+    { name: dictionaries[locale].projects.title, url: `${SITE_URL}/${locale}/projects` },
+    { name: projectTitle, url: `${SITE_URL}/${locale}/projects/${slug}` },
+  ];
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: crumbs.map((crumb, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: crumb.name,
+      item: crumb.url,
+    })),
+  };
+}
+
 export default async function ProjectPage({ params }: PageProps<"/[locale]/projects/[slug]">) {
   const { locale, slug } = await params;
   if (!isLocale(locale)) notFound();
@@ -43,6 +68,13 @@ export default async function ProjectPage({ params }: PageProps<"/[locale]/proje
 
   return (
     <article>
+      <script
+        type="application/ld+json"
+        // Built from local content, never from user input.
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema(locale, t(project.title, locale), slug)),
+        }}
+      />
       <Link
         href={`/${locale}/projects`}
         className="text-sm text-muted transition-colors hover:text-foreground"
