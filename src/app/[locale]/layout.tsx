@@ -1,5 +1,5 @@
 import { Analytics } from "@vercel/analytics/next";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -23,6 +23,22 @@ export function generateStaticParams() {
  * locale prefix before it gets here, and the guard below still catches the rest.
  */
 export const dynamicParams = true;
+
+/**
+ * Without these, a phone paints its address bar and the native controls — scroll
+ * bars, checkboxes, the text caret — from its own default, which is light. On a
+ * near-black page that shows up as a white band above the site.
+ *
+ * The colours are the `--background` tokens from globals.css; a token that moves
+ * has to move here too, since a viewport export cannot read CSS.
+ */
+export const viewport: Viewport = {
+  colorScheme: "light dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#04050b" },
+  ],
+};
 
 export async function generateMetadata({
   params,
