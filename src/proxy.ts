@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { defaultLocale, isLocale, locales } from "@/i18n/config";
+import { LOCALE_HEADER } from "@/i18n/locale-header";
 
 /**
  * Every page lives under /:locale. A request without a prefix is redirected to the
@@ -22,10 +23,16 @@ function detectLocale(header: string | null) {
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  const hasLocale = locales.some(
+  const current = locales.find(
     (locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`),
   );
-  if (hasLocale) return NextResponse.next();
+  if (current) {
+    // not-found.tsx renders outside the route it replaced and so never receives
+    // params. The locale is known here, so it travels on as a request header.
+    const headers = new Headers(request.headers);
+    headers.set(LOCALE_HEADER, current);
+    return NextResponse.next({ request: { headers } });
+  }
 
   const locale = detectLocale(request.headers.get("accept-language"));
   const url = request.nextUrl.clone();

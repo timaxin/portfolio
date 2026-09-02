@@ -16,8 +16,13 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-/** Anything outside the three known languages 404s instead of rendering on demand. */
-export const dynamicParams = false;
+/**
+ * Unknown params render rather than being rejected at routing time, which is
+ * what lets `notFound()` reach not-found.tsx instead of the framework's bare
+ * 404. Nothing is lost by it: src/proxy.ts redirects anything without a known
+ * locale prefix before it gets here, and the guard below still catches the rest.
+ */
+export const dynamicParams = true;
 
 export async function generateMetadata({
   params,

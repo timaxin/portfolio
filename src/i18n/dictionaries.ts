@@ -58,6 +58,7 @@ export type Dictionary = {
   };
   /** Label on the link to the PDF in public/. */
   resume: string;
+  notFound: { title: string; description: string; elsewhere: string };
   home: {
     availability: string;
     /** Follows the number from `profile.yearsOfExperience`, which stays the one source. */
@@ -120,6 +121,11 @@ export const dictionaries: Record<Locale, Dictionary> = {
       notes: "О датах",
       education: "Образование",
     },
+    notFound: {
+      title: "Страницы нет",
+      description: "Ссылка устарела или в адресе опечатка — часть адресов на сайте менялась.",
+      elsewhere: "Что здесь есть",
+    },
     home: { availability: "Что ищу", yearsSuffix: "лет опыта" },
     resume: "Резюме PDF",
     languageSwitcher: "Язык",
@@ -177,6 +183,11 @@ export const dictionaries: Record<Locale, Dictionary> = {
       notes: "About the dates",
       education: "Education",
     },
+    notFound: {
+      title: "No such page",
+      description: "The link is out of date, or the address has a typo — some of these have changed.",
+      elsewhere: "What is here",
+    },
     home: { availability: "What I'm looking for", yearsSuffix: "years of experience" },
     resume: "CV in PDF",
     languageSwitcher: "Language",
@@ -233,6 +244,11 @@ export const dictionaries: Record<Locale, Dictionary> = {
       subtitle: "Gdzie pracowałem, w jakiej roli i co po mnie zostało. Czat też o tym wie.",
       notes: "O datach",
       education: "Wykształcenie",
+    },
+    notFound: {
+      title: "Nie ma takiej strony",
+      description: "Link jest nieaktualny albo w adresie jest literówka — część adresów się zmieniała.",
+      elsewhere: "Co tu jest",
     },
     home: { availability: "Czego szukam", yearsSuffix: "lat doświadczenia" },
     resume: "CV w PDF",
