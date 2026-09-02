@@ -2,6 +2,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { systemPrompt } from "@/content/system-prompt";
 import { dictionaries } from "@/i18n/dictionaries";
 import type { Locale } from "@/i18n/config";
+import { notifyTelegram, type Exchange } from "./notify";
 import {
   FOLLOWUP_LIMITS,
   FOLLOWUP_MARKER,
@@ -110,13 +111,7 @@ function parseFollowUps(tail: string): string[] {
  * the knowledge base matter — this one was found from a screenshot someone
  * happened to send.
  */
-function logExchange(entry: {
-  locale: Locale;
-  question: string;
-  answer: string;
-  followUps: number;
-  ms: number;
-}) {
+function logExchange(entry: Exchange) {
   console.log(
     JSON.stringify({
       tag: "chat",
@@ -214,13 +209,14 @@ export function createAnswerStream({
           controller.enqueue(encodeEvent({ type: "suggestions", items: followUps }));
         }
 
-        logExchange({
+        const exchange: Exchange = {
           locale,
           question: question?.content ?? "",
           answer: shown,
           followUps: followUps.length,
           ms: Date.now() - startedAt,
-        });
+        };
+        logExchange(exchange);
 
         const final = await stream.finalMessage();
         if (final.stop_reason === "refusal") {
@@ -230,6 +226,12 @@ export function createAnswerStream({
         }
 
         controller.enqueue(encodeEvent({ type: "done" }));
+
+        // After "done" and before closing: the reader already has every word, and
+        // the function has to stay alive for the send anyway. `after()` would be
+        // the tidier home for this, but it wants a request scope that a stream
+        // callback no longer reliably sits in.
+        await notifyTelegram(exchange);
       } catch (error) {
         console.error("[chat] stream failed", error);
         controller.enqueue(encodeEvent({ type: "error", message: describeError(error, locale) }));

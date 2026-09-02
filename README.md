@@ -30,7 +30,10 @@ Add a project to `projects.ts` and the bot knows about it immediately — nothin
 
 1. vercel.com/new → import this repo. Next.js is detected automatically; leave build and
    output settings alone.
-2. Settings → Environment Variables → `LLM_API_KEY`.
+2. Settings → Environment Variables → `LLM_API_KEY`. Optionally `TELEGRAM_BOT_TOKEN`
+   and `TELEGRAM_CHAT_ID` — every question and answer is then mirrored into that chat,
+   which is where the history actually survives: Vercel keeps runtime logs for an hour
+   on the free plan. See `.env.example` for how to get both values.
    **Tick all three environments** (Production, Preview, Development), otherwise the chat
    dies silently on preview deployments.
 3. Deploy.
