@@ -17,15 +17,12 @@ export const privacy = {
   updated: "2026-09-04",
 
   intro: {
-    ru: `Это личный сайт-резюме. Не компания, не продукт с учётными записями. Ниже просто и
-честно написано, что происходит с данными на этом сайте. Вопрос в чате, адрес, с которого
-пришёл человек, скачивание резюме.`,
-    en: `This is a personal CV site. Not a company, not a product with accounts. Here's a plain
-account of what happens to data on it, a question asked in the chat, the address a visit comes
-from, a resume download.`,
-    pl: `To osobista strona CV. Nie firma, nie produkt z kontami. Poniżej jasno napisane, co
-dzieje się z danymi na tej stronie, pytanie w czacie, adres, z którego przychodzi wizyta,
-pobranie CV.`,
+    ru: `Это личный сайт-резюме, а не компания и не продукт с учётными записями. Данных тут
+собирают немного, вопрос в чате, адрес, с которого пришёл человек, скачивание резюме.`,
+    en: `This is a personal CV site, not a company or a product with accounts. It collects
+little, a question asked in the chat, the address a visit comes from, a resume download.`,
+    pl: `To osobista strona CV, nie firma i nie produkt z kontami. Zbiera niewiele, pytanie w
+czacie, adres, z którego przychodzi wizyta, pobranie CV.`,
   } satisfies Localized,
 
   sections: [
