@@ -7,7 +7,14 @@ import { SITE_URL } from "@/lib/seo";
  * Every indexable path, locale-relative. Kept as one list so a new top-level
  * route is one line here rather than a second place to remember.
  */
-const paths = ["", "/experience", "/projects", "/stack", ...projects.map((p) => `/projects/${p.slug}`)];
+const paths = [
+  "",
+  "/experience",
+  "/projects",
+  "/stack",
+  "/privacy",
+  ...projects.map((p) => `/projects/${p.slug}`),
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return paths.flatMap((path) =>

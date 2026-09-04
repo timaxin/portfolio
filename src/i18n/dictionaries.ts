@@ -64,6 +64,15 @@ export type Dictionary = {
   skipToContent: string;
   notFound: { title: string; description: string; elsewhere: string };
   errorPage: { title: string; description: string; retry: string; home: string };
+  privacy: {
+    title: string;
+    subtitle: string;
+    /** Short word for the footer link. */
+    footerLink: string;
+    /** "Last updated" label, followed by the date from src/content/privacy.ts. */
+    updated: string;
+    contactLabel: string;
+  };
   home: {
     availability: string;
     /** Follows the number from `profile.yearsOfExperience`, which stays the one source. */
@@ -139,6 +148,13 @@ export const dictionaries: Record<Locale, Dictionary> = {
       retry: "Попробовать снова",
       home: "На главную",
     },
+    privacy: {
+      title: "Приватность",
+      subtitle: "Что происходит с данными на этом сайте, простыми словами.",
+      footerLink: "Приватность",
+      updated: "Обновлено",
+      contactLabel: "Написать",
+    },
     home: { availability: "Что ищу", yearsSuffix: "лет опыта" },
     resume: "Резюме PDF",
     languageSwitcher: "Язык",
@@ -209,6 +225,13 @@ export const dictionaries: Record<Locale, Dictionary> = {
       retry: "Try again",
       home: "Go home",
     },
+    privacy: {
+      title: "Privacy",
+      subtitle: "What happens to data on this site, in plain terms.",
+      footerLink: "Privacy",
+      updated: "Last updated",
+      contactLabel: "Email",
+    },
     home: { availability: "What I'm looking for", yearsSuffix: "years of experience" },
     resume: "CV in PDF",
     languageSwitcher: "Language",
@@ -278,6 +301,13 @@ export const dictionaries: Record<Locale, Dictionary> = {
       description: "Strona nie mogła się załadować. Spróbuj ponownie — jeśli to nie pomoże, wróć na stronę główną.",
       retry: "Spróbuj ponownie",
       home: "Strona główna",
+    },
+    privacy: {
+      title: "Prywatność",
+      subtitle: "Co dzieje się z danymi na tej stronie, prostymi słowami.",
+      footerLink: "Prywatność",
+      updated: "Zaktualizowano",
+      contactLabel: "Napisz",
     },
     home: { availability: "Czego szukam", yearsSuffix: "lat doświadczenia" },
     resume: "CV w PDF",

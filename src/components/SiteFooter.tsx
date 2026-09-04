@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { profile } from "@/content/profile";
 import { type Locale } from "@/i18n/config";
 import { dictionaries } from "@/i18n/dictionaries";
@@ -31,6 +32,10 @@ export function SiteFooter({ locale }: { locale: Locale }) {
         >
           {dictionaries[locale].resume} ↓
         </a>
+
+        <Link href={`/${locale}/privacy`} className="transition-colors hover:text-accent">
+          {dictionaries[locale].privacy.footerLink}
+        </Link>
 
         <span className="ml-auto">
           © {year} {profile.name}
