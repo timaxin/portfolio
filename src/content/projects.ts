@@ -53,7 +53,7 @@ export const projects: Project[] = [
     },
 
     tagline: {
-      ru: "Сайт-портфолио, где вместо резюме — чат с ИИ",
+      ru: "Сайт-портфолио, где вместо резюме работает чат с ИИ",
       en: "A portfolio site where the CV is replaced by an AI chat",
       pl: "Strona portfolio, na której zamiast CV jest czat z AI",
     },
@@ -77,18 +77,18 @@ export const projects: Project[] = [
     highlights: {
       ru: [
         "Ключ API никогда не попадает в браузер: все запросы идут через серверный прокси.",
-        "База знаний — типизированные TS-модули, а не векторная база: правки в один файл.",
+        "База знаний устроена как типизированные TS-модули, а не векторная база, правки идут в один файл.",
         "Rate limiting и ограничение длины истории, чтобы публичный эндпоинт не сжёг бюджет.",
         "Три языка интерфейса и контента: русский, английский, польский.",
       ],
       en: [
-        "The API key never reaches the browser — every request goes through a server proxy.",
+        "The API key never reaches the browser. Every request goes through a server proxy.",
         "The knowledge base is typed TS modules, not a vector store: edits land in one file.",
         "Rate limiting and history caps so a public endpoint can't burn the budget.",
         "Three languages across UI and content: Russian, English, Polish.",
       ],
       pl: [
-        "Klucz API nigdy nie trafia do przeglądarki — każde żądanie idzie przez serwerowe proxy.",
+        "Klucz API nigdy nie trafia do przeglądarki. Każde żądanie idzie przez serwerowe proxy.",
         "Baza wiedzy to typowane moduły TS, nie baza wektorowa: zmiany w jednym pliku.",
         "Rate limiting i limity historii, żeby publiczny endpoint nie spalił budżetu.",
         "Trzy języki interfejsu i treści: rosyjski, angielski, polski.",
@@ -102,7 +102,7 @@ export const projects: Project[] = [
     kind: "commercial",
 
     challenge: {
-      ru: "Несколько продуктовых сайтов живут в одном монорепозитории и делят общий код. Правку в общем месте сразу видят все продукты, поэтому проверять её приходится шире, чем один сайт. Вторая постоянная тема — скорость страниц: от неё зависят позиции в поиске и конверсия.",
+      ru: "Несколько продуктовых сайтов живут в одном монорепозитории и делят общий код. Правку в общем месте сразу видят все продукты, поэтому проверять её приходится шире, чем один сайт. Скорость страниц тоже постоянная тема: от неё зависят позиции в поиске и конверсия.",
       en: "Several product sites live in one monorepo and share the same code. A change in a shared place lands in all of them at once, so it has to be checked wider than a single site. The other constant is page speed: search ranking and conversion depend on it.",
       pl: "Kilka serwisów produktowych żyje w jednym monorepo i dzieli wspólny kod. Zmiana we wspólnym miejscu trafia od razu do wszystkich, więc trzeba ją sprawdzać szerzej niż jeden serwis. Drugi stały temat to szybkość stron: od niej zależą pozycje w wyszukiwarce i konwersja.",
     },
@@ -119,9 +119,9 @@ export const projects: Project[] = [
     },
 
     description: {
-      ru: "Независимое сравнение финансовых продуктов и услуг для британского рынка: несколько продуктовых сайтов в одном монорепозитории на React и Next.js, между фронтом и внутренними сервисами — слой на Node и Express. Работаю здесь с сентября 2022-го: сначала инженером, с апреля 2024-го — senior'ом. Доставка фич, производительность, тесты и код-ревью в команде.",
-      en: "Impartial comparison of financial products and services for the UK market: several product sites in one monorepo on React and Next.js, with a Node and Express layer between the front end and internal services. I have been on it since September 2022 — first as an engineer, since April 2024 as a senior. Feature delivery, performance, tests and code review across the team.",
-      pl: "Bezstronne porównanie produktów i usług finansowych dla rynku brytyjskiego: kilka serwisów produktowych w jednym monorepo na React i Next.js, między frontem a usługami wewnętrznymi warstwa na Node i Express. Pracuję tu od września 2022 — najpierw jako inżynier, od kwietnia 2024 jako senior. Dostarczanie funkcji, wydajność, testy i code review w zespole.",
+      ru: "Независимое сравнение финансовых продуктов и услуг для британского рынка: несколько продуктовых сайтов в одном монорепозитории на React и Next.js, а между фронтом и внутренними сервисами стоит слой на Node и Express. Работаю здесь с сентября 2022-го, сначала инженером, с апреля 2024-го senior'ом. Доставка фич, производительность, тесты и код-ревью в команде.",
+      en: "Impartial comparison of financial products and services for the UK market: several product sites in one monorepo on React and Next.js, with a Node and Express layer between the front end and internal services. I have been on it since September 2022, first as an engineer, since April 2024 as a senior. Feature delivery, performance, tests and code review across the team.",
+      pl: "Bezstronne porównanie produktów i usług finansowych dla rynku brytyjskiego: kilka serwisów produktowych w jednym monorepo na React i Next.js, między frontem a usługami wewnętrznymi warstwa na Node i Express. Pracuję tu od września 2022, najpierw jako inżynier, od kwietnia 2024 jako senior. Dostarczanie funkcji, wydajność, testy i code review w zespole.",
     },
 
     role: {
@@ -164,7 +164,7 @@ export const projects: Project[] = [
         "Крупный рефакторинг с переходом на новый фреймворк: производительность страниц выросла на 25% без потери функциональности.",
         "Сократил критические баги в проде на 40% через покрытие Jest/React Testing Library и более строгое код-ревью.",
         "Вместе с DevOps перевёл все сервисы на GitLab, внедрял редизайн интерфейса сразу в нескольких продуктах.",
-        "Довёл до продакшена два BFF/бэкенд-приложения по spec-driven development, генерируя код из спецификаций через Claude Code, Windsurf и Codex — на 30–40% быстрее.",
+        "Довёл до продакшена два BFF/бэкенд-приложения по spec-driven development, генерируя код из спецификаций через Claude Code, Windsurf и Codex, на 30–40% быстрее.",
       ],
       en: [
         "Led the migration of a core client-facing module to React + TypeScript: 30% smaller bundle, Lighthouse performance up from 62 to 91.",
@@ -174,7 +174,7 @@ export const projects: Project[] = [
         "Took part in a major refactoring onto a new framework: 25% better page performance with no loss of functionality.",
         "Cut critical production bugs by 40% through Jest/React Testing Library coverage and stricter code review.",
         "Migrated all services to GitLab with DevOps, and shipped a UI redesign across several products.",
-        "Delivered two BFF/backend applications with spec-driven development, scaffolding from specs with Claude Code, Windsurf and Codex — 30–40% faster.",
+        "Delivered two BFF/backend applications with spec-driven development, scaffolding from specs with Claude Code, Windsurf and Codex, 30–40% faster.",
       ],
       pl: [
         "Poprowadził migrację kluczowego modułu klienckiego na React + TypeScript: bundle mniejszy o 30%, Lighthouse performance z 62 do 91.",
@@ -184,7 +184,7 @@ export const projects: Project[] = [
         "Duży refaktor z przejściem na nowy framework: wydajność stron wzrosła o 25% bez utraty funkcjonalności.",
         "Zmniejszył liczbę krytycznych błędów produkcyjnych o 40% dzięki pokryciu Jest/React Testing Library i ostrzejszemu code review.",
         "Razem z DevOps przeniósł wszystkie serwisy na GitLab i wdrożył redesign interfejsu w kilku produktach.",
-        "Dostarczył dwie aplikacje BFF/backend w podejściu spec-driven development, generując kod ze specyfikacji przez Claude Code, Windsurf i Codex — o 30–40% szybciej.",
+        "Dostarczył dwie aplikacje BFF/backend w podejściu spec-driven development, generując kod ze specyfikacji przez Claude Code, Windsurf i Codex, o 30–40% szybciej.",
       ],
     },
 
@@ -212,8 +212,8 @@ export const projects: Project[] = [
     },
 
     description: {
-      ru: "Система мониторинга флота в реальном времени. Телеметрия идёт с судна по UDP: бэкенд на Node парсит поток и складывает в TimescaleDB, фронт забирает данные через GraphQL и Apollo Client. Интерфейс строится вокруг 3D-модели судна, собранной из моделей заказчика: переключение по палубам, камеры и узлы на своих местах, показания по всем доступным датчикам. Отдельно — карта со всеми судами и дашборд с состоянием каждого.",
-      en: "A real-time fleet monitoring system. Telemetry leaves the vessel over UDP: a Node backend parses the stream into TimescaleDB, and the front end reads it through GraphQL and Apollo Client. The interface is built around a 3D model of the ship assembled from the client's own models — switching between decks, cameras and nodes where they physically sit, readings from every available sensor. Alongside it, a map of the whole fleet and a dashboard for each vessel.",
+      ru: "Система мониторинга флота в реальном времени. Телеметрия идёт с судна по UDP: бэкенд на Node парсит поток и складывает в TimescaleDB, фронт забирает данные через GraphQL и Apollo Client. Интерфейс строится вокруг 3D-модели судна, собранной из моделей заказчика: переключение по палубам, камеры и узлы на своих местах, показания по всем доступным датчикам. Отдельно есть карта со всеми судами и дашборд с состоянием каждого.",
+      en: "A real-time fleet monitoring system. Telemetry leaves the vessel over UDP: a Node backend parses the stream into TimescaleDB, and the front end reads it through GraphQL and Apollo Client. The interface is built around a 3D model of the ship assembled from the client's own models, switching between decks, cameras and nodes where they physically sit, readings from every available sensor. Alongside it, a map of the whole fleet and a dashboard for each vessel.",
       pl: "System monitoringu floty w czasie rzeczywistym. Telemetria idzie ze statku przez UDP: backend na Node parsuje strumień do TimescaleDB, a front pobiera dane przez GraphQL i Apollo Client. Interfejs zbudowany wokół modelu 3D statku złożonego z modeli klienta: przełączanie po pokładach, kamery i węzły na swoich miejscach, odczyty ze wszystkich dostępnych czujników. Obok mapa całej floty i dashboard każdej jednostki.",
     },
 
@@ -265,7 +265,7 @@ export const projects: Project[] = [
         "Telemetria po UDP: backend parsuje strumień do TimescaleDB i oddaje frontowi przez GraphQL, a nie zapytaniem na każdy datagram.",
         "Ciągły strumień z 50+ statków naraz, pozycje wszystkich jednostek na wspólnej mapie.",
         "Podgląd wideo z kamer pokładowych prosto z modelu i dashboard konkretnego statku.",
-        "Apollo Client ze znormalizowanym cache — przy stale napływających aktualizacjach interfejs nie przerysowywał się w całości.",
+        "Apollo Client ze znormalizowanym cache, dzięki czemu przy stale napływających aktualizacjach interfejs nie przerysowywał się w całości.",
       ],
     },
 
@@ -293,9 +293,9 @@ export const projects: Project[] = [
     },
 
     description: {
-      ru: "Обучающая платформа, где контент ведёт сам заказчик: бесплатные и платные разделы, видеоуроки с таймкодами, домашние задания и переписка учителя с учениками. Я спроектировал архитектуру школьного модуля и отвечал за него целиком — от плеера с таймкодами до админки для учителей. Отдельная часть работы — редактор контента: WYSIWYG с собственным UI, компонентами картинок и видео и встраиванием YouTube и Vimeo с навигацией по таймкодам исходных площадок.",
-      en: "A learning platform where the client owns the content: free and paid sections, video lessons with timecodes, homework, and teacher-to-student messaging. I designed the architecture of the school module and owned it end to end — from the player with timecodes to the teachers' admin panel. A separate strand was the content editor: a WYSIWYG with a custom UI, image and video components, and YouTube and Vimeo embedding that navigates by the timecodes of the original platforms.",
-      pl: "Platforma edukacyjna, na której treści prowadzi sam klient: sekcje darmowe i płatne, lekcje wideo z timecode'ami, prace domowe i korespondencja nauczyciela z uczniami. Zaprojektowałem architekturę modułu szkoły i odpowiadałem za niego w całości — od odtwarzacza z timecode'ami po panel administracyjny dla nauczycieli. Osobny wątek to edytor treści: WYSIWYG z własnym UI, komponentami obrazów i wideo oraz osadzaniem YouTube i Vimeo z nawigacją po timecode'ach oryginalnych platform.",
+      ru: "Обучающая платформа, где контент ведёт сам заказчик: бесплатные и платные разделы, видеоуроки с таймкодами, домашние задания и переписка учителя с учениками. Я спроектировал архитектуру школьного модуля и отвечал за него целиком, от плеера с таймкодами до админки для учителей. Отдельно занимался редактором контента: WYSIWYG с собственным UI, компонентами картинок и видео и встраиванием YouTube и Vimeo с навигацией по таймкодам исходных площадок.",
+      en: "A learning platform where the client owns the content: free and paid sections, video lessons with timecodes, homework, and teacher-to-student messaging. I designed the architecture of the school module and owned it end to end, from the player with timecodes to the teachers' admin panel. A separate strand was the content editor: a WYSIWYG with a custom UI, image and video components, and YouTube and Vimeo embedding that navigates by the timecodes of the original platforms.",
+      pl: "Platforma edukacyjna, na której treści prowadzi sam klient: sekcje darmowe i płatne, lekcje wideo z timecode'ami, prace domowe i korespondencja nauczyciela z uczniami. Zaprojektowałem architekturę modułu szkoły i odpowiadałem za niego w całości, od odtwarzacza z timecode'ami po panel administracyjny dla nauczycieli. Osobny wątek to edytor treści: WYSIWYG z własnym UI, komponentami obrazów i wideo oraz osadzaniem YouTube i Vimeo z nawigacją po timecode'ach oryginalnych platform.",
     },
 
     role: {
@@ -358,9 +358,9 @@ export const projects: Project[] = [
     client: { ru: "AKDev Group", en: "AKDev Group", pl: "AKDev Group" },
 
     challenge: {
-      ru: "Дети занимаются сериями: одна задача за другой, без пауз на загрузку между ними. Отдельно стояла коммерческая задача — с главной страницы приходило мало записей на пробное занятие.",
-      en: "Children work in runs: one task after another, with no pause to load in between. Separately there was a commercial problem — the landing page brought in few trial-lesson sign-ups.",
-      pl: "Dzieci ćwiczą seriami: zadanie po zadaniu, bez przerw na ładowanie pomiędzy nimi. Osobno stał problem biznesowy — strona główna przynosiła mało zapisów na lekcję próbną.",
+      ru: "Дети занимаются сериями: одна задача за другой, без пауз на загрузку между ними. Отдельно стояла коммерческая задача, с главной страницы приходило мало записей на пробное занятие.",
+      en: "Children work in runs: one task after another, with no pause to load in between. Separately there was a commercial problem, the landing page brought in few trial-lesson sign-ups.",
+      pl: "Dzieci ćwiczą seriami: zadanie po zadaniu, bez przerw na ładowanie pomiędzy nimi. Osobno stał problem biznesowy, strona główna przynosiła mało zapisów na lekcję próbną.",
     },
     title: {
       ru: "CleverStart",
@@ -375,7 +375,7 @@ export const projects: Project[] = [
     },
 
     description: {
-      ru: "Обучение ментальной арифметике: виртуальные счёты-абакус, генератор заданий, домашние работы, соревнования и олимпиады между учениками. Моя часть — интерфейс: настройки генератора заданий и то, как сами задачи показываются ученику на абакусе. Плюс переделанная под конверсию главная страница и помощь с модулем олимпиад.",
+      ru: "Обучение ментальной арифметике: виртуальные счёты-абакус, генератор заданий, домашние работы, соревнования и олимпиады между учениками. Моей частью был интерфейс: настройки генератора заданий и то, как сами задачи показываются ученику на абакусе. Плюс переделанная под конверсию главная страница и помощь с модулем олимпиад.",
       en: "Teaching mental arithmetic: a virtual abacus, a task generator, homework, contests and olympiads between students. My part was the UI: the settings of the task generator, and how the tasks themselves are presented to a student on the abacus. Plus the landing page rebuilt for conversion and help with the olympiad module.",
       pl: "Nauka arytmetyki mentalnej: wirtualne liczydło abakus, generator zadań, prace domowe, zawody i olimpiady między uczniami. Moja część to interfejs: ustawienia generatora zadań i to, jak same zadania pokazują się uczniowi na abakusie. Do tego przebudowana pod konwersję strona główna i pomoc przy module olimpiad.",
     },
@@ -407,20 +407,20 @@ export const projects: Project[] = [
     highlights: {
       ru: [
         "Интерфейс генератора заданий: выбор типа упражнения и настройки сложности под возраст группы.",
-        "Отображение самих задач на абакусе — ученик решает их подряд, без перезагрузки страницы между задачами.",
-        "Переделал главную страницу под конверсию — регистраций на пробное занятие стало больше примерно на 20%.",
+        "Отображение самих задач на абакусе. Ученик решает их подряд, без перезагрузки страницы между задачами.",
+        "Переделал главную страницу под конверсию. Регистраций на пробное занятие стало больше примерно на 20%.",
         "Помогал строить модуль олимпиад: регистрация, проведение в реальном времени и таблица результатов.",
       ],
       en: [
         "The UI of the task generator: choosing an exercise type and tuning difficulty to the age group.",
-        "The presentation of the tasks themselves on the abacus — a student works through them in a run, with no page reload in between.",
-        "Rebuilt the landing page for conversion — sign-ups for a trial lesson went up by roughly 20%.",
+        "The presentation of the tasks themselves on the abacus. A student works through them in a run, with no page reload in between.",
+        "Rebuilt the landing page for conversion. Sign-ups for a trial lesson went up by roughly 20%.",
         "Helped build the olympiad module: registration, running an event live, and a results table.",
       ],
       pl: [
         "Interfejs generatora zadań: wybór typu ćwiczenia i ustawienia trudności pod wiek grupy.",
-        "Prezentacja samych zadań na abakusie — uczeń rozwiązuje je seriami, bez przeładowania strony pomiędzy nimi.",
-        "Przebudował stronę główną pod konwersję — zapisów na lekcję próbną przybyło o około 20%.",
+        "Prezentacja samych zadań na abakusie. Uczeń rozwiązuje je seriami, bez przeładowania strony pomiędzy nimi.",
+        "Przebudował stronę główną pod konwersję. Zapisów na lekcję próbną przybyło o około 20%.",
         "Pomagał budować moduł olimpiad: rejestracja, przebieg na żywo i tabela wyników.",
       ],
     },
@@ -451,9 +451,9 @@ export const projects: Project[] = [
     },
 
     description: {
-      ru: "Платформа интернет-радио: пользователь составляет вещание на дни или недели вперёд, и эфир идёт сам, без его участия. Моей частью была панель диджея — режим, в котором можно выйти в свой поток вживую. Всё сведение работает на Web Audio API: две деки с песнями и микшированием между ними, джинглы и реклама, микрофон ведущего и возврат эфира в наушники, чтобы услышать результат до того, как он уйдёт в лайв.",
-      en: "An internet radio platform: a user schedules broadcasting days or weeks ahead and the stream runs on its own. My part was the DJ console — the mode where you go live into your own stream. The mixing runs on the Web Audio API: two decks with crossfading between them, jingles and ads, the host's microphone, and the stream fed back into the headphones so the host hears the result before it goes out live.",
-      pl: "Platforma radia internetowego: użytkownik układa ramówkę na dni lub tygodnie do przodu, a eter idzie sam, bez jego udziału. Moją częścią była konsola DJ-ska — tryb, w którym można wejść na żywo do własnego strumienia. Miksowanie działa na Web Audio API: dwie decki z przechodzeniem między nimi, jingle i reklamy, mikrofon prowadzącego i powrót sygnału do słuchawek, żeby usłyszeć efekt zanim pójdzie na antenę.",
+      ru: "Платформа интернет-радио: пользователь составляет вещание на дни или недели вперёд, и эфир идёт сам, без его участия. Моей частью была панель диджея, режим, в котором можно выйти в свой поток вживую. Всё сведение работает на Web Audio API: две деки с песнями и микшированием между ними, джинглы и реклама, микрофон ведущего и возврат эфира в наушники, чтобы услышать результат до того, как он уйдёт в лайв.",
+      en: "An internet radio platform: a user schedules broadcasting days or weeks ahead and the stream runs on its own. My part was the DJ console, the mode where you go live into your own stream. The mixing runs on the Web Audio API: two decks with crossfading between them, jingles and ads, the host's microphone, and the stream fed back into the headphones so the host hears the result before it goes out live.",
+      pl: "Platforma radia internetowego: użytkownik układa ramówkę na dni lub tygodnie do przodu, a eter idzie sam, bez jego udziału. Moją częścią była konsola DJ-ska, tryb, w którym można wejść na żywo do własnego strumienia. Miksowanie działa na Web Audio API: dwie decki z przechodzeniem między nimi, jingle i reklamy, mikrofon prowadzącego i powrót sygnału do słuchawek, żeby usłyszeć efekt zanim pójdzie na antenę.",
     },
 
     role: {
@@ -486,19 +486,19 @@ export const projects: Project[] = [
     highlights: {
       ru: [
         "Панель диджея на Web Audio API: две деки с треками и микшированием между ними, джинглы и рекламные вставки поверх эфира.",
-        "Микрофон ведущего с раздельной громкостью по каналам и возвратом в наушники — эфир слышно до того, как он уйдёт в лайв.",
+        "Микрофон ведущего с раздельной громкостью по каналам и возвратом в наушники. Эфир слышно до того, как он уйдёт в лайв.",
         "Тёмная тема панели: за пультом сидят вечером и ночью.",
         "Участвовал в биллинге и суточном пробном режиме до покупки подписки.",
       ],
       en: [
         "The DJ console on the Web Audio API: two decks with tracks and crossfading between them, jingles and ad breaks over the live stream.",
-        "The host's microphone with per-channel volume and a headphone return — you hear the mix before it goes out live.",
+        "The host's microphone with per-channel volume and a headphone return. You hear the mix before it goes out live.",
         "A dark theme for the console: people sit at that desk in the evening and at night.",
         "Contributed to billing and the 24-hour trial before buying a subscription.",
       ],
       pl: [
         "Konsola DJ-ska na Web Audio API: dwie decki z utworami i przejściami między nimi, jingle i bloki reklamowe na żywym sygnale.",
-        "Mikrofon prowadzącego z osobną głośnością kanałów i powrotem do słuchawek — miks słychać, zanim pójdzie na antenę.",
+        "Mikrofon prowadzącego z osobną głośnością kanałów i powrotem do słuchawek. Miks słychać, zanim pójdzie na antenę.",
         "Ciemny motyw konsoli: przy tym pulpicie siedzi się wieczorem i w nocy.",
         "Brał udział w billingu i dobowym trybie próbnym przed wykupieniem subskrypcji.",
       ],

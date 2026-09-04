@@ -86,11 +86,11 @@ export const dictionaries: Record<Locale, Dictionary> = {
     nav: { chat: "Чат", projects: "Проекты", stack: "Стек", experience: "Опыт" },
     chat: {
       intro:
-        "Спросите что угодно об опыте, стеке и проектах. Ответы собирает модель строго по данным профиля — если чего-то нет, она так и скажет.",
+        "Спросите что угодно об опыте, стеке и проектах. Ответы собирает модель строго по данным профиля, если чего-то нет, она так и скажет.",
       placeholder: "Спросите об опыте, стеке или проектах…",
       send: "Спросить",
       stop: "Стоп",
-      disclaimer: "Отвечает ИИ по фиксированному профилю — детали лучше уточнить напрямую.",
+      disclaimer: "Отвечает ИИ по фиксированному профилю, детали лучше уточнить напрямую.",
       followUps: "Спросить дальше",
       transcript: "Переписка с ботом",
     },
@@ -107,7 +107,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     projects: {
       title: "Проекты",
-      subtitle: "Всё, что здесь перечислено, чат-бот тоже знает — можно спросить его в свободной форме.",
+      subtitle: "Всё, что здесь перечислено, чат-бот тоже знает, можно спросить его в свободной форме.",
       back: "Все проекты",
       role: "Роль",
       period: "Период",
@@ -118,7 +118,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       clientUndisclosed: "не разглашается",
       challenge: "Задача",
       howItWorks: "Как устроено",
-      diagramLegend: "Обведённое — то, что делал я",
+      diagramLegend: "Обведённые блоки я делал сам",
       about: "О проекте",
       contribution: "Что я сделал",
       filteredBy: "Проекты с технологией",
@@ -128,7 +128,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
     stack: {
       title: "Стек",
       subtitle:
-        "Инструменты, с которыми я действительно работал. Ниже — домены и то, как я работаю в команде.",
+        "Инструменты, с которыми я действительно работал. Плюс домены и то, как я работаю в команде.",
     },
     experience: {
       title: "Опыт",
@@ -139,12 +139,12 @@ export const dictionaries: Record<Locale, Dictionary> = {
     skipToContent: "К содержимому",
     notFound: {
       title: "Страницы нет",
-      description: "Ссылка устарела или в адресе опечатка — часть адресов на сайте менялась.",
+      description: "Ссылка устарела или в адресе опечатка. Часть адресов на сайте менялась.",
       elsewhere: "Что здесь есть",
     },
     errorPage: {
       title: "Что-то сломалось",
-      description: "Страница не смогла открыться. Попробуйте ещё раз — если не поможет, вернитесь на главную.",
+      description: "Страница не смогла открыться. Попробуйте ещё раз. Если не поможет, вернитесь на главную.",
       retry: "Попробовать снова",
       home: "На главную",
     },
@@ -163,11 +163,11 @@ export const dictionaries: Record<Locale, Dictionary> = {
     nav: { chat: "Chat", projects: "Projects", stack: "Stack", experience: "Experience" },
     chat: {
       intro:
-        "Ask anything about experience, stack and projects. Answers come from a fixed profile — if something isn't there, the bot will say so.",
+        "Ask anything about experience, stack and projects. Answers come from a fixed profile. If something isn't there, the bot will say so.",
       placeholder: "Ask about experience, stack or projects…",
       send: "Ask",
       stop: "Stop",
-      disclaimer: "Answered by AI from a fixed profile — worth double-checking details directly.",
+      disclaimer: "Answered by AI from a fixed profile. Details are worth double-checking directly.",
       followUps: "Ask next",
       transcript: "Conversation with the bot",
     },
@@ -184,7 +184,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     projects: {
       title: "Projects",
-      subtitle: "Everything listed here is also in the chatbot's knowledge — feel free to just ask.",
+      subtitle: "Everything listed here is also in the chatbot's knowledge. Feel free to just ask.",
       back: "All projects",
       role: "Role",
       period: "Period",
@@ -205,7 +205,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
     stack: {
       title: "Stack",
       subtitle:
-        "The tools I have actually worked with. Domains and ways of working are below the grid.",
+        "The tools I have actually worked with, plus domains and ways of working.",
     },
     experience: {
       title: "Experience",
@@ -216,12 +216,12 @@ export const dictionaries: Record<Locale, Dictionary> = {
     skipToContent: "Skip to content",
     notFound: {
       title: "No such page",
-      description: "The link is out of date, or the address has a typo — some of these have changed.",
+      description: "The link is out of date, or the address has a typo. Some of these have changed.",
       elsewhere: "What is here",
     },
     errorPage: {
       title: "Something broke",
-      description: "The page failed to load. Try again — if that doesn't help, head back to the homepage.",
+      description: "The page failed to load. Try again. If that doesn't help, head back to the homepage.",
       retry: "Try again",
       home: "Go home",
     },
@@ -240,11 +240,11 @@ export const dictionaries: Record<Locale, Dictionary> = {
     nav: { chat: "Czat", projects: "Projekty", stack: "Stack", experience: "Doświadczenie" },
     chat: {
       intro:
-        "Zapytaj o doświadczenie, stack i projekty. Odpowiedzi powstają wyłącznie na podstawie profilu — czego tam nie ma, bot tak powie.",
+        "Zapytaj o doświadczenie, stack i projekty. Odpowiedzi powstają wyłącznie na podstawie profilu. Czego tam nie ma, bot tak powie.",
       placeholder: "Zapytaj o doświadczenie, stack lub projekty…",
       send: "Zapytaj",
       stop: "Stop",
-      disclaimer: "Odpowiada AI na podstawie stałego profilu — szczegóły lepiej potwierdzić bezpośrednio.",
+      disclaimer: "Odpowiada AI na podstawie stałego profilu. Szczegóły lepiej potwierdzić bezpośrednio.",
       followUps: "Zapytaj dalej",
       transcript: "Rozmowa z botem",
     },
@@ -261,7 +261,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     projects: {
       title: "Projekty",
-      subtitle: "Wszystko, co tu jest, zna też chatbot — można go po prostu zapytać.",
+      subtitle: "Wszystko, co tu jest, zna też chatbot. Można go po prostu zapytać.",
       back: "Wszystkie projekty",
       role: "Rola",
       period: "Okres",
@@ -282,7 +282,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
     stack: {
       title: "Stack",
       subtitle:
-        "Narzędzia, z którymi naprawdę pracowałem. Domeny i sposób pracy — pod siatką.",
+        "Narzędzia, z którymi naprawdę pracowałem, plus domeny i sposób pracy.",
     },
     experience: {
       title: "Doświadczenie",
@@ -293,12 +293,12 @@ export const dictionaries: Record<Locale, Dictionary> = {
     skipToContent: "Przejdź do treści",
     notFound: {
       title: "Nie ma takiej strony",
-      description: "Link jest nieaktualny albo w adresie jest literówka — część adresów się zmieniała.",
+      description: "Link jest nieaktualny albo w adresie jest literówka. Część adresów się zmieniała.",
       elsewhere: "Co tu jest",
     },
     errorPage: {
       title: "Coś się zepsuło",
-      description: "Strona nie mogła się załadować. Spróbuj ponownie — jeśli to nie pomoże, wróć na stronę główną.",
+      description: "Strona nie mogła się załadować. Spróbuj ponownie. Jeśli to nie pomoże, wróć na stronę główną.",
       retry: "Spróbuj ponownie",
       home: "Strona główna",
     },
