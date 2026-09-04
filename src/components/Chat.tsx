@@ -40,6 +40,12 @@ export function Chat({ locale }: { locale: Locale }) {
   const revealed = useTypewriter(pending ?? "", skipTyping);
   /** Tokens still arriving, or arrived and not typed out yet. */
   const isBusy = pending !== null && (!streamEnded || revealed.length < pending.length);
+  /**
+   * Nothing asked yet, so nothing to follow. Without this the scroll effect below
+   * runs on mount too, and since the chat sits under a tall hero it would drag a
+   * visitor past the whole top of the page before they read a word of it.
+   */
+  const started = turns.length > 0 || pending !== null;
 
   // A reader who scrolls up mid-answer wants to re-read something, and dragging
   // them back down is the rudest thing this page could do. `wheel` and `touchmove`
@@ -66,14 +72,14 @@ export function Chat({ locale }: { locale: Locale }) {
   // the frame between it being added and this running.
   useEffect(() => {
     const marker = bottomRef.current;
-    if (!marker || !followRef.current) return;
+    if (!started || !marker || !followRef.current) return;
 
     const room = window.innerHeight - (formRef.current?.offsetHeight ?? 0) - LINE_CLEARANCE;
     const behind = marker.getBoundingClientRect().bottom - room;
     if (behind <= 0) return;
 
     window.scrollBy({ top: behind, behavior: isBusy ? "auto" : "smooth" });
-  }, [turns, revealed, isBusy]);
+  }, [started, turns, revealed, isBusy]);
 
   // An abandoned request would keep burning tokens — kill it when leaving the page.
   useEffect(() => () => abortRef.current?.abort(), []);
